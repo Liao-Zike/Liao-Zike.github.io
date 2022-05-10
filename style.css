@@ -1,256 +1,62 @@
-*{
-    padding: 0;
-    margin: 0;
-}
-.header{
-    height: 53px;
-    background-color: #444;
-    overflow: hidden; /*多餘的隱藏*/
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-/* 左上角LOGO設定 */
-.logo a{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 53px;
-    width: 150px;
-    font-size: 35px;
-    color:#fff;
-    text-shadow: 1.5px 1.5px 1.3px rgb(85, 33, 33); /*1_右橫 2_下直 3_模糊*/
-    text-decoration: none; /*取消預設連結的樣式*/
-}
-/* 控制選項checkbox */
-#menu_control{
-    display: none; /*隱藏checkbox*/
-}
-/* 漢堡選單按鈕 */
-.menu_btn{
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    width:40px;
-    height: 40px;
-    background-color: #000;
-    /*transition: all .5s ease-in-out;*/
-    border:1px solid #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer; /*移過去數標樣式*/
-}
-/* 漢堡選單按鈕-中間線 */
-.menu_btn_burger{
-    width: 30px;
-    height: 2.5px;
-    background-color: #ccc;
-    border-radius: 5px; /*線條原角效果*/
-    box-shadow: 0 0 3px #fb0; /*帶黃色微模糊*/
-    transition: all .5s ease-in; /*改變時特效*/
-}
-/* 漢堡選單按鈕-上下線 */
-.menu_btn_burger::before,
-.menu_btn_burger::after{
-    content: ''; /*沒有內容*/
-    position: absolute;
-    width: 30px;
-    height: 2.5px;
-    background-color: #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 3px #fb0;
-    transition: all .5s ease-in-out;
-}/* 設定往下線 */
-.menu_btn_burger::before{
-    transform: translateY(-8px);
-}/* 設定往上線 */
-.menu_btn_burger::after{
-    transform: translateY(8px);
-    ;
-}
-/* 漢堡選單to打叉動畫 */
-/* 單checkbox點擊v - 中間線 */
-#menu_control:checked ~ .menu_btn .menu_btn_burger{
-    transform:translateX(-40px); /*向左移動*/
-    transition: .5s;
-    background:transparent; 
-    box-shadow: 0 0 0px rgb(0, 0, 0);
-}
-#menu_control:checked ~ .menu_btn .menu_btn_burger::before{
-    transform: rotate(45deg)
-    translateX(28px)
-    translateY(-28px);
-}
-#menu_control:checked ~ .menu_btn .menu_btn_burger::after{
-    transform: rotate(-45deg)
-    translateX(28px)
-    translateY(28px);
-}
-
-#menu_control:checked ~ .menu{
-    left:0px;
-}
-#menu_control:checked ~ .menu a::after{
-    transition: 5s;
-}
-/* 選單設定 */
-.menu{
-    opacity: 90%;
-    position: absolute;
-    padding-top: 10px;
-    width: 100%;
-    height: calc(100vh - 50px);
-    background-color: #111;
-    color:#000;
-    transition: .5s;
-    left: -100%;
-}
-.menu a{
-    background-color: #888;
-    text-decoration: none;
-    line-height: 50px;
-    font-size: 20px;
-    color:#fff;
-    margin: 0px 15px;
-    padding: 15px 25px;
-    display: block;
-    height: 40px;
-}
-/*增加其他分隔線條(偽元素)*/
-.menu a::after{
-    content:'';
-    position: absolute;
-    height: 1px;
-    width:calc(100% - 30px);
-    left: 15px;
-    top: 80px;
-    background-color: #fa0;
-    margin: auto;
-    box-shadow:0px 70px 0px #fa0,
-    0px 70px 0px #fa0,0px 140px 0px #fa0,
-    0px 210px 0px #fa0;
-}
-.menu a:hover{
-    transition: .4s;
-    background-color: rgb(208, 212, 169);
-}
-/*RGB模式開關外盒*/
-.crazy{
-    position:absolute;
-    top:14px;
-    left:180px;
-    width: 50px;
-    display: flex;
-    flex-direction: column;
-    opacity: 65%;
-}
-/*RGB模式開關*/
-.crazybox{
-    margin-left: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-/*RGB模式文字(text:RGB)*/
-.crazy p{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:#fff;
-    cursor: default;
-}
-/*暫停/播放鍵外盒*/
-.crazyplay{
-    position:absolute;
-    top:6px;
-    left:245px;
-    height: 40px;
-    width: 25px;
-    opacity: 25%;
-}
-/*暫停/播放符號 外盒*/
-.crazyplay-icon {
-    height: 25px;
-    width: 25px;
-}
-/*暫停/播放符號(text:▶)*/
-.crazyplay-icon p{
-    cursor: default;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 3px;
-    font-size: 15px;
-    height: 100%;
-    color: #fff;
-}
-/*暫停/播放符號移入特效*/
-.crazyplay-icon p:hover{
-    transition: .5s ease-out;
-    border: 1px solid transparent;
-    border-radius: 100%;
-    box-shadow: 0px 0px 4px 1px rgba(87, 87, 85, 0.959);/*上下光暈 周圍 大小*/
-    background-color:rgba(128, 128, 231, 0.959);
-}
-/*暫停/撥放文字(text:暫停/播放)*/
-.crazyplay-content p{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 8px;
-    color:#fff;
-    opacity: 75%;
-    cursor:default;
-}
-/*速度滑桿 外盒*/
-.speed{    
-    position:absolute;
-    top: 10px;
-    left: 300px;
-    width: 180px;
-    display: flex;
-    flex-direction: column;
-    opacity: 80%;
-}
-/*速度滑桿*/
-#slider{
-    width: 178px;
-    background-color: #000;
-}
-/*速度文字(text:速度speed)*/
-.speed p{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 3px;
-    color:#fff;
-}
-
-
-.content1{
-    height: 100vh;
-    background-color: rgb(138, 135, 135);
-}
-@media screen and (max-width:550px){
-    .logo a{
-        width: 110px;
+@media screen and (min-width:1200px){
+    .header{
+        width: 100%;
+        position: fixed;
+        background-color: #444;
+        position: relative;
+        justify-content: space-between;
+        display: flex;
+        
     }
+    .menu_btn{
+        display: none;
+    }
+    .menu a::after{
+        display: none;
+    }
+    .logo{
+        margin-left: 5%;
+        width:20%;
+    }
+    .menu{
+        left: 0;
+        padding: 0;
+        display: flex;
+        position: relative; /*相對定位*/
+        background-color: transparent;
+        width: auto;
+        height: auto;
+        font-size: 0;
+        margin-right: 10%;
+    }
+    .menu a{
+        display:inline-block;
+        text-align: center;
+        margin: 0;
+        padding: 0 10px;
+        height: auto;
+        width: 130px;
+        color:#fff;
+        background-color: transparent;
+        border-bottom: 1.5px solid transparent;
+        
+    }
+    .menu a:hover{
+        transition: all .5s;
+        height: auto - 3px;
+        background-color: #aaa;
+        color:rgb(255, 0, 0);
+        border-bottom: 1.5px solid #f00;
+        
+    }
+
     .crazy{
-        left:110px;
+        left:250px;
     }
     .crazyplay{
-        left:160px;
+        left:305px;
     }
     .speed{
-        left:190px;
-        width: 100px;
-    }
-    #slider{
-        width: 102px;
-    }
-}
-
-@media screen and (max-width:370px){
-    .speed{
-        display: none;
+        left:350px;
     }
 }

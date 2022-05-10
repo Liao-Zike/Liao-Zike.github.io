@@ -225,12 +225,31 @@
     color:#fff;
 }
 
+
 .content1{
     height: 100vh;
     background-color: rgb(138, 135, 135);
 }
 @media screen and (max-width:550px){
+    .logo a{
+        width: 110px;
+    }
+    .crazy{
+        left:110px;
+    }
+    .crazyplay{
+        left:160px;
+    }
     .speed{
-        display: none;
+        left:190px;
+        width: 100px;
+    }
+    #slider{
+        width: 102px;
+    }
+}
+
+@media screen and (max-width:370px){
+    .speed{
     }
 }

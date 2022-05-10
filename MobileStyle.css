@@ -232,24 +232,25 @@
 }
 @media screen and (max-width:550px){
     .logo a{
-        width: 110px;
+        width: 109px;
     }
     .crazy{
-        left:110px;
+        left:108px;
     }
     .crazyplay{
-        left:160px;
+        left:152px;
     }
     .speed{
-        left:190px;
-        width: 100px;
+        left:178px;
+        width: 90px;
     }
     #slider{
-        width: 102px;
+        width: 90px;
     }
 }
 
-@media screen and (max-width:370px){
+@media screen and (max-width:335px){
     .speed{
+        display: none;
     }
 }

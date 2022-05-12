@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="MobileStyle.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <title>JS期末</title>
+    <!--jQuery-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="MobileStyle.css">
+    <link rel="stylesheet" href="style.css">
     <script src="main.js"></script>
 </head>
 <body>
@@ -45,12 +51,23 @@
     <!-- <p>Space</p>
     <div class="OK">123</div> -->
     <div class="content1">
-        <div class="value" style="width:300px">123456</div>
-        123
+        <div class="time"><p>123456</p></div>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+        <a href="#" class="content1-button">touch me</a>
     </div>
-
+    
     <script>
-        
+        let today = new Date();
+        $(document).ready(function(){
+            $('.time').html('<h1>'+'目前時間為：' + today.getFullYear() + '年' + today.getMonth() + '月' + today.getDay() + '日'+'</h1>');
+        });
+        $(document).ready(function(){
+            $('.content1-button').click(function(){
+                alert("你好")
+            });
+        });
     </script>
 </body>
 </html>

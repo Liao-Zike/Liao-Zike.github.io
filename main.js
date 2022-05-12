@@ -7,7 +7,7 @@ var val=5;
 id = setInterval(function() {
     changRGB();
 },val);
-console.log(id);
+// console.log(id);
 /*速度*/
 $(document).ready(function(){
     $('#slider').slider({

@@ -227,8 +227,10 @@
 
 
 .content1{
-    height: 100vh;
-    background-color: rgb(138, 135, 135);
+    height: calc(100vh - 53px);
+    /* background-color: rgb(138, 135, 135); */
+    background-color: #000;
+    color: rgb(255, 255, 255);
 }
 @media screen and (max-width:550px){
     .logo a{
@@ -249,8 +251,66 @@
     }
 }
 
-@media screen and (max-width:335px){
+/* @media screen and (max-width:335px){
     .speed{
         display: none;
     }
+} */
+
+/* 內容塊1-第一個Btn*/
+.content1-button{       
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: #ff0;
+    text-decoration: none; /*刪除文字樣式(底線)*/
+    font-size: 50px;
+    transform: translate(-50%, -50%);
+    padding: 10px 25px 10px 25px;
+    -webkit-box-reflect: below 30px linear-gradient(transparent, #ffffff50); /*生成下方 文字間隔*/
+    border-radius: 5px;
+    overflow: hidden;/*修掉偽元素直角*/
+    font-family: 'Roboto', sans-serif;
 }
+/* 內容塊1-第一個Btn >>左上「偽元素 */
+.content1-button::before{
+    content:'';
+    position: absolute;
+    top:0;
+    left:0;
+    width: 35px;
+    height: 35px;
+    border-top: 4px solid #ff5;
+    border-left: 4px solid #ff5;
+}
+/* 內容塊1-第一個Btn >>右下」偽元素 */
+.content1-button::after{
+    content:'';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    border-bottom: 4px solid #ff5;
+    border-right: 4px solid #ff5;
+}
+
+.content1-button:hover{
+    color:#000;
+    box-shadow: 0 0 40px#ff0;
+    background-color: rgb(228, 228, 89);
+    transition: all .2s ease-in-out;
+}
+.content1-button:hover::before{
+    height: 95%;
+    width: 98%;
+    transition: all .2s ease-in-out;
+}
+.content1-button:hover::after{
+    height: 98.5%;
+    width: 96%;
+    transition: all .15s ease-in-out;
+}
+
+
+

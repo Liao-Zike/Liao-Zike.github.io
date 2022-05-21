@@ -5,9 +5,7 @@ import{neonCursor} from "./coollightchd.js"
 if(wid>=750)
   big=105;
 else if(wid<750&&wid>=360)
-  big=25;
-else
-  big=15;
+  big=40;
 
 neonCursor({
   el: document.getElementById('app'),

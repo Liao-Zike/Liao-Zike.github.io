@@ -2,6 +2,18 @@ var R=255,G=0,B=0;
 var start=0,stop=0;
 var id=0;
 var val=5;
+$(document).ready(function(){
+    var burgerchk=0;
+    $('#menu_control').click(function(){
+        if(burgerchk){
+            burgerchk=0;
+            $('.content1-button').css("left","50%");
+        }else{
+            burgerchk=1;
+            $('.content1-button').css("left","-100%");
+        }
+    });
+});
 
 /*根據time設定*/
 id = setInterval(function() {
@@ -105,10 +117,10 @@ function changRGB () {
 function changColor(){
     $(document).ready(function(){
         $('.header').css('background-color' ,'rgb('+R+','+G+','+B+')');
+        
+        // $('.header').css('background' ,'linear-gradient(360deg,#bbb,'+'rgb('+R+','+G+','+B+')');
         $('.OK').text(R+','+G+','+B);
     });
 }
-
-
-
-
+/* 超炫燈條 */
+/* ... */

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh_Hant_TW">
+<html lang="zh_Hant">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="MobileStyle.css">
     <link rel="stylesheet" href="style.css">
     <script src="main.js"></script>
+    <script src="coollight.js" type="module"></script>
 </head>
 <body>
     <div class="header">
@@ -50,24 +51,50 @@
     </div>
     <!-- <p>Space</p>
     <div class="OK">123</div> -->
+
+    <div class="content1-button">
+        <a href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        touch me
+        </a>
+    </div>
     <div class="content1">
-        <div class="time"><p>123456</p></div>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-        <a href="#" class="content1-button">touch me</a>
+        <div id="app">
+            
+        </div>
+        
     </div>
     
+    <div class="time"><h1>時間位置</h1></div>
+    
     <script>
-        let today = new Date();
+        let today = Date();
         $(document).ready(function(){
-            $('.time').html('<h1>'+'目前時間為：' + today.getFullYear() + '年' + today.getMonth() + '月' + today.getDay() + '日'+'</h1>');
+            today = Date();
+            $('.time').html('<h1>'+today+'</h1>');
+            console.log("時間載入正常"+today);
         });
+        setInterval(function() {
+            $(document).ready(function(){
+                today = Date();
+                $('.time').html('<h1>'+today+'</h1>');
+            });
+        },1000);
+
+        /*$(document).ready(function(){
+            let today = Date();
+            $('.time').html('<h1>'+today+'</h1>');
+        });*/
         $(document).ready(function(){
             $('.content1-button').click(function(){
                 alert("你好")
             });
         });
+        
+
     </script>
 </body>
 </html>

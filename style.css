@@ -23,7 +23,7 @@
         padding: 0;
         display: flex;
         position: relative; /*相對定位*/
-        background-color: transparent;
+        background: none;
         width: auto;
         height: auto;
         font-size: 0;
@@ -60,3 +60,4 @@
         left:350px;
     }
 }
+

@@ -1,0 +1,844 @@
+@media screen and (max-width:1200px) {
+    body::-webkit-scrollbar{
+        display: none;
+    }
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+.header{
+    height: 53px;
+    background-color: #444;
+    overflow: hidden; /*多餘的隱藏*/
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+/* 左上角LOGO設定 */
+.logo a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 53px;
+    width: 150px;
+    font-size: 35px;
+    color:#fff;
+    text-shadow: 1.5px 1.5px 1.3px rgb(85, 33, 33); /*1_右橫 2_下直 3_模糊*/
+    text-decoration: none; /*取消預設連結的樣式*/
+}
+/* 控制選項checkbox */
+#menu_control{
+    display: none; /*隱藏checkbox*/
+}
+/* 漢堡選單按鈕 */
+.menu_btn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width:40px;
+    height: 40px;
+    background-color: #000;
+    /*transition: all .5s ease-in-out;*/
+    border:1px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; /*移過去數標樣式*/
+}
+/* 漢堡選單按鈕-中間線 */
+.menu_btn_burger{
+    width: 30px;
+    height: 2.5px;
+    background-color: #ccc;
+    border-radius: 5px; /*線條原角效果*/
+    box-shadow: 0 0 3px #fb0; /*帶黃色微模糊*/
+    transition: all .5s ease-in; /*改變時特效*/
+}
+/* 漢堡選單按鈕-上下線 */
+.menu_btn_burger::before,
+.menu_btn_burger::after{
+    content: ''; /*沒有內容*/
+    position: absolute;
+    width: 30px;
+    height: 2.5px;
+    background-color: #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #fb0;
+    transition: all .5s ease-in-out;
+}/* 設定往下線 */
+.menu_btn_burger::before{
+    transform: translateY(-8px);
+}/* 設定往上線 */
+.menu_btn_burger::after{
+    transform: translateY(8px);
+    ;
+}
+/* 漢堡選單to打叉動畫 */
+/* 單checkbox點擊v - 中間線 */
+#menu_control:checked ~ .menu_btn .menu_btn_burger{
+    transform:translateX(-40px); /*向左移動*/
+    transition: .5s;
+    background:transparent; 
+    box-shadow: 0 0 0px rgb(0, 0, 0);
+}
+#menu_control:checked ~ .menu_btn .menu_btn_burger::before{
+    transform: rotate(45deg)
+    translateX(28px)
+    translateY(-28px);
+}
+#menu_control:checked ~ .menu_btn .menu_btn_burger::after{
+    transform: rotate(-45deg)
+    translateX(28px)
+    translateY(28px);
+}
+
+#menu_control:checked ~ .menu{
+    left:0px;
+}
+#menu_control:checked ~ .menu a::after{
+    transition: 5s;
+}
+/* 選單設定 */
+.menu{
+    opacity: 100%;
+    position: absolute;
+    padding-top: 10px;
+    width: 100%;
+    height: calc(100vh - 50px);
+    background-color: #111;
+    background: linear-gradient(#000,#333);
+    color:#000;
+    transition: .5s;
+    left: -100%;
+}
+.menu a{
+    background-color: #888;
+    text-decoration: none;
+    line-height: 50px;
+    font-size: 20px;
+    color:#fff;
+    margin: 0px 15px;
+    padding: 15px 25px;
+    display: block;
+    height: 40px;
+}
+/*增加其他分隔線條(偽元素)*/
+.menu a::after{
+    content:'';
+    position: absolute;
+    height: 1px;
+    width:calc(100% - 30px);
+    left: 15px;
+    top: 80px;
+    background-color: #fa0;
+    margin: auto;
+    box-shadow:0px 70px 0px #fa0,
+    0px 70px 0px #fa0,0px 140px 0px #fa0,
+    0px 210px 0px #fa0;
+}
+.menu a:hover{
+    transition: .4s;
+    background-color: rgb(208, 212, 169);
+}
+/*RGB模式開關外盒*/
+.crazy{
+    position:absolute;
+    top:14px;
+    left:180px;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    opacity: 65%;
+}
+/*RGB模式開關*/
+.crazybox{
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*RGB模式文字(text:RGB)*/
+.crazy p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#fff;
+    cursor: default;
+}
+/*暫停/播放鍵外盒*/
+.crazyplay{
+    position:absolute;
+    top:6px;
+    left:245px;
+    height: 40px;
+    width: 25px;
+    opacity: 25%;
+}
+/*暫停/播放符號 外盒*/
+.crazyplay-icon {
+    height: 25px;
+    width: 25px;
+}
+/*暫停/播放符號(text:▶)*/
+.crazyplay-icon p{
+    cursor: default;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 3px;
+    font-size: 15px;
+    height: 100%;
+    color: #fff;
+}
+/*暫停/播放符號移入特效*/
+.crazyplay-icon p:hover{
+    transition: .5s ease-out;
+    border: 1px solid transparent;
+    border-radius: 100%;
+    box-shadow: 0px 0px 4px 1px rgba(87, 87, 85, 0.959);/*上下光暈 周圍 大小*/
+    background-color:rgba(128, 128, 231, 0.959);
+}
+/*暫停/撥放文字(text:暫停/播放)*/
+.crazyplay-content p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
+    color:#fff;
+    opacity: 75%;
+    cursor:default;
+}
+/*速度滑桿 外盒*/
+.speed{    
+    position:absolute;
+    top: 10px;
+    left: 300px;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    opacity: 80%;
+}
+/*速度滑桿*/
+#slider{
+    width: 178px;
+    background-color: #000;
+}
+/*速度文字(text:速度speed)*/
+.speed p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3px;
+    color:#fff;
+}
+
+
+.content1{
+    height: calc(100vh - 53px);
+    width: 100%;
+    /* background-color: rgb(138, 135, 135); */
+    /* background-color: #000;  */
+    color: rgb(255, 255, 255);
+    cursor: none;
+}
+
+@media screen and (max-width:550px){
+    .logo a{
+        width: 109px;
+    }
+    .crazy{
+        left:108px;
+    }
+    .crazyplay{
+        left:152px;
+    }
+    .speed{
+        left:178px;
+        width: 90px;
+    }
+    #slider{
+        width: 90px;
+    }
+}
+
+/* @media screen and (max-width:335px){
+    .speed{
+        display: none;
+    }
+} */
+
+/*按鈕定在中間(touch me)*/
+.content1-button{
+    position: absolute;
+    left:50%;
+    top:50%;
+    width: 260px;
+    transform: translate(-50%, -50%);
+    -webkit-box-reflect: below 30px linear-gradient(transparent, #ffffff50);
+}
+/*移除a屬性特效 外圍加上空白*/
+.content1-button a{
+    position: relative;
+    display: inline-block;
+    padding: 10px 25px 10px 25px;
+    color: #ff0;
+    font-size: 50px;
+    text-decoration: none;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+.content1-button a:hover {
+  background:  rgb(228, 228, 89);
+  color: #000;
+  border-radius: 5px;
+  box-shadow: 0 0 40px #ff0;
+  transition: all .2s ease-in-out;
+}
+/*按鈕周圍4個span*/
+.content1-button a span {
+  position: absolute;
+  display: block;
+}
+/*選取第一個元素*/
+.content1-button a span:nth-child(1) {
+  top: 0;
+  left: 0%;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #ff0);
+  animation: cont1-btn-anim1 1s linear infinite; /*linear定義動畫轉變時時間的加速曲線 infinite無限撥放*/
+}
+@keyframes cont1-btn-anim1 {
+    /*預設值*/
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+/*選取第三個元素(下面)*/
+.content1-button a span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(270deg, transparent, #ff0);
+  animation: cont1-btn-anim3 1s linear infinite;
+}
+@keyframes cont1-btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+/*奇怪了*/
+#current_temp {
+	font-size: 3em;
+	color: #ff0;
+}
+
+#current_summary {
+	font-size: 1.5em;
+	color: #ff0;
+}
+
+#current_location {
+	font-size: 1.5em;
+	color: #ff0;
+	font-family: monospace;
+}
+
+.content {
+	text-align: center;
+    
+}
+
+#ic {
+	font-size: 4em;
+	padding-top: 30px;
+	color: #fff;
+}
+
+#sliderk{
+    display: block;
+    width: 93px;
+}
+
+#app {
+	width: 100%;
+	height: 100%;
+}
+  
+#app {
+	overflow: hidden;
+	touch-action: pan-up;
+	color: #ffffff;
+	font-family: 'Montserrat', sans-serif;
+	text-align: center;
+	text-shadow: 0 0 5px #ffffff, 0 0 20px #000, 0 0 30px #000;
+}
+
+
+#app canvas {
+	display: block;
+	z-index: -1;
+	top: 53px;
+} 
+/*2022/06/06 程式編輯新增*/
+
+.closebtn{
+    position: absolute;
+    text-indent: -9999px;
+    top:0%;
+    right:0%;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+    content: '';
+    text-indent: 0px;
+    position: absolute;
+}
+.closebtn::before,.closebtn::after{
+    position: absolute;
+    content:'';
+    background-color: aliceblue;
+    width: 50px;
+    height: 5px;
+}
+.closebtn::before{
+    transform:rotate(45deg) translate(15px,15px);
+}
+.closebtn::after{
+    transform:rotate(-45deg) translate(-15px,15px);
+}
+.time{
+    cursor: default;
+    color: black;
+    text-shadow: none;
+    border: 3px solid rgb(255, 255, 255);
+    position: absolute;
+    top: -400px;
+    /*top: 325px;*/
+    left: 50%;
+    height: 450px;
+    width: 70%;
+    background-color:rgb(58, 58, 58);
+    transform: translate(-50%, -50%);
+    /* opacity: 0%; */
+    transition: all .5s ease-in-out;
+    overflow: hidden;
+}
+.timetxt{
+    background-color: aliceblue;
+    position: relative;
+    top: 0%;
+    left:0%;
+    height: 50px;
+    width: 100%;
+    font-size: 30px;
+    background: linear-gradient(360deg,rgb(255, 255, 255),rgb(131, 131, 131));
+}
+.timetxt p{
+    display: flex;
+    justify-content: center;
+}
+.nowtime h1{
+    text-align: center;
+    margin: auto;
+    
+}
+.block_time{
+    width: 80%;
+    margin: auto;
+    margin-top: 25px;
+    
+    overflow: hidden;
+    /* text-align: center; */
+}
+.block_time h2{
+    color: aliceblue;
+}
+/*年year*/
+.block_year{
+    height: 5px;
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    border-radius: 5px;
+}
+.block_yearOK{
+    transform: translateY(-5px);
+    height: 5px;
+    width: 0%;
+    background-color: red;
+    border-radius: 5px;
+}
+.block_year_circle{
+    position: absolute;
+    top:-10px;
+    left: calc(0%);
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background: red;
+    box-shadow: 0 0 20px red;
+}
+/*月month*/
+.block_month{
+    height: 5px;
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    border-radius: 5px;
+}
+.block_monthOK{
+    transform: translateY(-5px);
+    height: 5px;
+    width: 0%;
+    background-color: orange;
+    border-radius: 5px;
+}
+.block_month_circle{
+    position: absolute;
+    top:-10px;
+    left: calc(0%);
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background: orange;
+    box-shadow: 0 0 20px orange;
+}
+/*日day*/
+.block_day{
+    height: 5px;
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    border-radius: 5px;
+}
+.block_dayOK{
+    transform: translateY(-5px);
+    height: 5px;
+    width: 0%;
+    background-color: yellow;
+    border-radius: 5px;
+}
+.block_day_circle{
+    position: absolute;
+    top:-10px;
+    left: calc(0%);
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background: yellow;
+    box-shadow: 0 0 20px yellow;
+}
+/*時hour*/
+.block_hour{
+    height: 5px;
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    border-radius: 5px;
+}
+.block_hourOK{
+    transform: translateY(-5px);
+    height: 5px;
+    width: 0%;
+    background-color: rgb(0, 255, 0);
+    border-radius: 5px;
+}
+.block_hour_circle{
+    position: absolute;
+    top:-10px;
+    left: calc(0%);
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background: rgb(0, 255, 0);
+    box-shadow: 0 0 20px rgb(0, 255, 0);
+}
+/*分minute*/
+.block_minute{
+    height: 5px;
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    border-radius: 5px;
+}
+.block_minuteOK{
+    transform: translateY(-5px);
+    height: 5px;
+    width: 0%;
+    background-color: rgb(0, 183, 255);
+    border-radius: 5px;
+}
+.block_minute_circle{
+    position: absolute;
+    top:-10px;
+    left: calc(0%);
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background-color: rgb(0, 183, 255);
+    box-shadow: 0 0 20px rgb(0, 183, 255);
+}
+/*秒sec*/
+.block_sec{
+    height: 5px;
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    border-radius: 5px;
+}
+.block_secOK{
+    transform: translateY(-5px);
+    height: 5px;
+    width: 0%;
+    background-color: wheat;
+    border-radius: 5px;
+}
+.block_sec_circle{
+    position: absolute;
+    top:-10px;
+    left: 0%;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background: wheat;
+    box-shadow: 0 0 20px wheat;
+}
+.block{
+    position: relative;
+    width: 100%;
+}
+.K101{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 25px;
+}
+.K101des{
+    margin: auto;
+    font-size: larger;
+    color:rgb(251, 65, 65);
+}
+.K101temp{
+    margin: auto;
+    font-size: larger;
+    color:rgb(251, 65, 65);
+}
+
+.K101wet{
+    margin: auto;
+    font-size: larger;
+    color:rgb(251, 65, 65);
+}
+
+.TaiwanTemp{
+    padding-top: 50px;
+    padding-left: 50px;
+}
+.TaiwanIMG{
+    position: relative;
+}
+.Keelung{
+    position: absolute;
+    top:60px;
+    left:530px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.NewTaipei{
+    position: absolute;
+    top:60px;
+    left:470px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.Taipei{
+    position: absolute;
+    top:110px;
+    left:480px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.Taoyuan{
+    position: absolute;
+    top:95px;
+    left:410px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.HsinchuC{
+    position: absolute;
+    top:160px;
+    left:400px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.HsinchuS{
+    position: absolute;
+    top:135px;
+    left:335px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.Miaoli{
+    position: absolute;
+    top:205px;
+    left:335px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.Taichung{
+    position: absolute;
+    top:275px;
+    left:305px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.Changhua{
+    position: absolute;
+    top:340px;
+    left:245px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.Nantou{
+    position: absolute;
+    top:375px;
+    left:350px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    /*top:340px;
+    left:330px;width: 90px;
+    height: 90px;*/
+    border-radius: 6px;
+}
+.Yunlin{
+    position: absolute;
+    top:395px;
+    left:230px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.ChiayiC{
+    position: absolute;
+    top:460px;
+    left:285px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.ChiayiS{
+    position: absolute;
+    top:453px;
+    left:226px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.Tainan{
+    position: absolute;
+    top:530px;
+    left:205px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.Kaohsiung{
+    position: absolute;
+    top:563px;
+    left:290px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.Pingtung{
+    position: absolute;
+    top:675px;
+    left:267px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.Yilan{
+    position: absolute;
+    top:200px;
+    left:500px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.Hualien{
+    position: absolute;
+    top:380px;
+    left:450px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.Taitung{
+    position: absolute;
+    top:580px;
+    left:370px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.Penghu{
+    position: absolute;
+    top:420px;
+    left:50px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.Kinmen{
+    position: absolute;
+    top:132px;
+    left:15px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}
+.Lienchiang{
+    position: absolute;
+    top:230px;
+    left:38px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+}

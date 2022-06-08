@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh_Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS期末</title>
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="MobileStyle.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+    <script src="coollight.js" type="module"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <a href="index.html">JS-END</a>
+        </div>
+        <input type="checkbox" id="menu_control" class="menu_control">
+        <label for="menu_control" class="menu_btn">
+            <div class="menu_btn_burger"></div>
+        </label>
+        <div class="crazy">
+            <input type="checkbox" class="crazybox">
+            <p>RGB</p>
+        </div>
+        <div class="crazyplay">
+            <div class="crazyplay-icon"><p>▶</p></div>
+            <div class="crazyplay-content"><p>播放</p></div>
+        </div>
+        <div class="speed">
+            <div id="slider"></div>
+            <p>速度speed</p>
+        </div>
+        <div class="menu" >
+            <nav>
+                <a href="index.html">首頁</a>
+                <a href="#" class="timeopen">目前時間</a>
+                <a href="#">縣市溫濕度</a>
+                <a href="#" target="_blank">OMG</a>
+            <nav>
+        </div>
+    </div>
+    <!-- <p>Space</p>
+    <div class="OK">123</div> -->
+
+    <div class="content1-button">
+        <a href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+        touch me
+        </a>
+    </div>
+    <div class="content1">
+        <div id="app">  
+        </div>
+    </div>
+
+    <div class="content2">
+        <div class="TaiwanTemp">
+            <div class="TaiwanIMG">
+                <img src="Taiwan.jpg" height="900px">
+                <div class="Keelung">基隆市</div>
+                <div class="NewTaipei">新北市</div>
+                <div class="Taipei">臺北市</div>
+                <div class="Taoyuan">桃園市</div>
+                <div class="HsinchuC">新竹縣</div>
+                <div class="HsinchuS">新竹市</div>
+                <div class="Miaoli">苗栗縣</div>
+                <div class="Taichung">臺中市</div>
+                <div class="Changhua">彰化縣</div>
+                <div class="Nantou">南投縣</div>
+                <div class="Yunlin">雲林縣</div>
+                <div class="ChiayiC">嘉義縣</div>
+                <div class="ChiayiS">嘉義市</div>
+                <div class="Tainan">臺南市</div>
+                <div class="Kaohsiung">高雄市</div>
+                <div class="Pingtung">屏東縣</div>
+                <div class="Yilan">宜蘭縣</div>
+                <div class="Hualien">花蓮縣</div>
+                <div class="Taitung">臺東縣</div>
+                <div class="Penghu">澎湖縣</div>
+                <div class="Kinmen">金門縣</div>
+                <div class="Lienchiang">連江縣</div>
+            </div>
+            <div class="asc">天氣</div>
+        </div>
+
+
+        <div class="box">1123456</div>
+    </div>
+    <style>
+        .asc{
+            position: absolute;
+            background-color: aqua;
+            top:100px;
+            left: 1000px;
+            width: 500px;
+            height: 500px;
+        }
+        .content2{
+            position: relative;
+            height: 100vh;
+            background-color: rgb(238, 207, 121);
+        }
+        .TaiwanIMG div:hover{
+            transition: .3s;
+        }
+    </style>
+    <script>
+        var lastclick,movein=0;
+        $(document).ready(function(){
+            $('.TaiwanIMG div').mouseover(function(){
+                movein=1;
+                if(lastclick!=('.' + this.className)){
+                    $(this).css('background-color', 'rgb(255, 251, 0)');
+                    $(this).css('transform', 'scale(1.6)');
+                }else{
+
+                }
+
+            })
+            $('.TaiwanIMG div').mouseout(function(){
+                if(movein!=2 && lastclick!=('.'+this.className)){
+                    $(this).css('background-color', 'rgba(255, 255, 255, 0.8)');
+                    $(this).css('transform', 'scale(1)');
+                }
+                
+                movein=0;
+            })
+            $('.TaiwanIMG div').click(function(){
+                movein=2;
+                $(lastclick).css('transform', 'scale(1)');
+                $(lastclick).css('background-color', 'rgba(255, 255, 255, 0.8)');
+                $(this).css('background-color','rgb(255, 187, 0)');
+                $(this).css('transform', 'scale(1.6)');
+                lastclick='.' + this.className;
+               // alert(this.className);
+            });
+        });
+    </script>
+    <div class="time" color="white">
+        <div class="timetxt"><p>目前時間</p>
+            <div class="closebtn"></div>
+        </div>
+        <div class="nowtime" style="color:aliceblue;">時間位置</div>
+        <div class="block_time">
+            <h2>年year</h2>
+            <div class="block_year"></div>
+            <div class="block">
+                <div class="block_yearOK"></div>
+                <div class="block_year_circle"></div>
+            </div>
+            <h2>月month</h2>
+            <div class="block_month"></div>
+            <div class="block">
+                <div class="block_monthOK"></div>
+                <div class="block_month_circle"></div>
+            </div>
+            <h2>日day</h2>
+            <div class="block_day"></div>
+            <div class="block">
+                <div class="block_dayOK"></div>
+                <div class="block_day_circle"></div>
+            </div>
+            <h2>時hour</h2>
+            <div class="block_hour"></div>
+            <div class="block">
+                <div class="block_hourOK"></div>
+                <div class="block_hour_circle"></div>
+            </div>
+            <h2>分miunute</h2>
+            <div class="block_minute"></div>
+            <div class="block">
+                <div class="block_minuteOK"></div>
+                <div class="block_minute_circle"></div>
+            </div>
+            <h2>秒second</h2>
+            <div class="block_sec"></div>
+            <div class="block">
+                <div class="block_secOK"></div>
+                <div class="block_sec_circle"></div>
+            </div>
+            <div class="K101">
+                <div class="K101des"><h2>天氣狀態</h2></div>
+                <div class="K101temp">溫度</div>
+                <div class="K101wet"><h2>濕度</h2></div>
+            </div>
+        </div>
+    </div>
+    <div class="content3">
+        <div class="cont3img"></div>
+        <div class="cont3txt"><h1>0</h1></div>
+    </div>
+    <style>
+        .content3{
+            height: 100vh;
+            background-color: blanchedalmond;
+            position: relative;
+        }
+        .cont3txt{
+            position: absolute;
+            top:30px;
+            left: 50%;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .cont3img{
+            width: 100%;
+            height: 100%;
+            background-image: url(OMG1.png);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+    </style>
+    <script>
+        var st=0,t=0;
+        $(document).ready(function(){
+            $('.content3').click(function(){
+                clearTimeout(t);
+                //$('.cont3img').html(('<img src="OMG2.png" class="popOMG">'));
+                $('.cont3img').css('background-image','url(OMG2.png)');
+                st+=1;
+                $('.cont3txt').html("<h1>"+st+"</h1>");
+                t=setTimeout(function(){
+                    $('.cont3img').css('background-image','url(OMG1.png)');
+                },100);
+                console.log(st);
+            });
+        });
+    </script>
+</body>
+</html> 

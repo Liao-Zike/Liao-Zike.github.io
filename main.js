@@ -264,3 +264,101 @@ $(document).ready(function(){
         loadWeather("taiwan");
     });
 });
+
+
+var lastclick,movein=0;
+$(document).ready(function(){
+    $('.TaiwanIMG div').mouseover(function(){
+        movein=1;
+        if(lastclick!=('.' + this.className)){
+            $(this).css('background-color', 'rgb(255, 251, 0)');
+            $(this).css('transform', 'scale(1.6)');
+        }
+    })
+    $('.TaiwanIMG div').mouseout(function(){
+        if(movein!=2 && lastclick!=('.'+this.className)){
+            $(this).css('background-color', 'rgba(255, 255, 255, 0.8)');
+            $(this).css('transform', 'scale(1)');
+        }
+        movein=0;
+    })
+    $('.TaiwanIMG div').click(function(){
+        movein=2;
+        $('.CSweather').css('background-color','#505050');
+        $(lastclick).css('transform', 'scale(1)');
+        $(lastclick).css('background-color', 'rgba(255, 255, 255, 0.8)');
+        $(this).css('background-color','rgb(255, 187, 0)');
+        $(this).css('transform', 'scale(1.6)');
+        lastclick='.' + this.className;
+    });
+
+function loadWeather(citycode){
+let api_key = 'CWB-C96B02A5-E839-4870-B96E-B529AFC22581'
+let forecastURL = `https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/`+citycode+`?Authorization=${api_key}&format=JSON` 
+console.log(forecastURL);
+$(document).ready(function(){
+$('.div').html("載入中");
+$.ajax({
+    url: forecastURL,
+    type: "get",
+    dataType:"json",
+    success: function (info) {
+        console.log(info);
+        var abc="",num;
+        for(i=0;i<40;i++){
+            $('.div'+i).html("");
+            $('.div'+i).css('border','none');
+        }
+        if(info.cwbopendata.dataset.locations.location.length%4>0){
+            num=(info.cwbopendata.dataset.locations.location.length-(info.cwbopendata.dataset.locations.location.length%4))/4+1;
+        }else{
+            num=info.cwbopendata.dataset.locations.location.length/4;
+        }
+        $('.CSweather').css('height',num*190);
+        if(info.cwbopendata.dataset.locations.location.length>40)alert("ERROR");
+        for(i=0;i<info.cwbopendata.dataset.locations.location.length;i++){
+            console.log(i);
+            var temp=info.cwbopendata.dataset.locations.location[i];
+            $('.div'+i).html("<h3>"+`<font color=yellow>` + temp.locationName + " " + temp.weatherElement[12].time[0].elementValue[0].value + "</font></h3>" +
+                            "最高溫：" + temp.weatherElement[3].time[0].elementValue.value+ "&#176;C" + " 最低溫：" + temp.weatherElement[9].time[0].elementValue.value + "&#176;C" + "<br>"+
+                            "目前溫度："+ (temp.lat) +"&#176;C"+ "<br>" +
+                            "平均濕度："+ temp.weatherElement[2].time[0].elementValue.value+"%"+"<br>"+
+                            `<font color=aqua>` + "降雨機率："+temp.weatherElement[9].time[0].elementValue.value+"%"+"</font><br>"+
+                            `<font color="orange">`+ "紫外線：" +temp.weatherElement[13].time[0].elementValue[0].value+ "級  " +temp.weatherElement[13].time[0].elementValue[1].value + "曬傷指數</font><br>"
+            );
+            $('.div'+i).css('border','solid 2px black');
+        }
+    },
+    error: function (data) {
+        console.log("請求失敗");
+    }
+});
+});
+} 
+$(document).ready(function(){
+$('.Keelung').click(function(){ loadWeather("F-D0047-051");});
+$('.NewTaipei').click(function(){ loadWeather("F-D0047-071");});
+$('.Taipei').click(function(){ loadWeather("F-D0047-063");});
+$('.Taoyuan').click(function(){ loadWeather("F-D0047-007");});
+$('.HsinchuC').click(function(){ loadWeather("F-D0047-011");});
+$('.HsinchuS').click(function(){ loadWeather("F-D0047-055");});
+$('.Miaoli').click(function(){ loadWeather("F-D0047-015");});
+$('.Taichung').click(function(){ loadWeather("F-D0047-075");});
+$('.Changhua').click(function(){ loadWeather("F-D0047-019");});
+$('.Nantou').click(function(){ loadWeather("F-D0047-023");});
+$('.Yunlin').click(function(){ loadWeather("F-D0047-027");});
+$('.ChiayiC').click(function(){ loadWeather("F-D0047-031");});
+$('.ChiayiS').click(function(){ loadWeather("F-D0047-059");});
+$('.Tainan').click(function(){ loadWeather("F-D0047-079");});
+$('.Kaohsiung').click(function(){ loadWeather("F-D0047-067");});
+$('.Pingtung').click(function(){ loadWeather("F-D0047-035");});
+$('.Yilan').click(function(){ loadWeather("F-D0047-003");});
+$('.Hualien').click(function(){ loadWeather("F-D0047-043");});
+$('.Taitung').click(function(){ loadWeather("F-D0047-039");});
+$('.Penghu').click(function(){ loadWeather("F-D0047-047");});
+$('.Kinmen').click(function(){ loadWeather("F-D0047-087");});
+$('.Lienchiang').click(function(){ loadWeather("F-D0047-083");});
+});
+
+});
+

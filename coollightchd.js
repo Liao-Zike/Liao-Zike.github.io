@@ -52,7 +52,6 @@ import{Vector2 as p,WebGLRenderer as L,PerspectiveCamera as q,Scene as M,SplineC
             }
             return res;
           }
-
           uniform vec2 uRatio;
           uniform vec2 uSize;
           uniform vec2 uPoints[SHADER_POINTS];
@@ -61,9 +60,7 @@ import{Vector2 as p,WebGLRenderer as L,PerspectiveCamera as q,Scene as M,SplineC
           void main() {
             float intensity = 1.0;
             float radius = 0.015;
-
             vec2 pos = (vUv - 0.5) * uRatio;
-
             vec2 c = (uPoints[0] + uPoints[1]) / 2.0;
             vec2 c_prev;
             float dist = 10000.0;
@@ -73,12 +70,10 @@ import{Vector2 as p,WebGLRenderer as L,PerspectiveCamera as q,Scene as M,SplineC
               dist = min(dist, sdBezier(pos, c_prev, uPoints[i], c));
             }
             dist = max(0.0, dist);
-
             float glow = pow(uSize.y / dist, intensity);
             vec3 col = vec3(0.0);
             col += 10.0 * vec3(smoothstep(uSize.x, 0.0, dist));
             col += glow * uColor;
-
             // Tone mapping
             col = 1.0 - exp(-col);
             col = pow(col, vec3(0.4545));

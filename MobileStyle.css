@@ -635,97 +635,102 @@
 }
 
 .TaiwanTemp{
-    padding-top: 50px;
-    padding-left: 50px;
-}
-.TaiwanIMG{
-    position: relative;
+    padding-left: 10px;
 }
 .Keelung{
     position: absolute;
-    top:60px;
-    left:530px;
+    top:30px;
+    left:428px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .NewTaipei{
     position: absolute;
-    top:60px;
-    left:470px;
+    top:88px;
+    left:385px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .Taipei{
     position: absolute;
-    top:110px;
-    left:480px;
+    top:53px;
+    left:380px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .Taoyuan{
     position: absolute;
-    top:95px;
-    left:410px;
+    top:70px;
+    left:325px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .HsinchuC{
     position: absolute;
-    top:160px;
-    left:400px;
+    top:130px;
+    left:315px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .HsinchuS{
     position: absolute;
-    top:135px;
-    left:335px;
+    top:100px;
+    left:265px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .Miaoli{
     position: absolute;
-    top:205px;
-    left:335px;
+    top:160px;
+    left:265px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .Taichung{
     position: absolute;
-    top:275px;
-    left:305px;
+    top:215px;
+    left:240px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .Changhua{
     position: absolute;
-    top:340px;
-    left:245px;
+    top:258px;
+    left:195px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .Nantou{
     position: absolute;
-    top:375px;
-    left:350px;
+    top:285px;
+    left:275px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
@@ -733,112 +738,125 @@
     left:330px;width: 90px;
     height: 90px;*/
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .Yunlin{
     position: absolute;
-    top:395px;
+    top:305px;
+    left:185px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.ChiayiC{
+    position: absolute;
+    top:360px;
     left:230px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
-}
-.ChiayiC{
-    position: absolute;
-    top:460px;
-    left:285px;
-    border: solid #fff 2px;
-    background-color: rgba(255, 255, 255, 0.8);
-    cursor: pointer;
-    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .ChiayiS{
     position: absolute;
-    top:453px;
-    left:226px;
+    top:350px;
+    left:173px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .Tainan{
     position: absolute;
-    top:530px;
-    left:205px;
+    top:415px;
+    left:165px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .Kaohsiung{
     position: absolute;
-    top:563px;
-    left:290px;
+    top:438px;
+    left:230px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .Pingtung{
     position: absolute;
-    top:675px;
-    left:267px;
+    top:515px;
+    left:215px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .Yilan{
     position: absolute;
-    top:200px;
-    left:500px;
+    top:155px;
+    left:390px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .Hualien{
     position: absolute;
-    top:380px;
-    left:450px;
+    top:300px;
+    left:355px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .Taitung{
     position: absolute;
-    top:580px;
-    left:370px;
+    top:445px;
+    left:295px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .Penghu{
     position: absolute;
-    top:420px;
-    left:50px;
+    top:325px;
+    left:43px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .Kinmen{
     position: absolute;
-    top:132px;
+    top:93px;
     left:15px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }
 .Lienchiang{
     position: absolute;
-    top:230px;
-    left:38px;
+    top:180px;
+    left:30px;
     border: solid #fff 2px;
     background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
 }

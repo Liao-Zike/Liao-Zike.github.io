@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://demeter.5fpro.com/tw/zipcode-selector.js"></script>
 
     <link rel="stylesheet" href="MobileStyle.css">
     <link rel="stylesheet" href="style.css">
@@ -44,7 +45,7 @@
             <nav>
                 <a href="index.html">首頁</a>
                 <a href="#" class="timeopen">目前時間</a>
-                <a href="#">縣市溫濕度</a>
+                <a href="#cont2">縣市溫濕度</a>
                 <a href="#" target="_blank">OMG</a>
             <nav>
         </div>
@@ -64,11 +65,11 @@
         <div id="app">  
         </div>
     </div>
-
+    <a name="cont2"></a>
     <div class="content2">
         <div class="TaiwanTemp">
             <div class="TaiwanIMG">
-                <img src="Taiwan.jpg" height="900px">
+                <img src="Taiwan.jpg" height="700px" width="auto">
                 <div class="Keelung">基隆市</div>
                 <div class="NewTaipei">新北市</div>
                 <div class="Taipei">臺北市</div>
@@ -92,28 +93,81 @@
                 <div class="Kinmen">金門縣</div>
                 <div class="Lienchiang">連江縣</div>
             </div>
-            <div class="asc">天氣</div>
+            <div class="CSweather">
+                <div class="div0"></div>
+                <div class="div1"></div>
+                <div class="div2"></div>
+                <div class="div3"></div>
+                <div class="div4"></div>
+                <div class="div5"></div>
+                <div class="div6"></div>
+                <div class="div7"></div>
+                <div class="div8"></div>
+                <div class="div9"></div>
+                <div class="div10"></div>
+                <div class="div11"></div>
+                <div class="div12"></div>
+                <div class="div13"></div>
+                <div class="div14"></div>
+                <div class="div15"></div>
+                <div class="div16"></div>
+                <div class="div17"></div>
+                <div class="div18"></div>
+                <div class="div19"></div>
+                <div class="div20"></div>
+                <div class="div21"></div>
+                <div class="div22"></div>
+                <div class="div23"></div>
+                <div class="div24"></div>
+                <div class="div25"></div>
+                <div class="div26"></div>
+                <div class="div27"></div>
+                <div class="div28"></div>
+                <div class="div29"></div>
+                <div class="div30"></div>
+                <div class="div31"></div>
+                <div class="div32"></div>
+                <div class="div33"></div>
+                <div class="div34"></div>
+                <div class="div35"></div>
+                <div class="div36"></div>
+                <div class="div37"></div>
+                <div class="div38"></div>
+                <div class="div39"></div>
+            </div>
         </div>
-
-
         <div class="box">1123456</div>
     </div>
+    <input class="js-demeter-tw-zipcode-selector" data-city="#city4" data-dist="#dist4" placeholder="請輸入郵遞區號" value="22048" >
+    <select id="city4" placeholder="請選擇縣市"></select>
+    <select id="dist4" placeholder="請選擇鄉鎮區"></select>
     <style>
-        .asc{
-            position: absolute;
-            background-color: aqua;
-            top:100px;
-            left: 1000px;
-            width: 500px;
-            height: 500px;
-        }
         .content2{
             position: relative;
-            height: 100vh;
+            height: 200vh;
             background-color: rgb(238, 207, 121);
         }
         .TaiwanIMG div:hover{
             transition: .3s;
+        }
+        .CSweather{
+            position: absolute;
+            color:aliceblue;
+            top: 18px;
+            left: 510px;
+            width: 1200px;
+            /* height: 1900px; */
+            height: 190px;
+            font-size: larger;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .CSweather div{
+            width: 296px;
+            height: 185px;
+            padding :0px;
+            font-family: 'Courier New', Courier, monospace;
         }
     </style>
     <script>
@@ -124,28 +178,93 @@
                 if(lastclick!=('.' + this.className)){
                     $(this).css('background-color', 'rgb(255, 251, 0)');
                     $(this).css('transform', 'scale(1.6)');
-                }else{
-
                 }
-
             })
             $('.TaiwanIMG div').mouseout(function(){
                 if(movein!=2 && lastclick!=('.'+this.className)){
                     $(this).css('background-color', 'rgba(255, 255, 255, 0.8)');
                     $(this).css('transform', 'scale(1)');
                 }
-                
                 movein=0;
             })
             $('.TaiwanIMG div').click(function(){
                 movein=2;
+                $('.CSweather').css('background-color','#505050');
                 $(lastclick).css('transform', 'scale(1)');
                 $(lastclick).css('background-color', 'rgba(255, 255, 255, 0.8)');
                 $(this).css('background-color','rgb(255, 187, 0)');
                 $(this).css('transform', 'scale(1.6)');
                 lastclick='.' + this.className;
-               // alert(this.className);
             });
+
+function loadWeather(citycode){
+    let api_key = 'CWB-C96B02A5-E839-4870-B96E-B529AFC22581'
+    let forecastURL = `https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/`+citycode+`?Authorization=${api_key}&format=JSON` 
+    console.log(forecastURL);
+    $(document).ready(function(){
+        $('.div').html("載入中");
+        $.ajax({
+            url: forecastURL,
+            type: "get",
+            dataType:"json",
+            success: function (info) {
+                console.log(info);
+                var abc="",num;
+                for(i=0;i<40;i++){
+                    $('.div'+i).html("");
+                    $('.div'+i).css('border','none');
+                }
+                if(info.cwbopendata.dataset.locations.location.length%4>0){
+                    num=(info.cwbopendata.dataset.locations.location.length-(info.cwbopendata.dataset.locations.location.length%4))/4+1;
+                }else{
+                    num=info.cwbopendata.dataset.locations.location.length/4;
+                }
+                $('.CSweather').css('height',num*190);
+                if(info.cwbopendata.dataset.locations.location.length>40)alert("ERROR");
+                for(i=0;i<info.cwbopendata.dataset.locations.location.length;i++){
+                    console.log(i);
+                    var temp=info.cwbopendata.dataset.locations.location[i];
+                    $('.div'+i).html("<h3>"+`<font color=yellow>` + temp.locationName + " " + temp.weatherElement[12].time[0].elementValue[0].value + "</font></h3>" +
+                                    "最高溫：" + temp.weatherElement[3].time[0].elementValue.value+ "&#176;C" + " 最低溫：" + temp.weatherElement[9].time[0].elementValue.value + "&#176;C" + "<br>"+
+                                    "目前溫度："+ (temp.lat) + "<br>" +
+                                    "平均濕度："+ temp.weatherElement[2].time[0].elementValue.value+"%"+"<br>"+
+                                    `<font color=aqua>` + "降雨機率："+temp.weatherElement[9].time[0].elementValue.value+"%"+"</font><br>"+
+                                    `<font color="orange">`+ "紫外線：" +temp.weatherElement[13].time[0].elementValue[0].value+ "級  " +temp.weatherElement[13].time[0].elementValue[1].value + "曬傷指數</font><br>"
+                    );
+                    $('.div'+i).css('border','solid 2px black');
+                }
+            },
+            error: function (data) {
+                console.log("請求失敗");
+            }
+        });
+    });
+} 
+$(document).ready(function(){
+    $('.Keelung').click(function(){ loadWeather("F-D0047-051");});
+    $('.NewTaipei').click(function(){ loadWeather("F-D0047-071");});
+    $('.Taipei').click(function(){ loadWeather("F-D0047-063");});
+    $('.Taoyuan').click(function(){ loadWeather("F-D0047-007");});
+    $('.HsinchuC').click(function(){ loadWeather("F-D0047-011");});
+    $('.HsinchuS').click(function(){ loadWeather("F-D0047-055");});
+    $('.Miaoli').click(function(){ loadWeather("F-D0047-015");});
+    $('.Taichung').click(function(){ loadWeather("F-D0047-075");});
+    $('.Changhua').click(function(){ loadWeather("F-D0047-019");});
+    $('.Nantou').click(function(){ loadWeather("F-D0047-023");});
+    $('.Yunlin').click(function(){ loadWeather("F-D0047-027");});
+    $('.ChiayiC').click(function(){ loadWeather("F-D0047-031");});
+    $('.ChiayiS').click(function(){ loadWeather("F-D0047-059");});
+    $('.Tainan').click(function(){ loadWeather("F-D0047-079");});
+    $('.Kaohsiung').click(function(){ loadWeather("F-D0047-067");});
+    $('.Pingtung').click(function(){ loadWeather("F-D0047-035");});
+    $('.Yilan').click(function(){ loadWeather("F-D0047-003");});
+    $('.Hualien').click(function(){ loadWeather("F-D0047-043");});
+    $('.Taitung').click(function(){ loadWeather("F-D0047-039");});
+    $('.Penghu').click(function(){ loadWeather("F-D0047-047");});
+    $('.Kinmen').click(function(){ loadWeather("F-D0047-087");});
+    $('.Lienchiang').click(function(){ loadWeather("F-D0047-083");});
+});
+
         });
     </script>
     <div class="time" color="white">

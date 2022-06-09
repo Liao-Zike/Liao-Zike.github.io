@@ -293,12 +293,12 @@ $(document).ready(function(){
     });
 
 function loadWeather(citycode){
-let api_key = 'CWB-C96B02A5-E839-4870-B96E-B529AFC22581'
-let forecastURL = `https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/`+citycode+`?Authorization=${api_key}&format=JSON` 
-console.log(forecastURL);
-$(document).ready(function(){
-$('.div').html("載入中");
-$.ajax({
+    let api_key = 'CWB-C96B02A5-E839-4870-B96E-B529AFC22581'
+    let forecastURL = `https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/`+citycode+`?Authorization=${api_key}&format=JSON` 
+    console.log(forecastURL);
+    $(document).ready(function(){
+    $('.div').html("載入中");
+    $.ajax({
     url: forecastURL,
     type: "get",
     dataType:"json",
@@ -314,14 +314,14 @@ $.ajax({
         }else{
             num=info.cwbopendata.dataset.locations.location.length/4;
         }
-        $('.CSweather').css('height',num*190);
+        $('.CSweather').css('height',num*194);
         if(info.cwbopendata.dataset.locations.location.length>40)alert("ERROR");
         for(i=0;i<info.cwbopendata.dataset.locations.location.length;i++){
             console.log(i);
             var temp=info.cwbopendata.dataset.locations.location[i];
             $('.div'+i).html("<h3>"+`<font color=yellow>` + temp.locationName + " " + temp.weatherElement[12].time[0].elementValue[0].value + "</font></h3>" +
-                            "最高溫：" + temp.weatherElement[3].time[0].elementValue.value+ "&#176;C" + " 最低溫：" + temp.weatherElement[9].time[0].elementValue.value + "&#176;C" + "<br>"+
-                            "目前溫度："+ (temp.lat) +"&#176;C"+ "<br>" +
+                            "最高溫：" + temp.weatherElement[3].time[0].elementValue.value+ "&#176;C" + " 最低溫：" + temp.weatherElement[4].time[0].elementValue.value + "&#176;C" + "<br>"+
+                            "平均溫度："+ (temp.weatherElement[0].time[0].elementValue.value) +"&#176;C"+ "<br>" +
                             "平均濕度："+ temp.weatherElement[2].time[0].elementValue.value+"%"+"<br>"+
                             `<font color=aqua>` + "降雨機率："+temp.weatherElement[9].time[0].elementValue.value+"%"+"</font><br>"+
                             `<font color="orange">`+ "紫外線：" +temp.weatherElement[13].time[0].elementValue[0].value+ "級  " +temp.weatherElement[13].time[0].elementValue[1].value + "曬傷指數</font><br>"
@@ -336,29 +336,102 @@ $.ajax({
 });
 } 
 $(document).ready(function(){
-$('.Keelung').click(function(){ loadWeather("F-D0047-051");});
-$('.NewTaipei').click(function(){ loadWeather("F-D0047-071");});
-$('.Taipei').click(function(){ loadWeather("F-D0047-063");});
-$('.Taoyuan').click(function(){ loadWeather("F-D0047-007");});
-$('.HsinchuC').click(function(){ loadWeather("F-D0047-011");});
-$('.HsinchuS').click(function(){ loadWeather("F-D0047-055");});
-$('.Miaoli').click(function(){ loadWeather("F-D0047-015");});
-$('.Taichung').click(function(){ loadWeather("F-D0047-075");});
-$('.Changhua').click(function(){ loadWeather("F-D0047-019");});
-$('.Nantou').click(function(){ loadWeather("F-D0047-023");});
-$('.Yunlin').click(function(){ loadWeather("F-D0047-027");});
-$('.ChiayiC').click(function(){ loadWeather("F-D0047-031");});
-$('.ChiayiS').click(function(){ loadWeather("F-D0047-059");});
-$('.Tainan').click(function(){ loadWeather("F-D0047-079");});
-$('.Kaohsiung').click(function(){ loadWeather("F-D0047-067");});
-$('.Pingtung').click(function(){ loadWeather("F-D0047-035");});
-$('.Yilan').click(function(){ loadWeather("F-D0047-003");});
-$('.Hualien').click(function(){ loadWeather("F-D0047-043");});
-$('.Taitung').click(function(){ loadWeather("F-D0047-039");});
-$('.Penghu').click(function(){ loadWeather("F-D0047-047");});
-$('.Kinmen').click(function(){ loadWeather("F-D0047-087");});
-$('.Lienchiang').click(function(){ loadWeather("F-D0047-083");});
+    $('.Keelung').click(function(){ loadWeather("F-D0047-051");});
+    $('.NewTaipei').click(function(){ loadWeather("F-D0047-071");});
+    $('.Taipei').click(function(){ loadWeather("F-D0047-063");});
+    $('.Taoyuan').click(function(){ loadWeather("F-D0047-007");});
+    $('.HsinchuC').click(function(){ loadWeather("F-D0047-011");});
+    $('.HsinchuS').click(function(){ loadWeather("F-D0047-055");});
+    $('.Miaoli').click(function(){ loadWeather("F-D0047-015");});
+    $('.Taichung').click(function(){ loadWeather("F-D0047-075");});
+    $('.Changhua').click(function(){ loadWeather("F-D0047-019");});
+    $('.Nantou').click(function(){ loadWeather("F-D0047-023");});
+    $('.Yunlin').click(function(){ loadWeather("F-D0047-027");});
+    $('.ChiayiC').click(function(){ loadWeather("F-D0047-031");});
+    $('.ChiayiS').click(function(){ loadWeather("F-D0047-059");});
+    $('.Tainan').click(function(){ loadWeather("F-D0047-079");});
+    $('.Kaohsiung').click(function(){ loadWeather("F-D0047-067");});
+    $('.Pingtung').click(function(){ loadWeather("F-D0047-035");});
+    $('.Yilan').click(function(){ loadWeather("F-D0047-003");});
+    $('.Hualien').click(function(){ loadWeather("F-D0047-043");});
+    $('.Taitung').click(function(){ loadWeather("F-D0047-039");});
+    $('.Penghu').click(function(){ loadWeather("F-D0047-047");});
+    $('.Kinmen').click(function(){ loadWeather("F-D0047-087");});
+    $('.Lienchiang').click(function(){ loadWeather("F-D0047-083");});
 });
 
 });
-
+$(document).ready(function(){
+    $('.send').click(function(){
+        var choosecity=document.getElementById("city4").value;
+        var choosedist=document.getElementById("dist4").value;
+        if(choosecity=='基隆市')loadWeather2("F-D0047-051",choosedist);
+        if(choosecity=='新北市')loadWeather2("F-D0047-071",choosedist);
+        if(choosecity=='臺北市')loadWeather2("F-D0047-063",choosedist);
+        if(choosecity=='桃園市')loadWeather2("F-D0047-007",choosedist);
+        if(choosecity=='新竹縣')loadWeather2("F-D0047-011",choosedist);
+        if(choosecity=='新竹市')loadWeather2("F-D0047-055",choosedist);
+        if(choosecity=='苗栗縣')loadWeather2("F-D0047-015",choosedist);
+        if(choosecity=='臺中市')loadWeather2("F-D0047-075",choosedist);
+        if(choosecity=='彰化縣')loadWeather2("F-D0047-019",choosedist);
+        if(choosecity=='南投縣')loadWeather2("F-D0047-023",choosedist);
+        if(choosecity=='雲林縣')loadWeather2("F-D0047-027",choosedist);
+        if(choosecity=='嘉義縣')loadWeather2("F-D0047-031",choosedist);
+        if(choosecity=='嘉義市')loadWeather2("F-D0047-059",choosedist);
+        if(choosecity=='臺南市')loadWeather2("F-D0047-079",choosedist);
+        if(choosecity=='高雄市')loadWeather2("F-D0047-067",choosedist);
+        if(choosecity=='屏東縣')loadWeather2("F-D0047-035",choosedist);
+        if(choosecity=='宜蘭縣')loadWeather2("F-D0047-003",choosedist);
+        if(choosecity=='花蓮縣')loadWeather2("F-D0047-043",choosedist);
+        if(choosecity=='臺東縣')loadWeather2("F-D0047-039",choosedist);
+        if(choosecity=='澎湖縣')loadWeather2("F-D0047-047",choosedist);
+        if(choosecity=='金門縣')loadWeather2("F-D0047-087",choosedist);
+        if(choosecity=='連江縣')loadWeather2("F-D0047-083",choosedist);
+    })
+})
+function loadWeather2(citycode,distcode){
+    let api_key = 'CWB-C96B02A5-E839-4870-B96E-B529AFC22581'
+    let forecastURL = `https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/`+citycode +`?Authorization=${api_key}&format=JSON` 
+    console.log(forecastURL);
+    $(document).ready(function(){
+        $('.div').html("載入中");
+        $.ajax({
+            url: forecastURL,
+            type: "get",
+            dataType:"json",
+            success: function (info) {
+                for(i=0;i<info.cwbopendata.dataset.locations.location.length;i++){
+                    var temps=info.cwbopendata.dataset.locations.location[i];
+                    if(temps.locationName==distcode){
+                        $('.ctdiv').html(document.getElementById("city4").value+ " - " +document.getElementById("dist4").value);
+                        for(j=0;j<15;j++){
+                            if(j==7||j==8){
+                                $('.ctdiv'+j).html("<b>" + temps.weatherElement[j].description+"：</b>"+temps.weatherElement[j].time[0].elementValue[0].value+" " +temps.weatherElement[j].time[0].elementValue[1].value);
+                            }else if(j==11){
+                                $('.ctdiv'+j).html("<b>" + temps.weatherElement[j].description+"</b>："+temps.weatherElement[j].time[0].elementValue[0].value+" " +temps.weatherElement[j].time[0].elementValue[0].measures + "<b> " +
+                                temps.weatherElement[j].time[0].elementValue[1].measures + "：</b>" + temps.weatherElement[j].time[0].elementValue[1].value );
+                            }else if(j==12){
+                                $('.ctdiv'+j).html("<b>"+temps.weatherElement[j].description+"</b>："+temps.weatherElement[j].time[0].elementValue[0].value);
+                            }else if(j==13){
+                                $('.ctdiv'+j).html("<b>"+temps.weatherElement[j].description+"</b>："+temps.weatherElement[j].time[0].elementValue[0].value + "級 <b>" + temps.weatherElement[j].time[0].elementValue[1].measures+"：</b>"+
+                                temps.weatherElement[j].time[0].elementValue[1].value);
+                            }else if(j==2){
+                                $('.ctdiv'+j).html("<b>"+temps.weatherElement[j].description+"</b>："+temps.weatherElement[j].time[0].elementValue.value + "%");
+                            }else if(j==9){
+                                $('.ctdiv'+j).html(`<font color="blue"><b>`+temps.weatherElement[j].description+"</b>："+temps.weatherElement[j].time[0].elementValue.value + "%</font>");
+                            }
+                            else{
+                                $('.ctdiv'+j).html("<b>"+temps.weatherElement[j].description+"</b>："+temps.weatherElement[j].time[0].elementValue.value);
+                            }
+                        }
+                        break;
+                    }
+                }
+                console.log(info);
+            },
+            error: function (data) {
+                console.log("請求失敗");
+            }
+        });
+    });
+}

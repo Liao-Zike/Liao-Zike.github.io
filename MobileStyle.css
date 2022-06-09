@@ -156,6 +156,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 /*RGB模式文字(text:RGB)*/
 .crazy p{
@@ -861,7 +862,6 @@
     border: solid rgb(15, 10, 0) 2px;
 }
 /*20220608*/
-
 .content2{
     position: relative;
     height: 210vh;
@@ -918,4 +918,98 @@
 .ctdiv{
     background-color: rgb(59, 59, 59);
     color:#ccc;
+}
+.content3{
+    height: 100vh;
+    background-color: blanchedalmond;
+    position: relative;
+    cursor:grab;
+}
+.cont3txt{
+    position: absolute;
+    top:30px;
+    left: 50%;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    rotate: 15%;
+    user-select: none;
+}
+.cont3img{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.ranklist{
+    text-align: center;
+    position: absolute;
+    top:50px;
+    right:30px;
+    width: 300px;
+    user-select: none;
+    font-size: 25px;
+    font-family:monospace;
+    background-color: rgb(160, 160, 160);
+    border-radius: 10px;
+}
+.rank1{
+    background-color: azure;
+    padding-left: 20px;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 4px solid;
+}
+.rank2{
+    background-color: azure;
+    padding-left: 20px;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 3px solid;
+
+}
+.rank3{
+    background-color: azure;
+    padding-left: 20px;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 3px solid;
+    border-bottom: 3px solid;
+}
+.cont3img img{
+    margin: auto;
+    user-select: none;
+}
+.startbtn{
+    position: absolute;
+    top:30px;
+    left:30px;
+    width: 250px;
+    height: 150px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: larger;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 15px;
+    cursor: pointer;
+    user-select: none;
+    background-color:rgb(59, 59, 59);
+    color: aliceblue;
+}
+.startnum{
+    position: absolute;
+    top:200px;
+    left:30px;
+    width: 250px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    user-select: none;
+    font-size: 50px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

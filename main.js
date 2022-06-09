@@ -130,6 +130,7 @@ $(document).ready(function(){
     console.log("時間載入正常"+today);
 });
 
+var startt=0,diss=0,contin=0,rank1=0,rank2=0,rank3=0,startck=0,realck=0;
 $(document).ready(function(){
     function time(){
         var t = null;
@@ -140,7 +141,6 @@ $(document).ready(function(){
         var hour = d.getHours();
         var minute = d.getMinutes();
         var sec = d.getSeconds();
-        var t = null;
         var string="<h1>目前時間：" + year + "年";
         if(month<10) string += "0" + month + "月";
         else string += month + "月";
@@ -197,13 +197,67 @@ $(document).ready(function(){
             }
         }
         $('.block_minuteOK').css('width',minute/60*100+"%");
-        $('.block_minute_circle').css('left','calc(' + (minute/60*100) + '%' + ' - 10px)')
+        $('.block_minute_circle').css('left','calc(' + (minute/60*100) + '%' + ' - 10px)');
         $('.block_secOK').css('width',sec/60*100+"%");
-        $('.block_sec_circle').css('left','calc(' + (sec/60*100) + '%' + ' - 10px)')
+        $('.block_sec_circle').css('left','calc(' + (sec/60*100) + '%' + ' - 10px)');
+        if(contin==1){
+            diss++;
+            $('.startnum').html("剩餘" + Math.round(30-(diss+1)/2) + "s");
+            if(diss>=60){
+                contin=0;
+                diss=0;
+                if(rank1<realck){
+                    temp=rank1;
+                    rank1=realck;
+                    realck=temp;
+                }
+                if(rank2<realck){
+                    temp=rank2;
+                    rank2=realck;
+                    realck=temp;
+                }
+                if(rank3<realck){
+                    temp=rank3;
+                    rank3=realck;
+                    realck=temp;
+                }
+                $('.rank1').html("🥇First : " + rank1 +" 下")
+                $('.rank2').html("🥈Second: " + rank2 +" 下")
+                $('.rank3').html("🥉Third : " + rank3 +" 下")
+            }
+        }
         t = setTimeout (time,500);
         }
     time();
+    $('.startbtn').click(function(){
+        realck=0;
+        contin = 1;
+        diss=0;
+        startck=0;
+        console.log("TOUCH");
+    });
+    var t;
+    $('.cont3img').click(function(){
+        if(contin==1){
+            realck++;
+        }
+        startck++;
+        clearTimeout(t);
+        $('.cont3img').html('<img src="OMG2.png" width="444" height="790">');
+        const audio = document.createElement("audio");
+        audio.src = "music.mp3";
+        audio.play();
+        $('.content3').css('cursor','grabbing')
+        $('.cont3txt').html("<h1>"+startck+"</h1>");
+        $('.cont3txt').css('transform','rotate(10deg)');
+        t=setTimeout(function(){
+            $('.content3').css('cursor','grab')
+            $('.cont3img').html('<img src="OMG1.png" width="444" height="790">');
+            $('.cont3txt').css('transform','rotate(0deg)');
+        },125);
+    });
 });
+
 $(document).ready(function(){
     $('.content1-button').click(function(){
         if(open==0){
@@ -359,7 +413,7 @@ $(document).ready(function(){
     $('.Kinmen').click(function(){ loadWeather("F-D0047-087");});
     $('.Lienchiang').click(function(){ loadWeather("F-D0047-083");});
 });
-
+//20220609
 });
 $(document).ready(function(){
     $('.send').click(function(){

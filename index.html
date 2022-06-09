@@ -213,50 +213,18 @@
     </div>
     <a name="cont3"></a>
     <div class="content3">
-        <div class="cont3img"></div>
+        <div class="cont3img">
+            <img src="OMG1.png" width="444" height="790">
+        </div>
         <div class="cont3txt"><h1>0</h1></div>
+        <div class="startbtn"><h1>Start</h1></div>
+        <div class="startnum">剩餘30s</div>
+        <div class="ranklist">
+            <h3>紀錄排行</h3>
+            <div class="rank1">🥇First : 0 下</div>
+            <div class="rank2">🥈Second: 0 下</div>
+            <div class="rank3">🥉Third : 0 下</div>
+        </div>
     </div>
-    <audio src="music.mp3"></audio>
-    <style>
-        .content3{
-            height: 100vh;
-            background-color: blanchedalmond;
-            position: relative;
-        }
-        .cont3txt{
-            position: absolute;
-            top:30px;
-            left: 50%;
-            font-family:Verdana, Geneva, Tahoma, sans-serif;
-            rotate: 15%;
-        }
-        .cont3img{
-            width: 100%;
-            height: 100%;
-            background-image: url(OMG1.png);
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-        }
-    </style>
-    <script>
-        $(document).ready(function(){
-            var t,st=0;
-            $('.content3').click(function(){
-                clearTimeout(t);
-                //$('.cont3img').html(('<img src="OMG2.png" class="popOMG">'));
-                $('.cont3img').css('background-image','url(OMG2.png)');
-                st+=1;
-                $('.cont3txt').html("<h1>"+st+"</h1>");
-                $('.cont3txt').css('transform','rotate(10deg)');
-                    $('body').append('<embed src="music.mp3" autostart="false" hidden="true" loop="false">');
-                t=setTimeout(function(){
-                    $('.cont3img').css('background-image','url(OMG1.png)');
-                    $('.cont3txt').css('transform','rotate(0deg)');
-                },100);
-                console.log(st);
-            });
-        });
-    </script>
 </body>
 </html> 

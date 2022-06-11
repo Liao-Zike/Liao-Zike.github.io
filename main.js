@@ -346,7 +346,7 @@ $(document).ready(function(){
         cont4_score=0;
     });
     $('.cont4_stopbtn').click(function(){ //暫停按鈕
-        if(rick[0]==1){
+        if(rick[0]!=1){
             $('.cont4_startbtn').css('background-color','rgb(43, 43, 43)');
             $('.cont4_startbtn').css('cursor','pointer');
             $('.cont4_startbtn').css('opacity','100%');
@@ -356,8 +356,8 @@ $(document).ready(function(){
             $('.cont4_resetbtn').css('background-color','rgb(43, 43, 43)')
             $('.cont4_resetbtn').css('cursor','pointer');
             $('.cont4_resetbtn').css('opacity','100%');
+            ckberopen=0;
         }
-        ckberopen=0;
     });
     $('.cont4_resetbtn').click(function(){ //reset按鈕
         $('.cont4_startbtn').css('background-color','rgb(43, 43, 43)');

@@ -308,6 +308,7 @@ $(document).ready(function(){
                 $('.cont4_time').html("剩餘60s");
                 $('.cont4_bk div div').html(`<img src="hole0.png" width="150">`);
                 $('.content5').html("");
+                $('.content6').html("");
             }
             //rickroll關閉系統
             if(rick[0]==1){
@@ -366,10 +367,9 @@ $(document).ready(function(){
             $('.cont4_resetbtn').css('opacity','100%');
         }
         ckberopen=1;
-        cont4_score=0;
     });
     $('.cont4_stopbtn').click(function(){ //暫停按鈕
-        if(rick[0]!=1){
+        if(rick[0]!=1&&ckberopen==1){
             $('.cont4_startbtn').css('background-color','rgb(43, 43, 43)');
             $('.cont4_startbtn').css('cursor','pointer');
             $('.cont4_startbtn').css('opacity','100%');
@@ -395,6 +395,7 @@ $(document).ready(function(){
         $('.cont4_time').html("剩餘60s");
         $('.cont4_bk div div').html(`<img src="hole0.png" width="150">`);
         $('.content5').html("");
+        $('.content6').html("");
         ckberopen=0;
         //ckbeartime=120;
         ckbeartime=60; //測試用
@@ -408,12 +409,143 @@ $(document).ready(function(){
                 $(this).html(`<img src="hole0.png" width="150">`);
                 if(cont4_arr[iii][jjj][0]==1)cont4_score+=1;
                 else if(cont4_arr[iii][jjj][0]==2)cont4_score+=10;
-                else if(cont4_arr[iii][jjj][0]==3){
+                else if(cont4_arr[iii][jjj][0]==3){//rick搖
                     rick[0]=1;
                     rick[1]=13;
                     $('.content5').html(`<video src="rkrol.mp4" autoplay="autoplay" height="auto" width="1200px">ERROR</video>`);
                 }
-                else if(cont4_arr[iii][jjj][0]==4)console.log("抽獎");//抽獎
+                else if(cont4_arr[iii][jjj][0]==4){//抽獎
+                    $('.cont4_startbtn').css('background-color','rgb(43, 43, 43)');
+                    $('.cont4_startbtn').css('cursor','pointer');
+                    $('.cont4_startbtn').css('opacity','100%');
+                    $('.cont4_stopbtn').css('background-color','rgb(158, 158, 158)')
+                    $('.cont4_stopbtn').css('cursor','default');
+                    $('.cont4_stopbtn').css('opacity','60%');
+                    $('.cont4_resetbtn').css('background-color','rgb(43, 43, 43)')
+                    $('.cont4_resetbtn').css('cursor','pointer');
+                    $('.cont4_resetbtn').css('opacity','100%');
+                    ckberopen=0;
+                    $('.content6').css('left','50%');
+                    $('.content6').css('opacity','100%');
+                    var randomnum=Math.floor(Math.random()*6);
+                    setTimeout(function() {
+                        console.log("2");
+                        $('.content6').html(`<img src="dolaA1.png" width="801" height="676">`);
+                    }, 0);
+                    setTimeout(function() {
+                        console.log("2");
+                        $('.content6').html(`<img src="dolaA2.png" width="801" height="676">`);
+                    }, 400);
+                    setTimeout(function() {
+                        console.log("3");
+                        $('.content6').html(`<img src="dolaA1.png" width="801" height="676">`);
+                    }, 800);
+                    setTimeout(function() {
+                        console.log("4");
+                        $('.content6').html(`<img src="dolaA2.png"  width="801" height="676">`);
+                    }, 1200);
+                    setTimeout(function() {
+                        console.log("2");
+                        $('.content6').html(`<img src="dolaA1.png" width="801" height="676">`);
+                    }, 1600);
+                    setTimeout(function() {
+                        console.log("3");
+                        $('.content6').html(`<img src="dolaA2.png" width="801" height="676">`);
+                    }, 2000);
+                    setTimeout(function() {
+                        if(randomnum==0){
+                            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">分數+200分</div>`);
+                        }else if(randomnum==1){
+                            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">分數-100分</div>`);
+                        }else if(randomnum==2){
+                            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">重置分數</div>`);
+                        }else if(randomnum==3){
+                            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">秒數+30秒</div>`);
+                        }else if(randomnum==4){
+                            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">秒數-20秒</div>`);
+                        }else{
+                            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">冰冰姐泡湯</div>`);
+                            }
+                    }, 2500);
+
+                    setTimeout(function() {
+                        $('.content6').html("");
+                        if(randomnum==0){
+                            cont4_score+=200;
+                            $('.cont4_score').html(cont4_score+"分");
+                        }else if(randomnum==1){
+                            cont4_score-=100;
+                            $('.cont4_score').html(cont4_score+"分");
+                        }else if(randomnum==2){
+                            cont4_score=0;
+                            $('.cont4_score').html(cont4_score+"分");
+                        }else if(randomnum==3){
+                            ckbeartime+=60;
+                            $('.cont4_time').html("剩餘" + (Math.trunc(ckbeartime/2-0.5)) + "s");
+                        }else if(randomnum==4){//-20s
+                            ckbeartime-=40;
+                            if(ckbeartime<=0){//到計數時間到
+                                $('.cont4_time').html("剩餘" + 0 + "s");
+                                ckberopen=0;
+                                //ckbeartime=120;
+                                ckbeartime=60; //測試用
+                                cont4_score=0;
+                                $('.cont4_startbtn').css('background-color','rgb(43, 43, 43)');
+                                $('.cont4_startbtn').css('cursor','pointer');
+                                $('.cont4_startbtn').css('opacity','100%');
+                                $('.cont4_stopbtn').css('background-color','rgb(158, 158, 158)')
+                                $('.cont4_stopbtn').css('cursor','default');
+                                $('.cont4_stopbtn').css('opacity','60%');
+                                $('.cont4_resetbtn').css('background-color','rgb(158, 158, 158)')
+                                $('.cont4_resetbtn').css('cursor','default');
+                                $('.cont4_resetbtn').css('opacity','60%');
+                                $('.cont4_time').html("剩餘60s");
+                                $('.cont4_bk div div').html(`<img src="hole0.png" width="150">`);
+                                $('.content5').html("");
+                                $('.content6').html("");
+                            }
+                        }else{
+                            $('.content6').html(`<iframe width="560" height="315" src="https://www.youtube.com/embed/uoqJy_AEt-E?&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
+                        }
+                        console.log(ckbeartime);
+                        if(ckbeartime>0){//繼續
+                            if(randomnum==5){
+                                setTimeout(function(){
+                                    $('.content6').html("");
+                                    ckberopen=1;
+                                    $('.cont4_startbtn').css('background-color','rgb(158, 158, 158)');
+                                    $('.cont4_startbtn').css('cursor','default');
+                                    $('.cont4_startbtn').css('opacity','60%');
+                                    $('.cont4_stopbtn').css('background-color','rgb(43, 43, 43)')
+                                    $('.cont4_stopbtn').css('cursor','pointer');
+                                    $('.cont4_stopbtn').css('opacity','100%');
+                                    $('.cont4_resetbtn').css('background-color','rgb(43, 43, 43)')
+                                    $('.cont4_resetbtn').css('cursor','pointer');
+                                    $('.cont4_resetbtn').css('opacity','100%');
+                                },10000);
+                            }
+                            else if(ckberopen==0){
+                                ckberopen=1;
+                                $('.cont4_startbtn').css('background-color','rgb(158, 158, 158)');
+                                $('.cont4_startbtn').css('cursor','default');
+                                $('.cont4_startbtn').css('opacity','60%');
+                                $('.cont4_stopbtn').css('background-color','rgb(43, 43, 43)')
+                                $('.cont4_stopbtn').css('cursor','pointer');
+                                $('.cont4_stopbtn').css('opacity','100%');
+                                $('.cont4_resetbtn').css('background-color','rgb(43, 43, 43)')
+                                $('.cont4_resetbtn').css('cursor','pointer');
+                                $('.cont4_resetbtn').css('opacity','100%');
+                            }
+
+                        }
+                    }, 4500);
+
+
+                    /*for(cci=0;cci<=randomnum;i++){
+                        
+                        transform: rotate(50deg);
+                    }*/
+                }
                 cont4_arr[iii][jjj][0]=0;
                 $('.cont4_score').html(cont4_score+"分");
             }

@@ -1,491 +1,423 @@
-var R=255,G=0,B=0;
-var start=0,stop=0;
-var id=0;
-var val=5;
-$(document).ready(function(){
-    var burgerchk=0;
-    $('#menu_control').click(function(){
-        if(burgerchk){
-            burgerchk=0;
-            $('.content1-button').css("left","50%");
-        }else{
-            burgerchk=1;
-            $('.content1-button').css("left","-100%");
-        }
-    });
-});
+<!DOCTYPE html>
+<html lang="zh_Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://demeter.5fpro.com/tw/zipcode-selector.js"></script>
 
-/*根據time設定*/
-id = setInterval(function() {
-    changRGB();
-},val);
-// console.log(id);
-/*速度*/
-$(document).ready(function(){
-    $('#slider').slider({
-        min: 0,
-        max: 100,
-        step: 0.1,
-        value: 50,
-        slide: function(e, ui) {
-            clearInterval(id);
-            val=Math.round(ui.value/10);
-            console.log(val);
-            id = setInterval(function(){
-                changRGB();
-            },val);
-        },
-    });
-});
+    <link rel="stylesheet" href="MobileStyle.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+    <script src="coollight.js" type="module"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <a href="index.html">JS-END</a>
+        </div>
+        <input type="checkbox" id="menu_control" class="menu_control">
+        <label for="menu_control" class="menu_btn">
+            <div class="menu_btn_burger"></div>
+        </label>
+        <div class="crazy">
+            <input type="checkbox" class="crazybox">
+            <p>RGB</p>
+        </div>
+        <div class="crazyplay">
+            <div class="crazyplay-icon"><p>▶</p></div>
+            <div class="crazyplay-content"><p>播放</p></div>
+        </div>
+        <div class="speed">
+            <div id="slider"></div>
+            <p>速度speed</p>
+        </div>
+        <div class="menu" >
+            <nav>
+                <a href="index.html">首頁</a>
+                <a href="#" class="timeopen">目前時間</a>
+                <a href="#cont2">縣市溫濕度</a>
+                <a href="#cont3">OMG</a>
+            <nav>
+        </div>
+    </div>
+    <!-- <p>Space</p>
+    <div class="OK">123</div> -->
 
-/*RGB模式開關*/
-$(document).ready(function(){
-    $('.crazybox').click(function(){
-        if(start==0){
-            start=1;
-            R=255,G=0,B=0;
-            /*RGB模式打開*/
-            $('.crazy p').css('color','#000');
-            $('.menu a').css('color','#000');
-            $('.crazyplay-content p').css('color','#000');
-            $('.crazyplay-icon p').css('color','#000');
-            $('.speed p').css('color','#000');
-            $('.crazyplay-icon p').css('cursor','pointer');
-            $('.crazyplay-icon p').text('||');
-            $('.crazyplay-content p').text('暫停');
-            $('.crazyplay-icon p').css( 'padding-left','1px');
-            $('.crazyplay').css('opacity','100%');
-        }else{
-            /*RGB模式關閉*/
-            start=0;
-            $('.crazy p').css('color','#fff');
-            $('.menu a').css('color','#fff');
-            $('.crazyplay-content p').css('color','#fff');
-            $('.crazyplay-icon p').css('color','#fff');
-            $('.crazyplay-icon p').css('cursor','default');
-            $('.speed p').css('color','#fff');
-            $('.crazyplay-icon p').text('▶')
-            $('.crazyplay-content p').text('播放')
-            $('.crazyplay').css('opacity','25%');
-        }
-    });
-    $('.crazyplay-icon').click(function(){
-        if(start==1){
-            /*暫停*/
-            if(stop==0){
-                stop=1;
-                $('.crazyplay-icon p').text('▶')
-                $('.crazyplay-content p').text('播放')
-                $('.crazyplay-icon p').css( 'padding-left','3px')
-            }else{
-                /*開始*/
-                stop=0;
-                $('.crazyplay-icon p').text('||')
-                $('.crazyplay-icon p').css( 'padding-left','1px')
-                $('.crazyplay-content p').text('暫停')
-            }
-        }
-    });
-});
-
-/*改變RGB數值*/
-function changRGB () {
-    if(start==1){
-        if(stop==1){
-            $('.header').css('background-color' ,'rgb('+R+','+G+','+B+')');
-        }
-        else if(R==255 && G!=255 && B==0){
-            G++;
-        }else if(R!=0 && G==255 && B==0){
-            R--;
-        }else if(R==0 && G==255 && B!=255){
-            B++;
-        }else if(R==0 && G!=0 && B==255){
-            G--;
-        }else if(R!=255 && G==0 && B==255){
-            R++;
-        }else if(R==255 && G==0 && B!=0){
-            B--;
-        }
-        changColor();
-    }else if(start==0){
-        $('.header').css('background-color' ,'#444');
-    }
-}
-
-/*更換背景RGB函式*/
-function changColor(){
-    $(document).ready(function(){
-        $('.header').css('background-color' ,'rgb('+R+','+G+','+B+')');
+    <div class="content1-button">
+        <a href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+        touch me
+        </a>
+    </div>
+    <div class="content1">
+        <div id="app">  
+        </div>
+    </div>
+    <a name="cont2"></a>
+    <div class="content2">
+        <div class="TaiwanTemp">
+            <div class="TaiwanIMG">
+                <img src="Taiwan.jpg" height="700px" width="auto">
+                <div class="Keelung">基隆市</div>
+                <div class="NewTaipei">新北市</div>
+                <div class="Taipei">臺北市</div>
+                <div class="Taoyuan">桃園市</div>
+                <div class="HsinchuC">新竹縣</div>
+                <div class="HsinchuS">新竹市</div>
+                <div class="Miaoli">苗栗縣</div>
+                <div class="Taichung">臺中市</div>
+                <div class="Changhua">彰化縣</div>
+                <div class="Nantou">南投縣</div>
+                <div class="Yunlin">雲林縣</div>
+                <div class="ChiayiC">嘉義縣</div>
+                <div class="ChiayiS">嘉義市</div>
+                <div class="Tainan">臺南市</div>
+                <div class="Kaohsiung">高雄市</div>
+                <div class="Pingtung">屏東縣</div>
+                <div class="Yilan">宜蘭縣</div>
+                <div class="Hualien">花蓮縣</div>
+                <div class="Taitung">臺東縣</div>
+                <div class="Penghu">澎湖縣</div>
+                <div class="Kinmen">金門縣</div>
+                <div class="Lienchiang">連江縣</div>
+            </div>
+            <div class="CSweather">
+                <div class="div0"></div>
+                <div class="div1"></div>
+                <div class="div2"></div>
+                <div class="div3"></div>
+                <div class="div4"></div>
+                <div class="div5"></div>
+                <div class="div6"></div>
+                <div class="div7"></div>
+                <div class="div8"></div>
+                <div class="div9"></div>
+                <div class="div10"></div>
+                <div class="div11"></div>
+                <div class="div12"></div>
+                <div class="div13"></div>
+                <div class="div14"></div>
+                <div class="div15"></div>
+                <div class="div16"></div>
+                <div class="div17"></div>
+                <div class="div18"></div>
+                <div class="div19"></div>
+                <div class="div20"></div>
+                <div class="div21"></div>
+                <div class="div22"></div>
+                <div class="div23"></div>
+                <div class="div24"></div>
+                <div class="div25"></div>
+                <div class="div26"></div>
+                <div class="div27"></div>
+                <div class="div28"></div>
+                <div class="div29"></div>
+                <div class="div30"></div>
+                <div class="div31"></div>
+                <div class="div32"></div>
+                <div class="div33"></div>
+                <div class="div34"></div>
+                <div class="div35"></div>
+                <div class="div36"></div>
+                <div class="div37"></div>
+                <div class="div38"></div>
+                <div class="div39"></div>
+            </div>
+        </div>
+        <div class="citychoose">
+            <input data-exclude="澎湖縣,929,綠島鄉" class="js-demeter-tw-zipcode-selector" data-city="#city4" data-dist="#dist4" placeholder="請輸入郵遞區號" />
+            <select id="city4" placeholder="請選擇縣市"></select>
+            <select id="dist4" placeholder="請選擇鄉鎮區"></select>
+            <div class="send"><h1><b>送出</b></h1></div>
+            <div class="allctdiv">
+                <div class="ctdiv"></div>   
+                <div class="ctdiv0"></div>
+                <div class="ctdiv1"></div>
+                <div class="ctdiv2"></div>
+                <div class="ctdiv3"></div>
+                <div class="ctdiv4"></div>
+                <div class="ctdiv5"></div>
+                <div class="ctdiv6"></div>
+                <div class="ctdiv7"></div>
+                <div class="ctdiv8"></div>
+                <div class="ctdiv9"></div>
+                <div class="ctdiv10"></div>
+                <div class="ctdiv11"></div>
+                <div class="ctdiv12"></div>
+                <div class="ctdiv13"></div>
+                <div class="ctdiv14"></div>
+                <div class="ctdiv15"></div>
+            </div>
+        </div>
+    </div>
+    <div class="time" color="white">
+        <div class="timetxt"><p>目前時間</p>
+            <div class="closebtn"></div>
+        </div>
+        <div class="nowtime" style="color:aliceblue;">時間位置</div>
+        <div class="block_time">
+            <h2>年year</h2>
+            <div class="block_year"></div>
+            <div class="block">
+                <div class="block_yearOK"></div>
+                <div class="block_year_circle"></div>
+            </div>
+            <h2>月month</h2>
+            <div class="block_month"></div>
+            <div class="block">
+                <div class="block_monthOK"></div>
+                <div class="block_month_circle"></div>
+            </div>
+            <h2>日day</h2>
+            <div class="block_day"></div>
+            <div class="block">
+                <div class="block_dayOK"></div>
+                <div class="block_day_circle"></div>
+            </div>
+            <h2>時hour</h2>
+            <div class="block_hour"></div>
+            <div class="block">
+                <div class="block_hourOK"></div>
+                <div class="block_hour_circle"></div>
+            </div>
+            <h2>分miunute</h2>
+            <div class="block_minute"></div>
+            <div class="block">
+                <div class="block_minuteOK"></div>
+                <div class="block_minute_circle"></div>
+            </div>
+            <h2>秒second</h2>
+            <div class="block_sec"></div>
+            <div class="block">
+                <div class="block_secOK"></div>
+                <div class="block_sec_circle"></div>
+            </div>
+            <div class="K101">
+                <div class="K101des"><h2>天氣狀態</h2></div>
+                <div class="K101temp">溫度</div>
+                <div class="K101wet"><h2>濕度</h2></div>
+            </div>
+        </div>
+    </div>
+    <a name="cont3"></a>
+    <div class="content3">
+        <div class="cont3img">
+            <img src="OMG1.png" width="444" height="790">
+        </div>
+        <div class="cont3txt"><h1>0</h1></div>
+        <div class="startbtn"><h1>Start</h1></div>
+        <div class="startnum">剩餘20s</div>
+        <div class="ranklist">
+            <h3>紀錄排行</h3>
+            <div class="rank1">🥇First : 0 下</div>
+            <div class="rank2">🥈Second: 0 下</div>
+            <div class="rank3">🥉Third : 0 下</div>
+        </div>
+    </div>
+    <div class="content4">
+        <div class="cont4_img"><img src="BACKIMG.jpg" height="100%" width="100%"></div> 
+        <!--<img src="hole.png" width="200">
+        <img src="hole+rickroll.png" width="200">
+        <img src="hole+AAAA.png" width="200">
+        <img src="hole+blue.png" width="200"> -->
+        <div class="cont4_score">0分</div>
+        <div class="cont4_bk">
+            <div class="row1">
+                <div class="row1_col1"><img src="hole0.png" width="150"></div>
+                <div class="row1_col2"><img src="hole0.png" width="150"></div>
+                <div class="row1_col3"><img src="hole0.png" width="150"></div>
+                <div class="row1_col4"><img src="hole0.png" width="150"></div>
+            </div>
+            <div class="row2">
+                <div class="row2_col1"><img src="hole0.png" width="150"></div>
+                <div class="row2_col2"><img src="hole0.png" width="150"></div>
+                <div class="row2_col3"><img src="hole0.png" width="150"></div>
+                <div class="row2_col4"><img src="hole0.png" width="150"></div>
+            </div>
+            <div class="row3">
+                <div class="row3_col1"><img src="hole0.png" width="150"></div>
+                <div class="row3_col2"><img src="hole0.png" width="150"></div>
+                <div class="row3_col3"><img src="hole0.png" width="150"></div>
+                <div class="row3_col4"><img src="hole0.png" width="150"></div>
+            </div>
+            <div class="row4">
+                <div class="row4_col1"><img src="hole0.png" width="150"></div>
+                <div class="row4_col2"><img src="hole0.png" width="150"></div>
+                <div class="row4_col3"><img src="hole0.png" width="150"></div>
+                <div class="row4_col4"><img src="hole0.png" width="150"></div>
+            </div>
+        </div>
+        <div class="cont4_startbtn">Start</div>
+        <div class="cont4_stopbtn">Stop</div>
+        <div class="cont4_resetbtn">Reset</div>
+        <div class="cont4_time">剩餘60s</div>
+        <div class="cont4_txt">點擊Start開始打熊</div>
         
-        // $('.header').css('background' ,'linear-gradient(360deg,#bbb,'+'rgb('+R+','+G+','+B+')');
-        $('.OK').text(R+','+G+','+B);
-    });
-}
-
-var open=0;
-$(document).ready(function(){
-    today = Date();
-    $('.nowtime').html('<h1>'+today+'</h1>');
-    console.log("時間載入正常"+today);
-});
-
-var startt=0,diss=0,contin=0,rank1=0,rank2=0,rank3=0,startck=0,realck=0;
-$(document).ready(function(){
-    function time(){
-        var t = null;
-        var d = new Date();
-        var year = d.getFullYear();
-        var month = d.getMonth() + 1;
-        var day = d.getDate();
-        var hour = d.getHours();
-        var minute = d.getMinutes();
-        var sec = d.getSeconds();
-        var string="<h1>目前時間：" + year + "年";
-        if(month<10) string += "0" + month + "月";
-        else string += month + "月";
-        if(day<10) string += "0" + day + "日";
-        else string += day + "日";
-        if(hour>12){
-            if((hour-12)>10)string+= "下午" + (hour-12) +"時";
-            else string+= "下午0" + (hour-12) +"時"
-        }
-        else{
-            if((hour)>=10)string+= "下午" + hour +"時";
-            else string+= "下午0" + hour-12 +"時"
-        }
-        if(minute<10)string += "0" + minute + "分";
-        else string += minute + "分";
-        if(sec<10)string += "0" + sec + "秒";
-        else string += sec + "秒";
-        $('.nowtime').html(string + '</h1>');
-        $('.block_yearOK').css('width',(year-2000)/1000*100+"%");
-        $('.block_year_circle').css('left','calc(' + ((year-2000)/1000*100) + '%' + ' - 10px)')
-        $('.block_monthOK').css('width',month/12*100+"%");
-        $('.block_month_circle').css('left','calc(' + (month/12*100) + '%' + ' - 10px)')
-        if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
-            $('.block_dayOK').css('width',day/31*100+"%");
-            $('.block_day_circle').css('left','calc(' + (day/31*100) + '%' + ' - 10px)');
-        }
-        else if(month==2){
-            if((year%4==0&&year%100!=0)||year%400==0){
-                $('.block_dayOK').css('width',day/29*100+"%");
-                $('.block_day_circle').css('left','calc(' + (day/29*100) + '%' + ' - 10px)');
+        <div class="content5">
+        <!--     <video src="rkrol.mp4" autoplay="autoplay" height="auto" width="1100px">ERROR</video> -->
+        </div>
+        <style>
+            .content4{
+                position: relative;
+                height: 100vh;
+                height: auto;
+                user-select: none;
+                overflow: hidden;
             }
-            else {
-                $('.block_dayOK').css('width',day/28*100+"%");
-                $('.block_day_circle').css('left','calc(' + (day/28*100) + '%' + ' - 10px)');
+            .cont4_img{
+                height: 100vh;
+                overflow: hidden;
             }
-        }
-        else {
-            $('.block_dayOK').css('width',day/30*100+"%");
-            $('.block_day_circle').css('left','calc(' + (day/30*100) + '%' + ' - 10px)');
-        }
-        $('.block_dayOK').css('width',day/31*100+"%");
-        if(hour>12){
-            $('.block_hourOK').css('width',(hour-12)/12*100+"%");
-            $('.block_hour_circle').css('left','calc(' + ((hour-12)/12*100) + '%' + ' - 10px)');
-        }
-        else{
-            if(hour>10){
-                $('.block_hourOK').css('width',hour/12*100+"%");
-                $('.block_hour_circle').css('left','calc(' + (hour/12*100) + '%' + ' - 10px)');
+            .cont4_bk div{
+                height: 50%;
             }
-            else{
-                $('.block_hourOK').css('width',hour/12*100+"%");
-                $('.block_hour_circle').css('left','calc(' + (hour/12*100) + '%' + ' - 10px)');
+            .cont4_bk div div{
+                background-color: rgb(190, 190, 169);
+                width: auto;
+                width: 150px;
+                height: 150px;
+                margin: 20px;
+                margin-left: 30px;
+                margin-right: 30px;
+                cursor: pointer;
+                border-radius: 15px;
             }
-        }
-        $('.block_minuteOK').css('width',minute/60*100+"%");
-        $('.block_minute_circle').css('left','calc(' + (minute/60*100) + '%' + ' - 10px)');
-        $('.block_secOK').css('width',sec/60*100+"%");
-        $('.block_sec_circle').css('left','calc(' + (sec/60*100) + '%' + ' - 10px)');
-        if(contin==1){
-            diss++;
-            $('.startnum').html("剩餘" + Math.round(30-(diss+1)/2) + "s");
-            if(diss>=60){
-                contin=0;
-                diss=0;
-                if(rank1<realck){
-                    temp=rank1;
-                    rank1=realck;
-                    realck=temp;
-                }
-                if(rank2<realck){
-                    temp=rank2;
-                    rank2=realck;
-                    realck=temp;
-                }
-                if(rank3<realck){
-                    temp=rank3;
-                    rank3=realck;
-                    realck=temp;
-                }
-                $('.rank1').html("🥇First : " + rank1 +" 下")
-                $('.rank2').html("🥈Second: " + rank2 +" 下")
-                $('.rank3').html("🥉Third : " + rank3 +" 下")
+            .cont4_bk div div:hover{
+                background-color:rgb(241, 236, 161);
+                transform: scale(1.025);
+                transition: .05s;
             }
-        }
-        t = setTimeout (time,500);
-        }
-    time();
-    $('.startbtn').click(function(){
-        realck=0;
-        contin = 1;
-        diss=0;
-        startck=0;
-        console.log("TOUCH");
-    });
-    var t;
-    $('.cont3img').click(function(){
-        if(contin==1){
-            realck++;
-        }
-        startck++;
-        clearTimeout(t);
-        $('.cont3img').html('<img src="OMG2.png" width="444" height="790">');
-        const audio = document.createElement("audio");
-        audio.src = "music.mp3";
-        audio.play();
-        $('.content3').css('cursor','grabbing')
-        $('.cont3txt').html("<h1>"+startck+"</h1>");
-        $('.cont3txt').css('transform','rotate(10deg)');
-        t=setTimeout(function(){
-            $('.content3').css('cursor','grab')
-            $('.cont3img').html('<img src="OMG1.png" width="444" height="790">');
-            $('.cont3txt').css('transform','rotate(0deg)');
-        },125);
-    });
-});
-
-$(document).ready(function(){
-    $('.content1-button').click(function(){
-        if(open==0){
-            open=1;
-            $('.time').css("opacity" ,"100%");
-            $('.time').css("top" ,"330px");
-        }else{
-            open=0;
-            $('.time').css("opacity" ,"0%");
-            $('.time').css("top" ,"-350px");
-
-        }
-    });
-    $('.timeopen').click(function(){
-        if(open==0){
-            open=1;
-            $('.time').css("opacity" ,"100%");
-            $('.time').css("top" ,"330px");
-            loadWeather("taiwan");
-        }else{
-            open=0;
-            $('.time').css("opacity" ,"0%");
-            $('.time').css("top" ,"-350px");
-        }
-    });
-    $('.closebtn').click(function(){
-        open=0;
-        $('.time').css("opacity" ,"0%");
-        $('.time').css("top" ,"-350px");
-    });
-});
-
-function loadWeather(cityCoords){
-    var latlng =25.0336 + "," +  121.5644;
-    var forecastURL = "https://api.forecast.io/forecast/982ecb3e65ae65c6d9db9ce3dea7c90c/"+latlng;
-    //備用： https://api.forecast.io/forecast/52cec5ff313a4d19b60540cfe89675a5
-    console.log(forecastURL);
-    $.ajax({
-        url: forecastURL,
-        jsonpCallback: 'jsonCallback',
-        contentType: "application/json",
-        dataType: 'jsonp',
-        /* 成功 */
-        success: function(json){
-            console.log(json);
-            $('.K101temp').html("<h3>溫度：" + ((json.currently.temperature-32)*(5/9)).toFixed(2)+"&#176;C / " + json.currently.temperature + "&#176;F</h3>");
-            $('.K101wet').html("<h3>濕度：" + json.currently.humidity + "</h3>");
-            $(".K101des").html("<h3>天氣狀態：" + json.currently.icon + "</h3>");
-        },
-        /* 錯誤 */
-        error: function(e){
-            console.log(e.message);
-        }
-    });
-}
-$(document).ready(function(){
-    $('.content1-button').click(function(){
-        loadWeather("taiwan");
-    });
-});
-
-
-var lastclick,movein=0;
-$(document).ready(function(){
-    $('.TaiwanIMG div').mouseover(function(){
-        movein=1;
-        if(lastclick!=('.' + this.className)){
-            $(this).css('background-color', 'rgb(255, 251, 0)');
-            $(this).css('transform', 'scale(1.6)');
-        }
-    })
-    $('.TaiwanIMG div').mouseout(function(){
-        if(movein!=2 && lastclick!=('.'+this.className)){
-            $(this).css('background-color', 'rgba(255, 255, 255, 0.8)');
-            $(this).css('transform', 'scale(1)');
-        }
-        movein=0;
-    })
-    $('.TaiwanIMG div').click(function(){
-        movein=2;
-        $('.CSweather').css('background-color','#505050');
-        $(lastclick).css('transform', 'scale(1)');
-        $(lastclick).css('background-color', 'rgba(255, 255, 255, 0.8)');
-        $(this).css('background-color','rgb(255, 187, 0)');
-        $(this).css('transform', 'scale(1.6)');
-        lastclick='.' + this.className;
-    });
-
-function loadWeather(citycode){
-    let api_key = 'CWB-C96B02A5-E839-4870-B96E-B529AFC22581'
-    let forecastURL = `https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/`+citycode+`?Authorization=${api_key}&format=JSON` 
-    console.log(forecastURL);
-    $(document).ready(function(){
-    $('.div').html("載入中");
-    $.ajax({
-    url: forecastURL,
-    type: "get",
-    dataType:"json",
-    success: function (info) {
-        console.log(info);
-        var abc="",num;
-        for(i=0;i<40;i++){
-            $('.div'+i).html("");
-            $('.div'+i).css('border','none');
-        }
-        if(info.cwbopendata.dataset.locations.location.length%4>0){
-            num=(info.cwbopendata.dataset.locations.location.length-(info.cwbopendata.dataset.locations.location.length%4))/4+1;
-        }else{
-            num=info.cwbopendata.dataset.locations.location.length/4;
-        }
-        $('.CSweather').css('height',num*194);
-        if(info.cwbopendata.dataset.locations.location.length>40)alert("ERROR");
-        for(i=0;i<info.cwbopendata.dataset.locations.location.length;i++){
-            console.log(i);
-            var temp=info.cwbopendata.dataset.locations.location[i];
-            $('.div'+i).html("<h3>"+`<font color=yellow>` + temp.locationName + " " + temp.weatherElement[12].time[0].elementValue[0].value + "</font></h3>" +
-                            "最高溫：" + temp.weatherElement[3].time[0].elementValue.value+ "&#176;C" + " 最低溫：" + temp.weatherElement[4].time[0].elementValue.value + "&#176;C" + "<br>"+
-                            "平均溫度："+ (temp.weatherElement[0].time[0].elementValue.value) +"&#176;C"+ "<br>" +
-                            "平均濕度："+ temp.weatherElement[2].time[0].elementValue.value+"%"+"<br>"+
-                            `<font color=aqua>` + "降雨機率："+temp.weatherElement[9].time[0].elementValue.value+"%"+"</font><br>"+
-                            `<font color="orange">`+ "紫外線：" +temp.weatherElement[13].time[0].elementValue[0].value+ "級  " +temp.weatherElement[13].time[0].elementValue[1].value + "曬傷指數</font><br>"
-            );
-            $('.div'+i).css('border','solid 2px black');
-        }
-    },
-    error: function (data) {
-        console.log("請求失敗");
-    }
-});
-});
-} 
-$(document).ready(function(){
-    $('.Keelung').click(function(){ loadWeather("F-D0047-051");});
-    $('.NewTaipei').click(function(){ loadWeather("F-D0047-071");});
-    $('.Taipei').click(function(){ loadWeather("F-D0047-063");});
-    $('.Taoyuan').click(function(){ loadWeather("F-D0047-007");});
-    $('.HsinchuC').click(function(){ loadWeather("F-D0047-011");});
-    $('.HsinchuS').click(function(){ loadWeather("F-D0047-055");});
-    $('.Miaoli').click(function(){ loadWeather("F-D0047-015");});
-    $('.Taichung').click(function(){ loadWeather("F-D0047-075");});
-    $('.Changhua').click(function(){ loadWeather("F-D0047-019");});
-    $('.Nantou').click(function(){ loadWeather("F-D0047-023");});
-    $('.Yunlin').click(function(){ loadWeather("F-D0047-027");});
-    $('.ChiayiC').click(function(){ loadWeather("F-D0047-031");});
-    $('.ChiayiS').click(function(){ loadWeather("F-D0047-059");});
-    $('.Tainan').click(function(){ loadWeather("F-D0047-079");});
-    $('.Kaohsiung').click(function(){ loadWeather("F-D0047-067");});
-    $('.Pingtung').click(function(){ loadWeather("F-D0047-035");});
-    $('.Yilan').click(function(){ loadWeather("F-D0047-003");});
-    $('.Hualien').click(function(){ loadWeather("F-D0047-043");});
-    $('.Taitung').click(function(){ loadWeather("F-D0047-039");});
-    $('.Penghu').click(function(){ loadWeather("F-D0047-047");});
-    $('.Kinmen').click(function(){ loadWeather("F-D0047-087");});
-    $('.Lienchiang').click(function(){ loadWeather("F-D0047-083");});
-});
-//20220609
-});
-$(document).ready(function(){
-    $('.send').click(function(){
-        var choosecity=document.getElementById("city4").value;
-        var choosedist=document.getElementById("dist4").value;
-        if(choosecity=='基隆市')loadWeather2("F-D0047-051",choosedist);
-        if(choosecity=='新北市')loadWeather2("F-D0047-071",choosedist);
-        if(choosecity=='臺北市')loadWeather2("F-D0047-063",choosedist);
-        if(choosecity=='桃園市')loadWeather2("F-D0047-007",choosedist);
-        if(choosecity=='新竹縣')loadWeather2("F-D0047-011",choosedist);
-        if(choosecity=='新竹市')loadWeather2("F-D0047-055",choosedist);
-        if(choosecity=='苗栗縣')loadWeather2("F-D0047-015",choosedist);
-        if(choosecity=='臺中市')loadWeather2("F-D0047-075",choosedist);
-        if(choosecity=='彰化縣')loadWeather2("F-D0047-019",choosedist);
-        if(choosecity=='南投縣')loadWeather2("F-D0047-023",choosedist);
-        if(choosecity=='雲林縣')loadWeather2("F-D0047-027",choosedist);
-        if(choosecity=='嘉義縣')loadWeather2("F-D0047-031",choosedist);
-        if(choosecity=='嘉義市')loadWeather2("F-D0047-059",choosedist);
-        if(choosecity=='臺南市')loadWeather2("F-D0047-079",choosedist);
-        if(choosecity=='高雄市')loadWeather2("F-D0047-067",choosedist);
-        if(choosecity=='屏東縣')loadWeather2("F-D0047-035",choosedist);
-        if(choosecity=='宜蘭縣')loadWeather2("F-D0047-003",choosedist);
-        if(choosecity=='花蓮縣')loadWeather2("F-D0047-043",choosedist);
-        if(choosecity=='臺東縣')loadWeather2("F-D0047-039",choosedist);
-        if(choosecity=='澎湖縣')loadWeather2("F-D0047-047",choosedist);
-        if(choosecity=='金門縣')loadWeather2("F-D0047-087",choosedist);
-        if(choosecity=='連江縣')loadWeather2("F-D0047-083",choosedist);
-    })
-})
-function loadWeather2(citycode,distcode){
-    let api_key = 'CWB-C96B02A5-E839-4870-B96E-B529AFC22581'
-    let forecastURL = `https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/`+citycode +`?Authorization=${api_key}&format=JSON` 
-    console.log(forecastURL);
-    $(document).ready(function(){
-        $('.div').html("載入中");
-        $.ajax({
-            url: forecastURL,
-            type: "get",
-            dataType:"json",
-            success: function (info) {
-                for(i=0;i<info.cwbopendata.dataset.locations.location.length;i++){
-                    var temps=info.cwbopendata.dataset.locations.location[i];
-                    if(temps.locationName==distcode){
-                        $('.ctdiv').html(document.getElementById("city4").value+ " - " +document.getElementById("dist4").value);
-                        for(j=0;j<15;j++){
-                            if(j==7||j==8){
-                                $('.ctdiv'+j).html("<b>" + temps.weatherElement[j].description+"：</b>"+temps.weatherElement[j].time[0].elementValue[0].value+" " +temps.weatherElement[j].time[0].elementValue[1].value);
-                            }else if(j==11){
-                                $('.ctdiv'+j).html("<b>" + temps.weatherElement[j].description+"</b>："+temps.weatherElement[j].time[0].elementValue[0].value+" " +temps.weatherElement[j].time[0].elementValue[0].measures + "<b> " +
-                                temps.weatherElement[j].time[0].elementValue[1].measures + "：</b>" + temps.weatherElement[j].time[0].elementValue[1].value );
-                            }else if(j==12){
-                                $('.ctdiv'+j).html("<b>"+temps.weatherElement[j].description+"</b>："+temps.weatherElement[j].time[0].elementValue[0].value);
-                            }else if(j==13){
-                                $('.ctdiv'+j).html("<b>"+temps.weatherElement[j].description+"</b>："+temps.weatherElement[j].time[0].elementValue[0].value + "級 <b>" + temps.weatherElement[j].time[0].elementValue[1].measures+"：</b>"+
-                                temps.weatherElement[j].time[0].elementValue[1].value);
-                            }else if(j==2){
-                                $('.ctdiv'+j).html("<b>"+temps.weatherElement[j].description+"</b>："+temps.weatherElement[j].time[0].elementValue.value + "%");
-                            }else if(j==9){
-                                $('.ctdiv'+j).html(`<font color="blue"><b>`+temps.weatherElement[j].description+"</b>："+temps.weatherElement[j].time[0].elementValue.value + "%</font>");
-                            }
-                            else{
-                                $('.ctdiv'+j).html("<b>"+temps.weatherElement[j].description+"</b>："+temps.weatherElement[j].time[0].elementValue.value);
-                            }
-                        }
-                        break;
-                    }
-                }
-                console.log(info);
-            },
-            error: function (data) {
-                console.log("請求失敗");
+            .cont4_score{
+                position: absolute;
+                top:50px;
+                left:50%;
+                font-size: 53px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                transform: translate(-50%,-50%);
+                text-shadow: 2px 2px 2px rgb(92, 92, 92);
             }
+            .cont4_bk {
+                position: absolute;
+                top:50%;
+                left:50%;
+                transform: translate(-50%, -50%);
+                display: flex;
+                justify-content: center;
+                background-repeat:no-repeat;
+                /* background-image: url(BACKIMG.jpg); */
+                overflow: hidden;
+            }
+            .cont4_startbtn{
+                position: absolute;
+                top:30px;
+                left:30px;
+                width: 250px;
+                height: 150px;
+                margin: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                font-size: 53px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                border-radius: 15px;
+                cursor: pointer;
+                user-select: none;
+                background-color: rgb(43, 43, 43);
+                color:rgb(255, 255, 255)
+            }
+            .cont4_stopbtn{
+                position: absolute;
+                top:195px;
+                left:30px;
+                width: 250px;
+                height: 150px;
+                margin: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                font-size: 53px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                border-radius: 15px;
+                cursor: default;
+                user-select: none;
+                opacity: 60%;
+                background-color: rgb(43, 43, 43);
+                background-color: rgb(158, 158, 158);
+                color:rgb(255, 255, 255)
+            }
+            .cont4_resetbtn{
+                position: absolute;
+                top:360px;
+                left:30px;
+                width: 250px;
+                height: 150px;
+                margin: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                font-size: 53px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                border-radius: 15px;
+                cursor: default;
+                user-select: none;
+                color:rgb(255, 255, 255);
+                opacity: 60%;
+                background-color: rgb(43, 43, 43);
+                background-color: rgb(158, 158, 158);
+
+            }
+            .cont4_time{
+                position: absolute;
+                top:515px;
+                left:30px;
+                width: 250px;
+                text-align: center;
+                color: rgb(0, 0, 0);
+                user-select: none;
+                font-size: 50px;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            .cont4_txt{
+                position: absolute;
+                top: 600px;
+                left:30px;
+                width: 250px;
+                height: 200px;
+                background-color: aquamarine;
+            }
+            .content5{
+                position: absolute;
+                top:50%;
+                left:50%;
+                transform: translate(-50%,-50%);
+                width: 1200px;
+                height: auto;
+                transition: .5s;
+            }
+        </style>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('.as').click(function(){
+                console.log("oK");
+            });
         });
-    });
-}
+    </script>
+        </body>
+    </body>
+</html> 

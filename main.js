@@ -129,8 +129,11 @@ $(document).ready(function(){
     $('.nowtime').html('<h1>'+today+'</h1>');
     console.log("時間載入正常"+today);
 });
-
+//時間函式-時間函式-時間函式-時間函式-時間函式-時間函式-時間函式-時間函式-時間函式-時間函式 
 var startt=0,diss=0,contin=0,rank1=0,rank2=0,rank3=0,startck=0,realck=0;
+//var ckberopen=0,ckbeartime=120;
+var ckberopen=0,ckbeartime=60,cont4_i,cont4_j,cont4_score=0,rick=[0,0];//測試用使用5s
+var cont4_arr=[[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]]];
 $(document).ready(function(){
     function time(){
         var t = null;
@@ -147,11 +150,11 @@ $(document).ready(function(){
         if(day<10) string += "0" + day + "日";
         else string += day + "日";
         if(hour>12){
-            if((hour-12)>10)string+= "下午" + (hour-12) +"時";
+            if((hour-12)>=10)string+= "下午" + (hour-12) +"時";
             else string+= "下午0" + (hour-12) +"時"
         }
         else{
-            if((hour)>10)string+= "下午" + hour +"時";
+            if((hour)>=10)string+= "下午" + hour +"時";
             else string+= "下午0" + hour-12 +"時"
         }
         if(minute<10)string += "0" + minute + "分";
@@ -187,14 +190,8 @@ $(document).ready(function(){
             $('.block_hour_circle').css('left','calc(' + ((hour-12)/12*100) + '%' + ' - 10px)');
         }
         else{
-            if(hour>10){
-                $('.block_hourOK').css('width',hour/12*100+"%");
-                $('.block_hour_circle').css('left','calc(' + (hour/12*100) + '%' + ' - 10px)');
-            }
-            else{
-                $('.block_hourOK').css('width',hour/12*100+"%");
-                $('.block_hour_circle').css('left','calc(' + (hour/12*100) + '%' + ' - 10px)');
-            }
+            $('.block_hourOK').css('width',hour/12*100+"%");
+            $('.block_hour_circle').css('left','calc(' + (hour/12*100) + '%' + ' - 10px)');
         }
         $('.block_minuteOK').css('width',minute/60*100+"%");
         $('.block_minute_circle').css('left','calc(' + (minute/60*100) + '%' + ' - 10px)');
@@ -202,8 +199,8 @@ $(document).ready(function(){
         $('.block_sec_circle').css('left','calc(' + (sec/60*100) + '%' + ' - 10px)');
         if(contin==1){
             diss++;
-            $('.startnum').html("剩餘" + Math.round(30-(diss+1)/2) + "s");
-            if(diss>=60){
+            $('.startnum').html("剩餘" + Math.round(20-(diss+1)/2) + "s");
+            if(diss>=40){
                 contin=0;
                 diss=0;
                 if(rank1<realck){
@@ -224,6 +221,79 @@ $(document).ready(function(){
                 $('.rank1').html("🥇First : " + rank1 +" 下")
                 $('.rank2').html("🥈Second: " + rank2 +" 下")
                 $('.rank3').html("🥉Third : " + rank3 +" 下")
+            }
+        }
+        //打地鼠
+        if(ckberopen==1){
+            //$('.cont4_time').html("剩餘" + 60-ckbeartime/2 + "s")
+            $('.cont4_time').html("剩餘" + (Math.trunc(ckbeartime/2-0.5)) + "s"); //測試用
+            var cont4_test=1;
+            //圖片到計數秒數行為
+            for(i=0;i<4;i++){
+                for(j=0;j<4;j++){
+                    if(cont4_arr[i][j][0]!=0){
+                        cont4_arr[i][j][1]-=1;
+                        if(cont4_arr[i][j][1]<=0){//初始化
+                            cont4_arr[i][j][0]=0;
+                            $('.row'+(i+1)+'_col'+(j+1)).html(`<img src="hole0.png" width="150">`)
+                        }
+                    }
+                }
+            }
+            if((ckbeartime%2)==0){
+                //抽空白位置
+                cont4_i=Math.floor(Math.random()*4);
+                cont4_j=Math.floor(Math.random()*4);
+                while(cont4_test==1){
+                    if(cont4_arr[cont4_i][cont4_j][0]==0){
+                        break;
+                    }else{
+                        cont4_i=Math.floor(Math.random()*4);
+                        cont4_j=Math.floor(Math.random()*4);
+                    }
+                }
+                //抽(空白位置的)狀態 機率系統
+                var state=0;
+                state = Math.floor((Math.random()*100)+1);
+                if(state<=70)state=1; //70
+                else if(state<=85)state=2; //85
+                else if(state<=95)state=3; //95
+                else state=4;
+                $('.row'+(cont4_i+1)+'_col'+(cont4_j+1)).html(`<img src="hole`+state+`.png" width="150">`)
+                cont4_arr[cont4_i][cont4_j][0]=state;
+                cont4_arr[cont4_i][cont4_j][1]=2;
+            }
+
+
+            ckbeartime-=1;
+            //console.log(ckbeartime);
+            if(ckbeartime<= 0){//時間結束reset
+                ckberopen=0;
+                //ckbeartime=120;
+                ckbeartime=60; //測試用
+                cont4_score=0;
+                $('.cont4_startbtn').css('background-color','rgb(43, 43, 43)');
+                $('.cont4_startbtn').css('cursor','pointer');
+                $('.cont4_startbtn').css('opacity','100%');
+                $('.cont4_stopbtn').css('background-color','rgb(158, 158, 158)')
+                $('.cont4_stopbtn').css('cursor','default');
+                $('.cont4_stopbtn').css('opacity','60%');
+                $('.cont4_resetbtn').css('background-color','rgb(158, 158, 158)')
+                $('.cont4_resetbtn').css('cursor','default');
+                $('.cont4_resetbtn').css('opacity','60%');
+                $('.cont4_time').html("剩餘60s");
+                $('.cont4_bk div div').html(`<img src="hole0.png" width="150">`);
+                $('.content5').html("");
+            }
+            //rickroll關閉系統
+            console.log(rick[1]);
+            if(rick[0]==1){
+                rick[1]-=1;
+                console.log(rick[1]);
+                if(rick[1]<=0){
+                    $('.content5').html("");
+                    rick[0]=0;
+                }
             }
         }
         t = setTimeout (time,500);
@@ -259,6 +329,90 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
+    /* 打地鼠起點 - 打地鼠起點 - 打地鼠起點 - 打地鼠起點 - 打地鼠起點 */
+    $('.cont4_startbtn').click(function(){ //開始按鈕
+        if(ckberopen==0){
+            $('.cont4_startbtn').css('background-color','rgb(158, 158, 158)');
+            $('.cont4_startbtn').css('cursor','default');
+            $('.cont4_startbtn').css('opacity','60%');
+            $('.cont4_stopbtn').css('background-color','rgb(43, 43, 43)')
+            $('.cont4_stopbtn').css('cursor','pointer');
+            $('.cont4_stopbtn').css('opacity','100%');
+            $('.cont4_resetbtn').css('background-color','rgb(43, 43, 43)')
+            $('.cont4_resetbtn').css('cursor','pointer');
+            $('.cont4_resetbtn').css('opacity','100%');
+        }
+        ckberopen=1;
+        cont4_score=0;
+    });
+    $('.cont4_stopbtn').click(function(){ //暫停按鈕
+        if(rick[0]==1){
+            $('.cont4_startbtn').css('background-color','rgb(43, 43, 43)');
+            $('.cont4_startbtn').css('cursor','pointer');
+            $('.cont4_startbtn').css('opacity','100%');
+            $('.cont4_stopbtn').css('background-color','rgb(158, 158, 158)')
+            $('.cont4_stopbtn').css('cursor','default');
+            $('.cont4_stopbtn').css('opacity','60%');
+            $('.cont4_resetbtn').css('background-color','rgb(43, 43, 43)')
+            $('.cont4_resetbtn').css('cursor','pointer');
+            $('.cont4_resetbtn').css('opacity','100%');
+        }
+        ckberopen=0;
+    });
+    $('.cont4_resetbtn').click(function(){ //reset按鈕
+        $('.cont4_startbtn').css('background-color','rgb(43, 43, 43)');
+        $('.cont4_startbtn').css('cursor','pointer');
+        $('.cont4_startbtn').css('opacity','100%');
+        $('.cont4_stopbtn').css('background-color','rgb(158, 158, 158)')
+        $('.cont4_stopbtn').css('cursor','default');
+        $('.cont4_stopbtn').css('opacity','60%');
+        $('.cont4_resetbtn').css('background-color','rgb(158, 158, 158)')
+        $('.cont4_resetbtn').css('cursor','default');
+        $('.cont4_resetbtn').css('opacity','60%');
+        $('.cont4_time').html("剩餘60s");
+        $('.cont4_bk div div').html(`<img src="hole0.png" width="150">`);
+        $('.content5').html("");
+        ckberopen=0;
+        //ckbeartime=120;
+        ckbeartime=60; //測試用
+        cont4_score=0;
+    });
+    $('.cont4_bk div div').click(function(){ //圖片點擊事件
+        var iii=parseInt((this.className).substr(3,1))-1,jjj=parseInt((this.className).substr(8,1))-1;
+        if(ckberopen==1){
+            if(cont4_arr[iii][jjj][1]>0){
+                cont4_arr[iii][jjj][1]=0;
+                $(this).html(`<img src="hole0.png" width="150">`);
+                if(cont4_arr[iii][jjj][0]==1)cont4_score+=1;
+                else if(cont4_arr[iii][jjj][0]==2)cont4_score+=10;
+                else if(cont4_arr[iii][jjj][0]==3){
+                    rick[0]=1;
+                    rick[1]=13;
+                    $('.content5').html(`<video src="rkrol.mp4" autoplay="autoplay" height="auto" width="1200px">ERROR</video>`);
+                }
+                else if(cont4_arr[iii][jjj][0]==4)console.log("抽獎");//抽獎
+                cont4_arr[iii][jjj][0]=0;
+                $('.cont4_score').html(cont4_score+"分");
+            }
+        }
+    });
+    /* 打地鼠終點 - 打地鼠終點 - 打地鼠終點 - 打地鼠終點 - 打地鼠終點 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     $('.content1-button').click(function(){
         if(open==0){
             open=1;

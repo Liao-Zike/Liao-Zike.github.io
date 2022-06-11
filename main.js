@@ -240,6 +240,7 @@ $(document).ready(function(){
                     }
                 }
             }
+            //機率系統一
             if((ckbeartime%2)==0){
                 //抽空白位置
                 cont4_i=Math.floor(Math.random()*4);
@@ -252,10 +253,33 @@ $(document).ready(function(){
                         cont4_j=Math.floor(Math.random()*4);
                     }
                 }
-                //抽(空白位置的)狀態 機率系統
+                //抽(空白位置的)狀態 機率系統一參數值
                 var state=0;
                 state = Math.floor((Math.random()*100)+1);
                 if(state<=70)state=1; //70
+                else if(state<=85)state=2; //85
+                else if(state<=95)state=3; //95
+                else state=4;
+                $('.row'+(cont4_i+1)+'_col'+(cont4_j+1)).html(`<img src="hole`+state+`.png" width="150">`)
+                cont4_arr[cont4_i][cont4_j][0]=state;
+                cont4_arr[cont4_i][cont4_j][1]=2;
+            }else { //機率系統二
+                //抽空白位置
+                cont4_i=Math.floor(Math.random()*4);
+                cont4_j=Math.floor(Math.random()*4);
+                while(cont4_test==1){
+                    if(cont4_arr[cont4_i][cont4_j][0]==0){
+                        break;
+                    }else{
+                        cont4_i=Math.floor(Math.random()*4);
+                        cont4_j=Math.floor(Math.random()*4);
+                    }
+                }
+                //抽(空白位置的)狀態 機率系統二參數值
+                var state=0;
+                state = Math.floor((Math.random()*100)+1);
+                if(state<=20)state=0;
+                else if(state<=75)state=1; //70
                 else if(state<=85)state=2; //85
                 else if(state<=95)state=3; //95
                 else state=4;
@@ -286,7 +310,6 @@ $(document).ready(function(){
                 $('.content5').html("");
             }
             //rickroll關閉系統
-            console.log(rick[1]);
             if(rick[0]==1){
                 rick[1]-=1;
                 console.log(rick[1]);

@@ -20,6 +20,7 @@
     <script src="main.js"></script>
     <script src="coollight.js" type="module"></script>
     <link rel="shortcut icon" href="#">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 </head>
 <body>
     <div class="header">
@@ -46,8 +47,9 @@
             <nav>
                 <a href="index.html">首頁</a>
                 <a href="#" class="timeopen">目前時間</a>
-                <a href="#cont2">縣市溫濕度</a>
-                <a href="#cont3">OMG</a>
+                <a href="#cont2">各鄉鎮溫濕度</a>
+                <a href="#cont3">杰哥20秒</a>
+                <a href="#cont4">打地鼠？熊？</a>
             <nav>
         </div>
     </div>
@@ -227,6 +229,7 @@
             <div class="rank3">🥉Third : 0 下</div>
         </div>
     </div>
+    <a name="cont4"></a>
     <div class="content4">
         <div class="cont4_load">
             <img src="hole0.png" width="20" height="20">
@@ -267,8 +270,15 @@
         <div class="cont4_stopbtn">Stop</div>
         <div class="cont4_resetbtn">Reset</div>
         <div class="cont4_time">剩餘60s</div>
-        <div class="cont4_txt">點擊Start開始打熊</div>
-        
+        <div class="cont4_besttxt">
+            <h3>最佳成績Score</h3>
+            <div class="cont4_best">🥇First: 0分</div>
+        </div>
+        <div class="cont4_txt">
+            說明：<br>一局為60秒<br>Start開始遊戲<br>Stop 暫停遊戲<br>Reset重置遊戲<br>
+            <font color="yellow">打熊+1分、大電+10分/RickRoll驚喜禮物/藍色狸貓隨機事件：
+            有+200分、-100分、重置分數、+30秒、-20秒、冰冰姐泡湯。</font>
+        </div>
         <div class="content5">
         <!-- <video src="rkrol.mp4" autoplay="autoplay" height="auto" width="1200px">ERROR</video> -->
         </div>
@@ -277,13 +287,5 @@
             <div class="cont6_txt">123</div>
         </div>
     </div>
-    <script>
-        $(document).ready(function(){
-            $('.as').click(function(){
-                console.log("oK");
-            });
-        });
-    </script>
-        </body>
-    </body>
+</body>
 </html> 

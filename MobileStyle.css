@@ -1,0 +1,1193 @@
+@media screen and (max-width:1200px) {
+    body::-webkit-scrollbar{
+        display: none;
+    }
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+.header{
+    height: 53px;
+    background-color: #444;
+    overflow: hidden; /*多餘的隱藏*/
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+/* 左上角LOGO設定 */
+.logo a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 53px;
+    width: 150px;
+    font-size: 35px;
+    color:#fff;
+    text-shadow: 1.5px 1.5px 1.3px rgb(85, 33, 33); /*1_右橫 2_下直 3_模糊*/
+    text-decoration: none; /*取消預設連結的樣式*/
+}
+/* 控制選項checkbox */
+#menu_control{
+    display: none; /*隱藏checkbox*/
+}
+/* 漢堡選單按鈕 */
+.menu_btn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width:40px;
+    height: 40px;
+    background-color: #000;
+    /*transition: all .5s ease-in-out;*/
+    border:1px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; /*移過去數標樣式*/
+}
+/* 漢堡選單按鈕-中間線 */
+.menu_btn_burger{
+    width: 30px;
+    height: 2.5px;
+    background-color: #ccc;
+    border-radius: 5px; /*線條原角效果*/
+    box-shadow: 0 0 3px #fb0; /*帶黃色微模糊*/
+    transition: all .5s ease-in; /*改變時特效*/
+}
+/* 漢堡選單按鈕-上下線 */
+.menu_btn_burger::before,
+.menu_btn_burger::after{
+    content: ''; /*沒有內容*/
+    position: absolute;
+    width: 30px;
+    height: 2.5px;
+    background-color: #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #fb0;
+    transition: all .5s ease-in-out;
+}/* 設定往下線 */
+.menu_btn_burger::before{
+    transform: translateY(-8px);
+}/* 設定往上線 */
+.menu_btn_burger::after{
+    transform: translateY(8px);
+    ;
+}
+/* 漢堡選單to打叉動畫 */
+/* 單checkbox點擊v - 中間線 */
+#menu_control:checked ~ .menu_btn .menu_btn_burger{
+    transform:translateX(-40px); /*向左移動*/
+    transition: .5s;
+    background:transparent; 
+    box-shadow: 0 0 0px rgb(0, 0, 0);
+}
+#menu_control:checked ~ .menu_btn .menu_btn_burger::before{
+    transform: rotate(45deg)
+    translateX(28px)
+    translateY(-28px);
+}
+#menu_control:checked ~ .menu_btn .menu_btn_burger::after{
+    transform: rotate(-45deg)
+    translateX(28px)
+    translateY(28px);
+}
+
+#menu_control:checked ~ .menu{
+    left:0px;
+}
+#menu_control:checked ~ .menu a::after{
+    transition: 5s;
+}
+/* 選單設定 */
+.menu{
+    opacity: 100%;
+    position: absolute;
+    padding-top: 10px;
+    width: 100%;
+    height: calc(100vh - 50px);
+    background-color: #111;
+    background: linear-gradient(#000,#333);
+    color:#000;
+    transition: .5s;
+    left: -100%;
+}
+.menu a{
+    background-color: #888;
+    text-decoration: none;
+    line-height: 50px;
+    font-size: 20px;
+    color:#fff;
+    margin: 0px 15px;
+    padding: 15px 25px;
+    display: block;
+    height: 40px;
+}
+/*增加其他分隔線條(偽元素)*/
+.menu a::after{
+    content:'';
+    position: absolute;
+    height: 1px;
+    width:calc(100% - 30px);
+    left: 15px;
+    top: 80px;
+    background-color: #fa0;
+    margin: auto;
+    box-shadow:0px 70px 0px #fa0,
+    0px 70px 0px #fa0,0px 140px 0px #fa0,
+    0px 210px 0px #fa0;
+}
+.menu a:hover{
+    transition: .4s;
+    background-color: rgb(208, 212, 169);
+}
+/*RGB模式開關外盒*/
+.crazy{
+    position:absolute;
+    top:14px;
+    left:180px;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    opacity: 65%;
+}
+/*RGB模式開關*/
+.crazybox{
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+/*RGB模式文字(text:RGB)*/
+.crazy p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#fff;
+    cursor: default;
+}
+/*暫停/播放鍵外盒*/
+.crazyplay{
+    position:absolute;
+    top:6px;
+    left:245px;
+    height: 40px;
+    width: 25px;
+    opacity: 25%;
+}
+/*暫停/播放符號 外盒*/
+.crazyplay-icon {
+    height: 25px;
+    width: 25px;
+    user-select: none;
+}
+/*暫停/播放符號(text:▶)*/
+.crazyplay-icon p{
+    cursor: default;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 3px;
+    font-size: 15px;
+    height: 100%;
+    color: #fff;
+}
+/*暫停/播放符號移入特效*/
+.crazyplay-icon p:hover{
+    transition: .5s ease-out;
+    border: 1px solid transparent;
+    border-radius: 100%;
+    box-shadow: 0px 0px 4px 1px rgba(87, 87, 85, 0.959);/*上下光暈 周圍 大小*/
+    background-color:rgba(128, 128, 231, 0.959);
+}
+/*暫停/撥放文字(text:暫停/播放)*/
+.crazyplay-content p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
+    color:#fff;
+    opacity: 75%;
+    cursor:default;
+}
+/*速度滑桿 外盒*/
+.speed{    
+    position:absolute;
+    top: 10px;
+    left: 300px;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    opacity: 80%;
+}
+/*速度滑桿*/
+#slider{
+    width: 178px;
+    background-color: #000;
+}
+/*速度文字(text:速度speed)*/
+.speed p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3px;
+    color:#fff;
+}
+    
+.content1{
+    height: calc(100vh);
+    width: 100%;
+    /* background-color: rgb(138, 135, 135); */
+    /* background-color: #000;  */
+    color: rgb(255, 255, 255);
+    cursor: none;
+}
+
+@media screen and (max-width:550px){
+    .logo a{
+        width: 109px;
+    }
+    .crazy{
+        left:108px;
+    }
+    .crazyplay{
+        left:152px;
+    }
+    .speed{
+        left:178px;
+        width: 90px;
+    }
+    #slider{
+        width: 90px;
+    }
+}
+
+
+/*按鈕定在中間(touch me)*/
+.content1-button{
+    position: absolute;
+    left:50%;
+    top:50%;
+    width: 260px;
+    transform: translate(-50%, -50%);
+    -webkit-box-reflect: below 30px linear-gradient(transparent, #ffffff50);
+    user-select: none;
+}
+/*移除a屬性特效 外圍加上空白*/
+.content1-button a{
+    position: relative;
+    display: inline-block;
+    padding: 10px 25px 10px 25px;
+    color: #ff0;
+    font-size: 50px;
+    text-decoration: none;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+.content1-button a:hover {
+  background:  rgb(228, 228, 89);
+  color: #000;
+  border-radius: 5px;
+  box-shadow: 0 0 40px #ff0;
+  transition: all .2s ease-in-out;
+}
+/*按鈕周圍4個span*/
+.content1-button a span {
+  position: absolute;
+  display: block;
+}
+/*選取第一個元素*/
+.content1-button a span:nth-child(1) {
+  top: 0;
+  left: 0%;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #ff0);
+  animation: cont1-btn-anim1 1s linear infinite; /*linear定義動畫轉變時時間的加速曲線 infinite無限撥放*/
+}
+@keyframes cont1-btn-anim1 {
+    /*預設值*/
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+/*選取第三個元素(下面)*/
+.content1-button a span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(270deg, transparent, #ff0);
+  animation: cont1-btn-anim3 1s linear infinite;
+}
+@keyframes cont1-btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+/*奇怪了*/
+#current_temp {
+	font-size: 3em;
+	color: #ff0;
+}
+
+#current_summary {
+	font-size: 1.5em;
+	color: #ff0;
+}
+
+#current_location {
+	font-size: 1.5em;
+	color: #ff0;
+	font-family: monospace;
+}
+
+.content {
+	text-align: center;
+    
+}
+
+#ic {
+	font-size: 4em;
+	padding-top: 30px;
+	color: #fff;
+}
+
+#sliderk{
+    display: block;
+    width: 93px;
+}
+
+#app {
+	width: 100%;
+	height: 100%;
+}
+  
+#app {
+	overflow: hidden;
+	touch-action: pan-up;
+	color: #ffffff;
+	font-family: 'Montserrat', sans-serif;
+	text-align: center;
+	text-shadow: 0 0 5px #ffffff, 0 0 20px #000, 0 0 30px #000;
+}
+
+
+#app canvas {
+	display: block;
+	z-index: -1;
+	top: 53px;
+} 
+/*2022/06/06 程式編輯新增*/
+
+.closebtn{
+    position: absolute;
+    text-indent: -9999px;
+    top:0%;
+    right:0%;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+    content: '';
+    text-indent: 0px;
+    position: absolute;
+}
+.closebtn::before,.closebtn::after{
+    position: absolute;
+    content:'';
+    background-color: aliceblue;
+    width: 50px;
+    height: 5px;
+}
+.closebtn::before{
+    transform:rotate(45deg) translate(15px,15px);
+}
+.closebtn::after{
+    transform:rotate(-45deg) translate(-15px,15px);
+}
+.time{
+    cursor: default;
+    color: black;
+    text-shadow: none;
+    border: 3px solid rgb(255, 255, 255);
+    position: absolute;
+    top: -400px;
+    /*top: 325px;*/
+    left: 50%;
+    height: 450px;
+    width: 70%;
+    background-color:rgb(58, 58, 58);
+    transform: translate(-50%, -50%);
+    /* opacity: 0%; */
+    transition: all .5s ease-in-out;
+    overflow: hidden;
+}
+.timetxt{
+    background-color: aliceblue;
+    position: relative;
+    top: 0%;
+    left:0%;
+    height: 50px;
+    width: 100%;
+    font-size: 30px;
+    background: linear-gradient(360deg,rgb(255, 255, 255),rgb(131, 131, 131));
+    user-select: none;
+}
+.timetxt p{
+    display: flex;
+    justify-content: center;
+}
+.nowtime h1{
+    text-align: center;
+    margin: auto;
+    
+}
+.block_time{
+    width: 80%;
+    margin: auto;
+    margin-top: 25px;
+    
+    overflow: hidden;
+    /* text-align: center; */
+}
+.block_time h2{
+    color: aliceblue;
+}
+/*年year*/
+.block_year{
+    height: 5px;
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    border-radius: 5px;
+}
+.block_yearOK{
+    transform: translateY(-5px);
+    height: 5px;
+    width: 0%;
+    background-color: red;
+    border-radius: 5px;
+}
+.block_year_circle{
+    position: absolute;
+    top:-10px;
+    left: calc(0%);
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background: red;
+    box-shadow: 0 0 20px red;
+}
+/*月month*/
+.block_month{
+    height: 5px;
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    border-radius: 5px;
+}
+.block_monthOK{
+    transform: translateY(-5px);
+    height: 5px;
+    width: 0%;
+    background-color: orange;
+    border-radius: 5px;
+}
+.block_month_circle{
+    position: absolute;
+    top:-10px;
+    left: calc(0%);
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background: orange;
+    box-shadow: 0 0 20px orange;
+}
+/*日day*/
+.block_day{
+    height: 5px;
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    border-radius: 5px;
+}
+.block_dayOK{
+    transform: translateY(-5px);
+    height: 5px;
+    width: 0%;
+    background-color: yellow;
+    border-radius: 5px;
+}
+.block_day_circle{
+    position: absolute;
+    top:-10px;
+    left: calc(0%);
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background: yellow;
+    box-shadow: 0 0 20px yellow;
+}
+/*時hour*/
+.block_hour{
+    height: 5px;
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    border-radius: 5px;
+}
+.block_hourOK{
+    transform: translateY(-5px);
+    height: 5px;
+    width: 0%;
+    background-color: rgb(0, 255, 0);
+    border-radius: 5px;
+}
+.block_hour_circle{
+    position: absolute;
+    top:-10px;
+    left: calc(0%);
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background: rgb(0, 255, 0);
+    box-shadow: 0 0 20px rgb(0, 255, 0);
+}
+/*分minute*/
+.block_minute{
+    height: 5px;
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    border-radius: 5px;
+}
+.block_minuteOK{
+    transform: translateY(-5px);
+    height: 5px;
+    width: 0%;
+    background-color: rgb(0, 183, 255);
+    border-radius: 5px;
+}
+.block_minute_circle{
+    position: absolute;
+    top:-10px;
+    left: calc(0%);
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background-color: rgb(0, 183, 255);
+    box-shadow: 0 0 20px rgb(0, 183, 255);
+}
+/*秒sec*/
+.block_sec{
+    height: 5px;
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    border-radius: 5px;
+}
+.block_secOK{
+    transform: translateY(-5px);
+    height: 5px;
+    width: 0%;
+    background-color: wheat;
+    border-radius: 5px;
+}
+.block_sec_circle{
+    position: absolute;
+    top:-10px;
+    left: 0%;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background: wheat;
+    box-shadow: 0 0 20px wheat;
+}
+.block{
+    position: relative;
+    width: 100%;
+}
+.K101{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 25px;
+}
+.K101des{
+    margin: auto;
+    font-size: larger;
+    color:rgb(251, 65, 65);
+}
+.K101temp{
+    margin: auto;
+    font-size: larger;
+    color:rgb(251, 65, 65);
+}
+
+.K101wet{
+    margin: auto;
+    font-size: larger;
+    color:rgb(251, 65, 65);
+}
+
+.TaiwanTemp{
+    padding-left: 10px;
+}
+.Keelung{
+    position: absolute;
+    top:30px;
+    left:428px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.NewTaipei{
+    position: absolute;
+    top:88px;
+    left:385px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.Taipei{
+    position: absolute;
+    top:53px;
+    left:380px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.Taoyuan{
+    position: absolute;
+    top:70px;
+    left:325px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.HsinchuC{
+    position: absolute;
+    top:130px;
+    left:315px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.HsinchuS{
+    position: absolute;
+    top:100px;
+    left:265px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.Miaoli{
+    position: absolute;
+    top:160px;
+    left:265px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.Taichung{
+    position: absolute;
+    top:215px;
+    left:240px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.Changhua{
+    position: absolute;
+    top:258px;
+    left:195px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.Nantou{
+    position: absolute;
+    top:285px;
+    left:275px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    /*top:340px;
+    left:330px;width: 90px;
+    height: 90px;*/
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.Yunlin{
+    position: absolute;
+    top:305px;
+    left:185px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.ChiayiC{
+    position: absolute;
+    top:360px;
+    left:230px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.ChiayiS{
+    position: absolute;
+    top:350px;
+    left:173px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.Tainan{
+    position: absolute;
+    top:415px;
+    left:165px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.Kaohsiung{
+    position: absolute;
+    top:438px;
+    left:230px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.Pingtung{
+    position: absolute;
+    top:515px;
+    left:215px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.Yilan{
+    position: absolute;
+    top:155px;
+    left:390px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.Hualien{
+    position: absolute;
+    top:300px;
+    left:355px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.Taitung{
+    position: absolute;
+    top:445px;
+    left:295px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.Penghu{
+    position: absolute;
+    top:325px;
+    left:43px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.Kinmen{
+    position: absolute;
+    top:93px;
+    left:15px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+.Lienchiang{
+    position: absolute;
+    top:180px;
+    left:30px;
+    border: solid #fff 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 6px;
+    border: solid rgb(15, 10, 0) 2px;
+}
+/*20220608*/
+.content2{
+    position: relative;
+    height: 410vh;
+    background-color: rgb(238, 207, 121);
+}
+.TaiwanIMG{
+    user-select: none;
+}
+.TaiwanIMG div:hover{
+    transition: .3s;
+}
+.CSweather{
+    position: absolute;
+    color:aliceblue;
+    top: 1000px;
+    left: 0px;
+    width: 300px;
+    /* height: 1900px; */
+    height: 190px;
+    font-size: larger;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.CSweather div{
+    width: 296px;
+    height: 190px;
+    padding :0px;
+    font-family: 'Courier New', Courier, monospace;
+}
+/*20220609*/
+.citychoose{
+    position: absolute;
+    top:820px;
+    left:50px;
+}
+.send{
+    position: absolute;
+    top:25px;
+    left:-10px;
+    border-radius: 10px;
+    width:400px;
+    background-color: rgb(0, 193, 252);
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+.allctdiv{
+    position: absolute;
+    top:80px;
+    background-color: azure;
+}
+.allctdiv div{
+    text-align: center;
+    border-top: 3px solid;
+    font-size: larger;
+}
+.ctdiv{
+    background-color: rgb(59, 59, 59);
+    color:#ccc;
+}
+.content3{
+    height: 100vh;
+    background-color: blanchedalmond;
+    position: relative;
+    cursor:grab;
+}
+.cont3txt{
+    position: absolute;
+    top:30px;
+    left: 50%;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    rotate: 15%;
+    user-select: none;
+}
+.cont3img{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.ranklist{
+    text-align: center;
+    position: absolute;
+    top:50px;
+    right:30px;
+    width: 300px;
+    user-select: none;
+    font-size: 25px;
+    font-family:monospace;
+    background-color: rgb(160, 160, 160);
+    border-radius: 10px;
+}
+.rank1{
+    background-color: azure;
+    padding-left: 20px;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 4px solid;
+}
+.rank2{
+    background-color: azure;
+    padding-left: 20px;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 3px solid;
+
+}
+.rank3{
+    background-color: azure;
+    padding-left: 20px;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 3px solid;
+    border-bottom: 3px solid;
+}
+.cont3img img{
+    margin: auto;
+    user-select: none;
+}
+.startbtn{
+    position: absolute;
+    top:30px;
+    left:30px;
+    width: 250px;
+    height: 150px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: larger;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 15px;
+    cursor: pointer;
+    user-select: none;
+    background-color:rgb(59, 59, 59);
+    color: aliceblue;
+}
+.startnum{
+    position: absolute;
+    top:200px;
+    left:30px;
+    width: 250px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    user-select: none;
+    font-size: 50px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/*20220612*/
+.cont4_load{
+    opacity: 0%;
+    position: absolute;
+    left:-20%;
+}
+.content4{
+    position: relative;
+    height: 100vh;
+    height: auto;
+    user-select: none;
+    overflow: hidden;
+}
+.cont4_img{
+    height: 100vh;
+    overflow: hidden;
+}
+.cont4_bk div{
+    height: 50%;
+}
+.cont4_bk div div{
+    background-color: rgb(190, 190, 169);
+    width: auto;
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+.cont4_bk div div:hover{
+    background-color:rgb(241, 236, 161);
+    transform: scale(1.025);
+    transition: .05s;
+}
+.cont4_score{
+    position: absolute;
+    top:50px;
+    left:50%;
+    font-size: 53px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transform: translate(-50%,-50%);
+    text-shadow: 2px 2px 2px rgb(92, 92, 92);
+}
+.cont4_bk {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    background-repeat:no-repeat;
+    /* background-image: url(BACKIMG.jpg); */
+    overflow: hidden;
+}
+.cont4_startbtn{
+    position: absolute;
+    top:30px;
+    left:30px;
+    width: 250px;
+    height: 150px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 53px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 15px;
+    cursor: pointer;
+    user-select: none;
+    background-color: rgb(43, 43, 43);
+    color:rgb(255, 255, 255)
+}
+.cont4_stopbtn{
+    position: absolute;
+    top:195px;
+    left:30px;
+    width: 250px;
+    height: 150px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 53px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 15px;
+    cursor: default;
+    user-select: none;
+    opacity: 60%;
+    background-color: rgb(43, 43, 43);
+    background-color: rgb(158, 158, 158);
+    color:rgb(255, 255, 255)
+}
+.cont4_resetbtn{
+    position: absolute;
+    top:360px;
+    left:30px;
+    width: 250px;
+    height: 150px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 53px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 15px;
+    cursor: default;
+    user-select: none;
+    color:rgb(255, 255, 255);
+    opacity: 60%;
+    background-color: rgb(43, 43, 43);
+    background-color: rgb(158, 158, 158);
+}
+.cont4_time{
+    position: absolute;
+    top:515px;
+    left:30px;
+    width: 250px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    color:#fa0;
+    user-select: none;
+    font-size: 50px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.cont4_txt{
+    position: absolute;
+    top: 600px;
+    left:30px;
+    width: 250px;
+    height: 200px;
+    background-color: aquamarine;
+}
+.content5{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width: 1200px;
+    height: auto;
+    transition: .5s;
+}
+.content6{
+    display: flex;
+    text-align: center;
+    position: absolute;
+    top:50%;
+    left:-50%;
+    opacity: 0%;
+    opacity: 100%;
+    transform: translate(-50%,-50%);
+    background-color: bisque;
+    border-radius: 10px;
+}
+.content6 img{
+    margin: auto;
+
+}
+.cont6_txt{
+    background-color: rgba(126, 126, 126, 0.295);
+    width: 248px;
+    height: 172px;
+    position: absolute;
+    top:163px;
+    right:4px;
+    font-size: 53px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}

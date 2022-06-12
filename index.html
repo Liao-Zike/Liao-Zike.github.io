@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh_Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://demeter.5fpro.com/tw/zipcode-selector.js"></script>
+
+    <link rel="stylesheet" href="MobileStyle.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+    <script src="coollight.js" type="module"></script>
+    <link rel="shortcut icon" href="#">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <a href="index.html">HTML-JS</a>
+        </div>
+        <input type="checkbox" id="menu_control" class="menu_control">
+        <label for="menu_control" class="menu_btn">
+            <div class="menu_btn_burger"></div>
+        </label>
+        <div class="crazy">
+            <input type="checkbox" class="crazybox">
+            <p>RGB</p>
+        </div>
+        <div class="crazyplay">
+            <div class="crazyplay-icon"><p>▶</p></div>
+            <div class="crazyplay-content"><p>播放</p></div>
+        </div>
+        <div class="speed">
+            <div id="slider"></div>
+            <p>速度speed</p>
+        </div>
+        <div class="menu" >
+            <nav>
+                <a href="index.html">首頁</a>
+                <a href="#" class="timeopen">目前時間</a>
+                <a href="#cont2">縣市溫濕度</a>
+                <a href="#cont3">OMG</a>
+            <nav>
+        </div>
+    </div>
+    <!-- <p>Space</p>
+    <div class="OK">123</div> -->
+
+    <div class="content1-button">
+        <a href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+        touch me
+        </a>
+    </div>
+    <div class="content1">
+        <div id="app">  
+        </div>
+    </div>
+    <a name="cont2"></a>
+    <div class="content2">
+        <div class="TaiwanTemp">
+            <div class="TaiwanIMG">
+                <img src="Taiwan.jpg" height="700px" width="auto">
+                <div class="Keelung">基隆市</div>
+                <div class="NewTaipei">新北市</div>
+                <div class="Taipei">臺北市</div>
+                <div class="Taoyuan">桃園市</div>
+                <div class="HsinchuC">新竹縣</div>
+                <div class="HsinchuS">新竹市</div>
+                <div class="Miaoli">苗栗縣</div>
+                <div class="Taichung">臺中市</div>
+                <div class="Changhua">彰化縣</div>
+                <div class="Nantou">南投縣</div>
+                <div class="Yunlin">雲林縣</div>
+                <div class="ChiayiC">嘉義縣</div>
+                <div class="ChiayiS">嘉義市</div>
+                <div class="Tainan">臺南市</div>
+                <div class="Kaohsiung">高雄市</div>
+                <div class="Pingtung">屏東縣</div>
+                <div class="Yilan">宜蘭縣</div>
+                <div class="Hualien">花蓮縣</div>
+                <div class="Taitung">臺東縣</div>
+                <div class="Penghu">澎湖縣</div>
+                <div class="Kinmen">金門縣</div>
+                <div class="Lienchiang">連江縣</div>
+            </div>
+            <div class="CSweather">
+                <div class="div0"></div>
+                <div class="div1"></div>
+                <div class="div2"></div>
+                <div class="div3"></div>
+                <div class="div4"></div>
+                <div class="div5"></div>
+                <div class="div6"></div>
+                <div class="div7"></div>
+                <div class="div8"></div>
+                <div class="div9"></div>
+                <div class="div10"></div>
+                <div class="div11"></div>
+                <div class="div12"></div>
+                <div class="div13"></div>
+                <div class="div14"></div>
+                <div class="div15"></div>
+                <div class="div16"></div>
+                <div class="div17"></div>
+                <div class="div18"></div>
+                <div class="div19"></div>
+                <div class="div20"></div>
+                <div class="div21"></div>
+                <div class="div22"></div>
+                <div class="div23"></div>
+                <div class="div24"></div>
+                <div class="div25"></div>
+                <div class="div26"></div>
+                <div class="div27"></div>
+                <div class="div28"></div>
+                <div class="div29"></div>
+                <div class="div30"></div>
+                <div class="div31"></div>
+                <div class="div32"></div>
+                <div class="div33"></div>
+                <div class="div34"></div>
+                <div class="div35"></div>
+                <div class="div36"></div>
+                <div class="div37"></div>
+                <div class="div38"></div>
+                <div class="div39"></div>
+            </div>
+        </div>
+        <div class="citychoose">
+            <input data-exclude="澎湖縣,929,綠島鄉" class="js-demeter-tw-zipcode-selector" data-city="#city4" data-dist="#dist4" placeholder="請輸入郵遞區號" />
+            <select id="city4" placeholder="請選擇縣市"></select>
+            <select id="dist4" placeholder="請選擇鄉鎮區"></select>
+            <div class="send"><h1><b>送出</b></h1></div>
+            <div class="allctdiv">
+                <div class="ctdiv"></div>   
+                <div class="ctdiv0"></div>
+                <div class="ctdiv1"></div>
+                <div class="ctdiv2"></div>
+                <div class="ctdiv3"></div>
+                <div class="ctdiv4"></div>
+                <div class="ctdiv5"></div>
+                <div class="ctdiv6"></div>
+                <div class="ctdiv7"></div>
+                <div class="ctdiv8"></div>
+                <div class="ctdiv9"></div>
+                <div class="ctdiv10"></div>
+                <div class="ctdiv11"></div>
+                <div class="ctdiv12"></div>
+                <div class="ctdiv13"></div>
+                <div class="ctdiv14"></div>
+                <div class="ctdiv15"></div>
+            </div>
+        </div>
+    </div>
+    <div class="time" color="white">
+        <div class="timetxt"><p>目前時間</p>
+            <div class="closebtn"></div>
+        </div>
+        <div class="nowtime" style="color:aliceblue;">時間位置</div>
+        <div class="block_time">
+            <h2>年year</h2>
+            <div class="block_year"></div>
+            <div class="block">
+                <div class="block_yearOK"></div>
+                <div class="block_year_circle"></div>
+            </div>
+            <h2>月month</h2>
+            <div class="block_month"></div>
+            <div class="block">
+                <div class="block_monthOK"></div>
+                <div class="block_month_circle"></div>
+            </div>
+            <h2>日day</h2>
+            <div class="block_day"></div>
+            <div class="block">
+                <div class="block_dayOK"></div>
+                <div class="block_day_circle"></div>
+            </div>
+            <h2>時hour</h2>
+            <div class="block_hour"></div>
+            <div class="block">
+                <div class="block_hourOK"></div>
+                <div class="block_hour_circle"></div>
+            </div>
+            <h2>分miunute</h2>
+            <div class="block_minute"></div>
+            <div class="block">
+                <div class="block_minuteOK"></div>
+                <div class="block_minute_circle"></div>
+            </div>
+            <h2>秒second</h2>
+            <div class="block_sec"></div>
+            <div class="block">
+                <div class="block_secOK"></div>
+                <div class="block_sec_circle"></div>
+            </div>
+            <div class="K101">
+                <div class="K101des"><h2>天氣狀態</h2></div>
+                <div class="K101temp">溫度</div>
+                <div class="K101wet"><h2>濕度</h2></div>
+            </div>
+        </div>
+    </div>
+    <a name="cont3"></a>
+    <div class="content3">
+        <div class="cont3img">
+            <img src="OMG1.png" width="444" height="790">
+        </div>
+        <div class="cont3txt"><h1>0</h1></div>
+        <div class="startbtn"><h1>Start</h1></div>
+        <div class="startnum">剩餘20s</div>
+        <div class="ranklist">
+            <h3>紀錄排行</h3>
+            <div class="rank1">🥇First : 0 下</div>
+            <div class="rank2">🥈Second: 0 下</div>
+            <div class="rank3">🥉Third : 0 下</div>
+        </div>
+    </div>
+    <div class="content4">
+        <div class="cont4_load">
+            <img src="hole0.png" width="20" height="20">
+            <img src="hole1.png" width="20" height="20">
+            <img src="hole2.png" width="20" height="20">
+            <img src="hole3.png" width="20" height="20">
+            <img src="hole4.png" width="20" height="20">
+        </div>
+        <div class="cont4_img"><img src="BACKIMG.jpg" height="100%" width="100%"></div>
+        <div class="cont4_score">0分</div>
+        <div class="cont4_bk">
+            <div class="row1">
+                <div class="row1_col1"><img src="hole0.png" width="150"></div>
+                <div class="row1_col2"><img src="hole0.png" width="150"></div>
+                <div class="row1_col3"><img src="hole0.png" width="150"></div>
+                <div class="row1_col4"><img src="hole0.png" width="150"></div>
+            </div>
+            <div class="row2">
+                <div class="row2_col1"><img src="hole0.png" width="150"></div>
+                <div class="row2_col2"><img src="hole0.png" width="150"></div>
+                <div class="row2_col3"><img src="hole0.png" width="150"></div>
+                <div class="row2_col4"><img src="hole0.png" width="150"></div>
+            </div>
+            <div class="row3">
+                <div class="row3_col1"><img src="hole0.png" width="150"></div>
+                <div class="row3_col2"><img src="hole0.png" width="150"></div>
+                <div class="row3_col3"><img src="hole0.png" width="150"></div>
+                <div class="row3_col4"><img src="hole0.png" width="150"></div>
+            </div>
+            <div class="row4">
+                <div class="row4_col1"><img src="hole0.png" width="150"></div>
+                <div class="row4_col2"><img src="hole0.png" width="150"></div>
+                <div class="row4_col3"><img src="hole0.png" width="150"></div>
+                <div class="row4_col4"><img src="hole0.png" width="150"></div>
+            </div>
+        </div>
+        <div class="cont4_startbtn">Start</div>
+        <div class="cont4_stopbtn">Stop</div>
+        <div class="cont4_resetbtn">Reset</div>
+        <div class="cont4_time">剩餘60s</div>
+        <div class="cont4_txt">點擊Start開始打熊</div>
+        
+        <div class="content5">
+        <!-- <video src="rkrol.mp4" autoplay="autoplay" height="auto" width="1200px">ERROR</video> -->
+        </div>
+        <div class="content6">
+            <img src="dolaA3.png" width="801" height="676">
+            <div class="cont6_txt">123</div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('.as').click(function(){
+                console.log("oK");
+            });
+        });
+    </script>
+        </body>
+    </body>
+</html> 

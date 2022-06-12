@@ -129,11 +129,149 @@ $(document).ready(function(){
     $('.nowtime').html('<h1>'+today+'</h1>');
     console.log("時間載入正常"+today);
 });
+
+/****  content4 function   ****/
 //時間函式-時間函式-時間函式-時間函式-時間函式-時間函式-時間函式-時間函式-時間函式-時間函式 
 var startt=0,diss=0,contin=0,rank1=0,rank2=0,rank3=0,startck=0,realck=0;
 //var ckberopen=0,ckbeartime=120;
-var ckberopen=0,ckbeartime=60,cont4_i,cont4_j,cont4_score=0,rick=[0,0];//測試用使用5s
+var ckberopen=0,ckbeartime=60,cont4_i,cont4_j,cont4_score=0,rick=0,dola=0,stop_thread=[null,null,null,null,null,null,null,null,null],resett=0;//測試用使用5s
 var cont4_arr=[[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]]];
+function cont4_start(){ //cont4 開始函式
+    resett=0;
+    if(ckberopen==0&&dola==0){
+        $('.cont4_startbtn').css('background-color','rgb(158, 158, 158)');
+        $('.cont4_startbtn').css('cursor','default');
+        $('.cont4_startbtn').css('opacity','60%');
+        $('.cont4_stopbtn').css('background-color','rgb(43, 43, 43)')
+        $('.cont4_stopbtn').css('cursor','pointer');
+        $('.cont4_stopbtn').css('opacity','100%');
+        $('.cont4_resetbtn').css('background-color','rgb(43, 43, 43)')
+        $('.cont4_resetbtn').css('cursor','pointer');
+        $('.cont4_resetbtn').css('opacity','100%');
+        ckberopen=1;
+    }
+}
+function cont4_reset(){ //cont4 重置函式
+    for(iiii=0;iiii<9;iiii++){
+        clearTimeout(stop_thread[iiii]);
+    }
+    ckberopen=0;
+    resett=1;
+    //ckbeartime=120;
+    ckbeartime=60; //測試用
+    cont4_score=0;
+    rick=0;
+    dola = 0;
+    $('.cont4_startbtn').css('background-color','rgb(43, 43, 43)');
+    $('.cont4_startbtn').css('cursor','pointer');
+    $('.cont4_startbtn').css('opacity','100%');
+    $('.cont4_stopbtn').css('background-color','rgb(158, 158, 158)')
+    $('.cont4_stopbtn').css('cursor','default');
+    $('.cont4_stopbtn').css('opacity','60%');
+    $('.cont4_resetbtn').css('background-color','rgb(158, 158, 158)')
+    $('.cont4_resetbtn').css('cursor','default');
+    $('.cont4_resetbtn').css('opacity','60%');
+    $('.cont4_time').html("剩餘60s");
+    $('.cont4_bk div div').html(`<img src="hole0.png" width="150">`);
+    $('.content5').html("");
+    $('.content6').html("");
+}
+function cont4_stop(){ //cont4 暫停函式
+    if(ckberopen==1&&rick==0){
+        $('.cont4_startbtn').css('background-color','rgb(43, 43, 43)');
+        $('.cont4_startbtn').css('cursor','pointer');
+        $('.cont4_startbtn').css('opacity','100%');
+        $('.cont4_stopbtn').css('background-color','rgb(158, 158, 158)')
+        $('.cont4_stopbtn').css('cursor','default');
+        $('.cont4_stopbtn').css('opacity','60%');
+        $('.cont4_resetbtn').css('background-color','rgb(43, 43, 43)')
+        $('.cont4_resetbtn').css('cursor','pointer');
+        $('.cont4_resetbtn').css('opacity','100%');
+        ckberopen=0;
+    }
+}
+function cont4_dolaAnimation(){ //cont4 A夢動畫函式
+    $('.content6').css('left','50%');
+    $('.content6').css('opacity','100%');
+    $('.cont4_startbtn').css('background-color','rgb(158, 158, 158)');
+    $('.cont4_startbtn').css('cursor','default');
+    $('.cont4_startbtn').css('opacity','60%');
+    var randomnum=Math.floor(Math.random()*6);
+    stop_thread[0]=setTimeout(function() {
+        $('.content6').html(`<img src="dolaA1.png" width="801" height="676">`);
+    }, 0);
+    stop_thread[1]=setTimeout(function() {
+        $('.content6').html(`<img src="dolaA2.png" width="801" height="676">`);
+    }, 400);
+    stop_thread[2]=setTimeout(function() {
+        $('.content6').html(`<img src="dolaA1.png" width="801" height="676">`);
+    }, 800);
+    stop_thread[3]=setTimeout(function() {
+    $('.content6').html(`<img src="dolaA2.png"  width="801" height="676">`);
+    }, 1200);
+    stop_thread[4]=setTimeout(function() {
+        $('.content6').html(`<img src="dolaA1.png" width="801" height="676">`);
+    }, 1600);
+    stop_thread[5]=setTimeout(function() {
+        $('.content6').html(`<img src="dolaA2.png" width="801" height="676">`);
+    }, 2000);
+    stop_thread[6]=setTimeout(function() { //抽獎結果
+        if(randomnum==0){
+            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">分數+200分</div>`);
+        }else if(randomnum==1){
+            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">分數-100分</div>`);
+        }else if(randomnum==2){
+            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">重置分數</div>`);
+        }else if(randomnum==3){
+            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">秒數+30秒</div>`);
+        }else if(randomnum==4){
+            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">秒數-20秒</div>`);
+        }else{
+            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">冰冰姐泡湯</div>`);
+            }
+    }, 2500);
+    //實施結果
+    stop_thread[7]=setTimeout(function() {
+        $('.content6').html("");
+        if(randomnum==0){//+200分
+            cont4_score+=200;
+            $('.cont4_score').html(cont4_score+"分");
+        }else if(randomnum==1){//-100分
+            cont4_score-=100;
+            $('.cont4_score').html(cont4_score+"分");
+        }else if(randomnum==2){//重置分數
+            cont4_score=0;
+            $('.cont4_score').html(cont4_score+"分");
+        }else if(randomnum==3){//+30s
+            ckbeartime+=60;
+            $('.cont4_time').html("剩餘" + (Math.trunc(ckbeartime/2-0.5)) + "s");
+        }else if(randomnum==4){//-20s
+            ckbeartime-=40;
+            if(ckbeartime<=0){//到計數時間到reset
+                $('.cont4_time').html("剩餘" + 0 + "s");
+                cont4_reset();
+            }
+        }else{//冰冰姐泡湯
+            $('.content6').html(`<iframe width="560" height="315" src="https://www.youtube.com/embed/uoqJy_AEt-E?&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
+        }
+        if((ckbeartime>0)&&(resett==0)){//繼續
+            if(randomnum==5){
+                stop_thread[8]=setTimeout(function(){
+                    $('.content6').html("");
+                    ckberopen=1;
+                    dola=0;
+                    cont4_start();
+                },10000);
+            }
+            else if(ckberopen==0&&resett==0){
+                ckberopen=1;
+                dola=0;
+                cont4_start();
+            }
+        }
+    }, 4500);
+}
+
 $(document).ready(function(){
     function time(){
         var t = null;
@@ -288,36 +426,10 @@ $(document).ready(function(){
                 cont4_arr[cont4_i][cont4_j][1]=2;
             }
 
-
             ckbeartime-=1;
             //console.log(ckbeartime);
             if(ckbeartime<= 0){//時間結束reset
-                ckberopen=0;
-                //ckbeartime=120;
-                ckbeartime=60; //測試用
-                cont4_score=0;
-                $('.cont4_startbtn').css('background-color','rgb(43, 43, 43)');
-                $('.cont4_startbtn').css('cursor','pointer');
-                $('.cont4_startbtn').css('opacity','100%');
-                $('.cont4_stopbtn').css('background-color','rgb(158, 158, 158)')
-                $('.cont4_stopbtn').css('cursor','default');
-                $('.cont4_stopbtn').css('opacity','60%');
-                $('.cont4_resetbtn').css('background-color','rgb(158, 158, 158)')
-                $('.cont4_resetbtn').css('cursor','default');
-                $('.cont4_resetbtn').css('opacity','60%');
-                $('.cont4_time').html("剩餘60s");
-                $('.cont4_bk div div').html(`<img src="hole0.png" width="150">`);
-                $('.content5').html("");
-                $('.content6').html("");
-            }
-            //rickroll關閉系統
-            if(rick[0]==1){
-                rick[1]-=1;
-                console.log(rick[1]);
-                if(rick[1]<=0){
-                    $('.content5').html("");
-                    rick[0]=0;
-                }
+                cont4_reset();
             }
         }
         t = setTimeout (time,500);
@@ -355,51 +467,13 @@ $(document).ready(function(){
 $(document).ready(function(){
     /* 打地鼠起點 - 打地鼠起點 - 打地鼠起點 - 打地鼠起點 - 打地鼠起點 */
     $('.cont4_startbtn').click(function(){ //開始按鈕
-        if(ckberopen==0){
-            $('.cont4_startbtn').css('background-color','rgb(158, 158, 158)');
-            $('.cont4_startbtn').css('cursor','default');
-            $('.cont4_startbtn').css('opacity','60%');
-            $('.cont4_stopbtn').css('background-color','rgb(43, 43, 43)')
-            $('.cont4_stopbtn').css('cursor','pointer');
-            $('.cont4_stopbtn').css('opacity','100%');
-            $('.cont4_resetbtn').css('background-color','rgb(43, 43, 43)')
-            $('.cont4_resetbtn').css('cursor','pointer');
-            $('.cont4_resetbtn').css('opacity','100%');
-        }
-        ckberopen=1;
+        cont4_start();
     });
     $('.cont4_stopbtn').click(function(){ //暫停按鈕
-        if(rick[0]!=1&&ckberopen==1){
-            $('.cont4_startbtn').css('background-color','rgb(43, 43, 43)');
-            $('.cont4_startbtn').css('cursor','pointer');
-            $('.cont4_startbtn').css('opacity','100%');
-            $('.cont4_stopbtn').css('background-color','rgb(158, 158, 158)')
-            $('.cont4_stopbtn').css('cursor','default');
-            $('.cont4_stopbtn').css('opacity','60%');
-            $('.cont4_resetbtn').css('background-color','rgb(43, 43, 43)')
-            $('.cont4_resetbtn').css('cursor','pointer');
-            $('.cont4_resetbtn').css('opacity','100%');
-            ckberopen=0;
-        }
+        cont4_stop();
     });
     $('.cont4_resetbtn').click(function(){ //reset按鈕
-        $('.cont4_startbtn').css('background-color','rgb(43, 43, 43)');
-        $('.cont4_startbtn').css('cursor','pointer');
-        $('.cont4_startbtn').css('opacity','100%');
-        $('.cont4_stopbtn').css('background-color','rgb(158, 158, 158)')
-        $('.cont4_stopbtn').css('cursor','default');
-        $('.cont4_stopbtn').css('opacity','60%');
-        $('.cont4_resetbtn').css('background-color','rgb(158, 158, 158)')
-        $('.cont4_resetbtn').css('cursor','default');
-        $('.cont4_resetbtn').css('opacity','60%');
-        $('.cont4_time').html("剩餘60s");
-        $('.cont4_bk div div').html(`<img src="hole0.png" width="150">`);
-        $('.content5').html("");
-        $('.content6').html("");
-        ckberopen=0;
-        //ckbeartime=120;
-        ckbeartime=60; //測試用
-        cont4_score=0;
+        cont4_reset();
     });
     $('.cont4_bk div div').click(function(){ //圖片點擊事件
         var iii=parseInt((this.className).substr(3,1))-1,jjj=parseInt((this.className).substr(8,1))-1;
@@ -409,145 +483,28 @@ $(document).ready(function(){
                 $(this).html(`<img src="hole0.png" width="150">`);
                 if(cont4_arr[iii][jjj][0]==1)cont4_score+=1;
                 else if(cont4_arr[iii][jjj][0]==2)cont4_score+=10;
-                else if(cont4_arr[iii][jjj][0]==3){//rick搖
-                    rick[0]=1;
-                    rick[1]=13;
+                else if(cont4_arr[iii][jjj][0]==3){//rick搖-禁止
                     $('.content5').html(`<video src="rkrol.mp4" autoplay="autoplay" height="auto" width="1200px">ERROR</video>`);
-                }
-                else if(cont4_arr[iii][jjj][0]==4){//抽獎
-                    $('.cont4_startbtn').css('background-color','rgb(43, 43, 43)');
-                    $('.cont4_startbtn').css('cursor','pointer');
-                    $('.cont4_startbtn').css('opacity','100%');
+                    rick=1;
                     $('.cont4_stopbtn').css('background-color','rgb(158, 158, 158)')
                     $('.cont4_stopbtn').css('cursor','default');
                     $('.cont4_stopbtn').css('opacity','60%');
-                    $('.cont4_resetbtn').css('background-color','rgb(43, 43, 43)')
-                    $('.cont4_resetbtn').css('cursor','pointer');
-                    $('.cont4_resetbtn').css('opacity','100%');
-                    ckberopen=0;
-                    $('.content6').css('left','50%');
-                    $('.content6').css('opacity','100%');
-                    var randomnum=Math.floor(Math.random()*6);
-                    setTimeout(function() {
-                        console.log("2");
-                        $('.content6').html(`<img src="dolaA1.png" width="801" height="676">`);
-                    }, 0);
-                    setTimeout(function() {
-                        console.log("2");
-                        $('.content6').html(`<img src="dolaA2.png" width="801" height="676">`);
-                    }, 400);
-                    setTimeout(function() {
-                        console.log("3");
-                        $('.content6').html(`<img src="dolaA1.png" width="801" height="676">`);
-                    }, 800);
-                    setTimeout(function() {
-                        console.log("4");
-                        $('.content6').html(`<img src="dolaA2.png"  width="801" height="676">`);
-                    }, 1200);
-                    setTimeout(function() {
-                        console.log("2");
-                        $('.content6').html(`<img src="dolaA1.png" width="801" height="676">`);
-                    }, 1600);
-                    setTimeout(function() {
-                        console.log("3");
-                        $('.content6').html(`<img src="dolaA2.png" width="801" height="676">`);
-                    }, 2000);
-                    setTimeout(function() {
-                        if(randomnum==0){
-                            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">分數+200分</div>`);
-                        }else if(randomnum==1){
-                            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">分數-100分</div>`);
-                        }else if(randomnum==2){
-                            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">重置分數</div>`);
-                        }else if(randomnum==3){
-                            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">秒數+30秒</div>`);
-                        }else if(randomnum==4){
-                            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">秒數-20秒</div>`);
-                        }else{
-                            $('.content6').html(`<img src="dolaA3.png"  width="801" height="676"><div class="cont6_txt">冰冰姐泡湯</div>`);
-                            }
-                    }, 2500);
-
-                    setTimeout(function() {
-                        $('.content6').html("");
-                        if(randomnum==0){
-                            cont4_score+=200;
-                            $('.cont4_score').html(cont4_score+"分");
-                        }else if(randomnum==1){
-                            cont4_score-=100;
-                            $('.cont4_score').html(cont4_score+"分");
-                        }else if(randomnum==2){
-                            cont4_score=0;
-                            $('.cont4_score').html(cont4_score+"分");
-                        }else if(randomnum==3){
-                            ckbeartime+=60;
-                            $('.cont4_time').html("剩餘" + (Math.trunc(ckbeartime/2-0.5)) + "s");
-                        }else if(randomnum==4){//-20s
-                            ckbeartime-=40;
-                            if(ckbeartime<=0){//到計數時間到
-                                $('.cont4_time').html("剩餘" + 0 + "s");
-                                ckberopen=0;
-                                //ckbeartime=120;
-                                ckbeartime=60; //測試用
-                                cont4_score=0;
-                                $('.cont4_startbtn').css('background-color','rgb(43, 43, 43)');
-                                $('.cont4_startbtn').css('cursor','pointer');
-                                $('.cont4_startbtn').css('opacity','100%');
-                                $('.cont4_stopbtn').css('background-color','rgb(158, 158, 158)')
-                                $('.cont4_stopbtn').css('cursor','default');
-                                $('.cont4_stopbtn').css('opacity','60%');
-                                $('.cont4_resetbtn').css('background-color','rgb(158, 158, 158)')
-                                $('.cont4_resetbtn').css('cursor','default');
-                                $('.cont4_resetbtn').css('opacity','60%');
-                                $('.cont4_time').html("剩餘60s");
-                                $('.cont4_bk div div').html(`<img src="hole0.png" width="150">`);
-                                $('.content5').html("");
-                                $('.content6').html("");
-                            }
-                        }else{
-                            $('.content6').html(`<iframe width="560" height="315" src="https://www.youtube.com/embed/uoqJy_AEt-E?&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
-                        }
-                        console.log(ckbeartime);
-                        if(ckbeartime>0){//繼續
-                            if(randomnum==5){
-                                setTimeout(function(){
-                                    $('.content6').html("");
-                                    ckberopen=1;
-                                    $('.cont4_startbtn').css('background-color','rgb(158, 158, 158)');
-                                    $('.cont4_startbtn').css('cursor','default');
-                                    $('.cont4_startbtn').css('opacity','60%');
-                                    $('.cont4_stopbtn').css('background-color','rgb(43, 43, 43)')
-                                    $('.cont4_stopbtn').css('cursor','pointer');
-                                    $('.cont4_stopbtn').css('opacity','100%');
-                                    $('.cont4_resetbtn').css('background-color','rgb(43, 43, 43)')
-                                    $('.cont4_resetbtn').css('cursor','pointer');
-                                    $('.cont4_resetbtn').css('opacity','100%');
-                                },10000);
-                            }
-                            else if(ckberopen==0){
-                                ckberopen=1;
-                                $('.cont4_startbtn').css('background-color','rgb(158, 158, 158)');
-                                $('.cont4_startbtn').css('cursor','default');
-                                $('.cont4_startbtn').css('opacity','60%');
-                                $('.cont4_stopbtn').css('background-color','rgb(43, 43, 43)')
-                                $('.cont4_stopbtn').css('cursor','pointer');
-                                $('.cont4_stopbtn').css('opacity','100%');
-                                $('.cont4_resetbtn').css('background-color','rgb(43, 43, 43)')
-                                $('.cont4_resetbtn').css('cursor','pointer');
-                                $('.cont4_resetbtn').css('opacity','100%');
-                            }
-
-                        }
-                    }, 4500);
-
-
-                    /*for(cci=0;cci<=randomnum;i++){
-                        
-                        transform: rotate(50deg);
-                    }*/
+                    stop_thread[8]=setTimeout(function(){
+                        rick=0;
+                        $('.content5').html("");
+                        $('.cont4_stopbtn').css('background-color','rgb(43, 43, 43)');
+                        $('.cont4_stopbtn').css('cursor','pointer');
+                        $('.cont4_stopbtn').css('opacity','100%');
+                    },6600);
                 }
-                cont4_arr[iii][jjj][0]=0;
-                $('.cont4_score').html(cont4_score+"分");
+                else if(cont4_arr[iii][jjj][0]==4){//抽獎
+                    dola=1;
+                    cont4_stop();
+                    /* A夢動畫*/
+                    setTimeout(cont4_dolaAnimation(),0);
+                }
+                cont4_arr[iii][jjj][0]=0; //該狀態設為0
+                $('.cont4_score').html(cont4_score+"分"); //載入分數
             }
         }
     });

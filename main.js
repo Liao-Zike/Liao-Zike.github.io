@@ -132,9 +132,8 @@ $(document).ready(function(){
 
 /****  content4 function   ****/
 //時間函式-時間函式-時間函式-時間函式-時間函式-時間函式-時間函式-時間函式-時間函式-時間函式 
-var startt=0,diss=0,contin=0,rank1=0,rank2=0,rank3=0,startck=0,realck=0;
-//var ckberopen=0,ckbeartime=120;
-var ckberopen=0,ckbeartime=60,cont4_i,cont4_j,cont4_score=0,rick=0,dola=0,stop_thread=[null,null,null,null,null,null,null,null,null],resett=0;//測試用使用5s
+var startt=0,diss=0,contin=0,rank1=0,rank2=0,rank3=0,startck=0,realck=0,bestscore=0;
+var ckberopen=0,ckbeartime=120,cont4_i,cont4_j,cont4_score=0,rick=0,dola=0,stop_thread=[null,null,null,null,null,null,null,null,null],resett=0;
 var cont4_arr=[[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]]];
 function cont4_start(){ //cont4 開始函式
     resett=0;
@@ -157,8 +156,15 @@ function cont4_reset(){ //cont4 重置函式
     }
     ckberopen=0;
     resett=1;
-    //ckbeartime=120;
-    ckbeartime=60; //測試用
+    ckbeartime=120;
+    if(cont4_score>bestscore){
+        bestscore=cont4_score;
+        $('.cont4_best').html("🥇First: "+cont4_score+"分");
+        if(bestscore>=100){
+            var ww=250+((bestscore.toString().length)-2)*20;
+            $('.cont4_besttxt').css('width',ww+'px');
+        }
+    }
     cont4_score=0;
     rick=0;
     dola = 0;
@@ -258,20 +264,45 @@ function cont4_dolaAnimation(){ //cont4 A夢動畫函式
             if(randomnum==5){
                 stop_thread[8]=setTimeout(function(){
                     $('.content6').html("");
-                    ckberopen=1;
                     dola=0;
                     cont4_start();
                 },10000);
             }
             else if(ckberopen==0&&resett==0){
-                ckberopen=1;
                 dola=0;
                 cont4_start();
             }
         }
     }, 4500);
 }
-
+function probabilitySystem(pronum){//機率系統
+    var cont4_test=1;
+    //抽(空白位置的)狀態
+    cont4_i=Math.floor(Math.random()*4);
+    cont4_j=Math.floor(Math.random()*4);
+    while(cont4_test==1){
+        if(cont4_arr[cont4_i][cont4_j][0]==0){
+            break;
+        }else{
+            cont4_i=Math.floor(Math.random()*4);
+            cont4_j=Math.floor(Math.random()*4);
+        }
+    }
+    //機率系統 - 參數值
+    if(pronum==1)var a=0 ,b=70,c=85,d=95;
+    else if(pronum==2)var a=20,b=75,c=85,d=95;
+    else var a=0,b=85,c=85,d=95;
+    var state=0;
+    state = Math.floor((Math.random()*100)+1);
+    if(state<=a)state=0;      //0 (0%)  - 20(20%)
+    else if(state<=b)state=1; //70(70%) - 75(55%)
+    else if(state<=c)state=2; //85(15%) - 85(10%)
+    else if(state<=d)state=3; //95(10%) - 95(10%)
+    else state=4;             //100(5%) - 100(5%)
+    $('.row'+(cont4_i+1)+'_col'+(cont4_j+1)).html(`<img src="hole`+state+`.png" width="150">`)
+    cont4_arr[cont4_i][cont4_j][0]=state;
+    cont4_arr[cont4_i][cont4_j][1]=2;    
+}
 $(document).ready(function(){
     function time(){
         var t = null;
@@ -363,9 +394,7 @@ $(document).ready(function(){
         }
         //打地鼠
         if(ckberopen==1){
-            //$('.cont4_time').html("剩餘" + 60-ckbeartime/2 + "s")
-            $('.cont4_time').html("剩餘" + (Math.trunc(ckbeartime/2-0.5)) + "s"); //測試用
-            var cont4_test=1;
+            $('.cont4_time').html("剩餘" + (Math.trunc(ckbeartime/2-0.5)) + "s");
             //圖片到計數秒數行為
             for(i=0;i<4;i++){
                 for(j=0;j<4;j++){
@@ -378,56 +407,15 @@ $(document).ready(function(){
                     }
                 }
             }
-            //機率系統一
             if((ckbeartime%2)==0){
-                //抽空白位置
-                cont4_i=Math.floor(Math.random()*4);
-                cont4_j=Math.floor(Math.random()*4);
-                while(cont4_test==1){
-                    if(cont4_arr[cont4_i][cont4_j][0]==0){
-                        break;
-                    }else{
-                        cont4_i=Math.floor(Math.random()*4);
-                        cont4_j=Math.floor(Math.random()*4);
-                    }
-                }
-                //抽(空白位置的)狀態 機率系統一參數值
-                var state=0;
-                state = Math.floor((Math.random()*100)+1);
-                if(state<=70)state=1; //70
-                else if(state<=85)state=2; //85
-                else if(state<=95)state=3; //95
-                else state=4;
-                $('.row'+(cont4_i+1)+'_col'+(cont4_j+1)).html(`<img src="hole`+state+`.png" width="150">`)
-                cont4_arr[cont4_i][cont4_j][0]=state;
-                cont4_arr[cont4_i][cont4_j][1]=2;
-            }else { //機率系統二
-                //抽空白位置
-                cont4_i=Math.floor(Math.random()*4);
-                cont4_j=Math.floor(Math.random()*4);
-                while(cont4_test==1){
-                    if(cont4_arr[cont4_i][cont4_j][0]==0){
-                        break;
-                    }else{
-                        cont4_i=Math.floor(Math.random()*4);
-                        cont4_j=Math.floor(Math.random()*4);
-                    }
-                }
-                //抽(空白位置的)狀態 機率系統二參數值
-                var state=0;
-                state = Math.floor((Math.random()*100)+1);
-                if(state<=20)state=0;
-                else if(state<=75)state=1; //70
-                else if(state<=85)state=2; //85
-                else if(state<=95)state=3; //95
-                else state=4;
-                $('.row'+(cont4_i+1)+'_col'+(cont4_j+1)).html(`<img src="hole`+state+`.png" width="150">`)
-                cont4_arr[cont4_i][cont4_j][0]=state;
-                cont4_arr[cont4_i][cont4_j][1]=2;
+                probabilitySystem(1);//機率系統一
+            }else if((ckbeartime%2)==1){
+                probabilitySystem(2);//機率系統二
             }
-
+            if(ckbeartime%3==0){
+                probabilitySystem(3);//機率系統三
+            }
             ckbeartime-=1;
-            //console.log(ckbeartime);
             if(ckbeartime<= 0){//時間結束reset
                 cont4_reset();
             }
@@ -440,7 +428,6 @@ $(document).ready(function(){
         contin = 1;
         diss=0;
         startck=0;
-        console.log("TOUCH");
     });
     var t;
     $('.cont3img').click(function(){

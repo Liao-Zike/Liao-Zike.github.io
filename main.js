@@ -742,3 +742,13 @@ function loadWeather2(citycode,distcode){
         });
     });
 }
+window.onscroll = function() {myFunction()};
+        function myFunction() {
+            if (window.pageYOffset >= 10) {//print
+                $('.GoTop').css("opacity","100%");
+                $('.GoTop').css("right","15px");
+            } else {//hide
+                $('.GoTop').css("opacity","0%");
+                $('.GoTop').css("right","-100px");
+            }
+        }

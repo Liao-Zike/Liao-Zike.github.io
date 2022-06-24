@@ -19,7 +19,6 @@ $(document).ready(function(){
 id = setInterval(function() {
     changRGB();
 },val);
-// console.log(id);
 /*速度*/
 $(document).ready(function(){
     $('#slider').slider({
@@ -117,8 +116,6 @@ function changRGB () {
 function changColor(){
     $(document).ready(function(){
         $('.header').css('background-color' ,'rgb('+R+','+G+','+B+')');
-        
-        // $('.header').css('background' ,'linear-gradient(360deg,#bbb,'+'rgb('+R+','+G+','+B+')');
         $('.OK').text(R+','+G+','+B);
     });
 }
@@ -131,7 +128,6 @@ $(document).ready(function(){
 });
 
 /****  content4 function   ****/
-//時間函式-時間函式-時間函式-時間函式-時間函式-時間函式-時間函式-時間函式-時間函式-時間函式 
 var startt=0,diss=0,contin=0,rank1=0,rank2=0,rank3=0,startck=0,realck=0,bestscore=0;
 var ckberopen=0,ckbeartime=120,cont4_i,cont4_j,cont4_score=0,rick=0,dola=0,stop_thread=[null,null,null,null,null,null,null,null,null],resett=0;
 var cont4_arr=[[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0]]];
@@ -339,6 +335,10 @@ $(document).ready(function(){
             $('.block_dayOK').css('width',day/31*100+"%");
             $('.block_day_circle').css('left','calc(' + (day/31*100) + '%' + ' - 10px)');
         }
+        else if(month==6){
+            $('.block_dayOK').css('width',day/30*100+"%");
+            $('.block_day_circle').css('left','calc(' + (day/31*100) + '%' + ' - 10px)');
+        }
         else if(month==2){
             if((year%4==0&&year%100!=0)||year%400==0){
                 $('.block_dayOK').css('width',day/29*100+"%");
@@ -351,7 +351,7 @@ $(document).ready(function(){
         }
         else {
             $('.block_dayOK').css('width',day/30*100+"%");
-            $('.block_day_circle').css('left','calc(' + (day/30*100) + '%' + ' - 10px)');
+            $('.block_day_circle').css('left','calc(' + (day/31*100) + '%' + ' - 10px)');
         }
         $('.block_dayOK').css('width',day/31*100+"%");
         if(hour>12){
@@ -497,21 +497,6 @@ $(document).ready(function(){
     });
     /* 打地鼠終點 - 打地鼠終點 - 打地鼠終點 - 打地鼠終點 - 打地鼠終點 */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
     $('.content1-button').click(function(){
         if(open==0){
             open=1;
@@ -529,7 +514,7 @@ $(document).ready(function(){
             open=1;
             $('.time').css("opacity" ,"100%");
             $('.time').css("top" ,"330px");
-            loadWeather("taiwan");
+            loadTPWeather("");
         }else{
             open=0;
             $('.time').css("opacity" ,"0%");
@@ -543,7 +528,7 @@ $(document).ready(function(){
     });
 });
 
-function loadWeather(cityCoords){
+function loadTPWeather(cityCoords){
     var latlng =25.0336 + "," +  121.5644;
     var forecastURL = "https://api.forecast.io/forecast/982ecb3e65ae65c6d9db9ce3dea7c90c/"+latlng;
     //備用： https://api.forecast.io/forecast/52cec5ff313a4d19b60540cfe89675a5
@@ -568,10 +553,9 @@ function loadWeather(cityCoords){
 }
 $(document).ready(function(){
     $('.content1-button').click(function(){
-        loadWeather("taiwan");
+        loadTPWeather("");
     });
 });
-
 
 var lastclick,movein=0;
 $(document).ready(function(){
@@ -599,7 +583,7 @@ $(document).ready(function(){
         lastclick='.' + this.className;
     });
 
-function loadWeather(citycode){
+function loadWeather(citycode){ //中央氣象局資料
     let api_key = 'CWB-C96B02A5-E839-4870-B96E-B529AFC22581'
     let forecastURL = `https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/`+citycode+`?Authorization=${api_key}&format=JSON` 
     console.log(forecastURL);
@@ -742,13 +726,14 @@ function loadWeather2(citycode,distcode){
         });
     });
 }
+
 window.onscroll = function() {myFunction()};
-        function myFunction() {
-            if (window.pageYOffset >= 10) {//print
-                $('.GoTop').css("opacity","100%");
-                $('.GoTop').css("right","15px");
-            } else {//hide
-                $('.GoTop').css("opacity","0%");
-                $('.GoTop').css("right","-100px");
-            }
-        }
+function myFunction() {
+    if (window.pageYOffset >= 10) {//print
+        $('.GoTop').css("opacity","100%");
+        $('.GoTop').css("right","15px");
+    } else {//hide
+        $('.GoTop').css("opacity","0%");
+        $('.GoTop').css("right","-100px");
+    }
+}

@@ -310,6 +310,7 @@ $(document).ready(function(){
         var minute = d.getMinutes();
         var sec = d.getSeconds();
         var string="<h1>目前時間：" + year + "年";
+        console.log(month)
         if(month<10) string += "0" + month + "月";
         else string += month + "月";
         if(day<10) string += "0" + day + "日";
@@ -331,12 +332,8 @@ $(document).ready(function(){
         $('.block_year_circle').css('left','calc(' + ((year-2000)/1000*100) + '%' + ' - 10px)')
         $('.block_monthOK').css('width',month/12*100+"%");
         $('.block_month_circle').css('left','calc(' + (month/12*100) + '%' + ' - 10px)')
-        if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
+        if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){ 
             $('.block_dayOK').css('width',day/31*100+"%");
-            $('.block_day_circle').css('left','calc(' + (day/31*100) + '%' + ' - 10px)');
-        }
-        else if(month==6){
-            $('.block_dayOK').css('width',day/30*100+"%");
             $('.block_day_circle').css('left','calc(' + (day/31*100) + '%' + ' - 10px)');
         }
         else if(month==2){
@@ -350,10 +347,9 @@ $(document).ready(function(){
             }
         }
         else {
-            $('.block_dayOK').css('width',day/30*100+"%");
-            $('.block_day_circle').css('left','calc(' + (day/31*100) + '%' + ' - 10px)');
+            $('.block_dayOK').css('width',60+"%");
+            $('.block_day_circle').css('left','calc(' + (day/30*100) + '%' + ' - 10px)');
         }
-        $('.block_dayOK').css('width',day/31*100+"%");
         if(hour>12){
             $('.block_hourOK').css('width',(hour-12)/12*100+"%");
             $('.block_hour_circle').css('left','calc(' + ((hour-12)/12*100) + '%' + ' - 10px)');
@@ -528,10 +524,12 @@ $(document).ready(function(){
     });
 });
 
-function loadTPWeather(cityCoords){
+function loadTPWeather(cityCoords){/*
     var latlng =25.0336 + "," +  121.5644;
-    var forecastURL = "https://api.forecast.io/forecast/982ecb3e65ae65c6d9db9ce3dea7c90c/"+latlng;
+    var forecastURL = "https://api.forecast.io/forecast/52cec5ff313a4d19b60540cfe89675a5"+latlng;
     //備用： https://api.forecast.io/forecast/52cec5ff313a4d19b60540cfe89675a5
+
+    //https://api.forecast.io/forecast/982ecb3e65ae65c6d9db9ce3dea7c90c/
     console.log(forecastURL);
     $.ajax({
         url: forecastURL,
@@ -539,17 +537,47 @@ function loadTPWeather(cityCoords){
         contentType: "application/json",
         dataType: 'jsonp',
         /* 成功 */
-        success: function(json){
+        /*success: function(json){
             console.log(json);
             $('.K101temp').html("<h3>溫度：" + ((json.currently.temperature-32)*(5/9)).toFixed(2)+"&#176;C / " + json.currently.temperature + "&#176;F</h3>");
             $('.K101wet').html("<h3>濕度：" + json.currently.humidity + "</h3>");
             $(".K101des").html("<h3>天氣狀態：" + json.currently.icon + "</h3>");
         },
         /* 錯誤 */
-        error: function(e){
+        /*error: function(e){
             console.log(e.message);
+            $('.K101temp').html("<h3>溫度：" + ((json.currently.temperature-32)*(5/9)).toFixed(2)+"&#176;C / " + json.currently.temperature + "&#176;F</h3>");
         }
-    });
+    });*/
+    
+    let api_key = 'CWB-C96B02A5-E839-4870-B96E-B529AFC22581'
+    let forecastURL = `https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/`+ "F-C0032-001"+`?Authorization=${api_key}&format=JSON` 
+    console.log(forecastURL);
+    $(document).ready(function(){
+    $('.div').html("載入中");
+    $.ajax({
+    url: forecastURL,
+    type: "get",
+    dataType:"json",
+    success: function (info) {
+        console.log(info.cwbopendata.dataset.location[12].weatherElement);
+        $('.K101temp').html("<h3>舒適度：" + ((info.cwbopendata.dataset.location[12].weatherElement[3].time[0].parameter.parameterName)) + "</h3>");
+
+        $('.K101wet').html("<h3>降雨機率：" + info.cwbopendata.dataset.location[12].weatherElement[4].time[0].parameter.parameterName + "%</h3>");
+        $(".K101des").html("<h3>天氣狀態：" + info.cwbopendata.dataset.location[12].weatherElement[0].time[0].parameter.parameterName + "</h3>");
+        console.log(info);
+    },
+    error: function (data) {
+        $('.K101temp').html("<h3>溫度："+  "ERROR"  + "</h3>");
+            $('.K101wet').html("<h3>濕度：" + "ERROR" + "</h3>");
+            $(".K101des").html("<h3>天氣狀態：" + "ERROR" + "</h3>");
+        console.log("請求失敗");
+    }
+});
+});
+
+
+
 }
 $(document).ready(function(){
     $('.content1-button').click(function(){

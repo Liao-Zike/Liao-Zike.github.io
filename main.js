@@ -346,8 +346,8 @@ $(document).ready(function(){
                 $('.block_day_circle').css('left','calc(' + (day/28*100) + '%' + ' - 10px)');
             }
         }
-        else {
-            $('.block_dayOK').css('width',60+"%");
+        else { //天數30天的
+            $('.block_dayOK').css('width',day/30*100+"%");
             $('.block_day_circle').css('left','calc(' + (day/30*100) + '%' + ' - 10px)');
         }
         if(hour>12){

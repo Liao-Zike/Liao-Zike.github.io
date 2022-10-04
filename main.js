@@ -320,7 +320,7 @@ $(document).ready(function(){
             else string+= "下午0" + (hour-12) +"時"
         }
         else{
-            if((hour)>=10)string+= "下午" + hour +"時";
+            if((hour)>=10)string+= "上午" + hour +"時";
             else string+= "下午0" + hour-12 +"時"
         }
         if(minute<10)string += "0" + minute + "分";

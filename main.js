@@ -309,7 +309,7 @@ $(document).ready(function(){
         var hour = d.getHours();
         var minute = d.getMinutes();
         var sec = d.getSeconds();
-        var string="<h1>目前時間：" + year + "年";
+        var string="<h1>" + year + "年";
         console.log(month)
         if(month<10) string += "0" + month + "月";
         else string += month + "月";

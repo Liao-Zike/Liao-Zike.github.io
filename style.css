@@ -1,4 +1,7 @@
 @media screen and (min-width:1200px){
+    .nowtime h1{
+        font-size: 30px;;
+    }
     .header{
         width: 100%;
         background-color: #444;
@@ -69,5 +72,79 @@
         position: relative;
         height: 210vh;
         background-color: rgb(238, 207, 121);
+    }
+    .block_time{
+        margin-top: 25px;
+    }
+    .block_time h2{
+        font-size:larger;
+    }
+    .K101{
+        position: relative;
+        left: 0%;
+    }
+    .time{
+        height: 450px;
+        transform: translate(-50%, -50%);
+    }
+    .ranklist{
+        font-size: 25px;
+        width: 300px;
+        top:50px;
+        right:30px;
+        width: 300px;
+
+    }
+    .content3{
+        border-bottom: 3px solid rgb(90, 175, 255);
+    }
+    .cont3txt{
+        color:#000;
+        left: 50%;
+        top:30px;
+    }
+    .rank1{
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 25px;
+    }
+    .rank2{
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 25px;
+    }
+    .rank3{
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 25px;
+    }
+    .startbtn{
+        top:30px;
+        left:30px;
+        width: 250px;
+        height: 150px;
+        font-size: larger;
+        background-color:rgb(59, 59, 59);
+    }
+    .startnum{
+        top:200px;
+        left:30px;
+        color: rgb(0, 0, 0);
+        font-size: 50px;
+    }
+
+    .GoTop{
+        height: 80px;
+        width: 80px;
+        font-size: 25px;
+        right: -100px;
+        bottom: 15px;
+    }
+    .content4{
+        height: 100%;
+        opacity: 100%;
     }
 }

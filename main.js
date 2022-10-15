@@ -708,6 +708,7 @@ $(document).ready(function(){
         if(choosecity=='連江縣')loadWeather2("F-D0047-083",choosedist);
     })
 })
+$('.allctdiv')
 function loadWeather2(citycode,distcode){
     let api_key = 'CWB-C96B02A5-E839-4870-B96E-B529AFC22581'
     let forecastURL = `https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/`+citycode +`?Authorization=${api_key}&format=JSON` 

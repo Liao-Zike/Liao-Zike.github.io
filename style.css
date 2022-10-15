@@ -87,6 +87,34 @@
         height: 450px;
         transform: translate(-50%, -50%);
     }
+
+    /*cont2天氣部分*/
+    .citychoosetxt{
+        position: absolute;
+        left:-100%;
+        opacity: 0%;
+    }
+    .send{
+
+        top:25px;
+        width:400px;
+        left:-10px;
+        background-color: rgb(0, 193, 252);
+    }
+    
+    .allctdiv{
+        top:80px;
+
+
+    }
+    .TaiwanTemp{ /*台灣地圖*/
+        left: 0%;
+        opacity: 100%;
+    }
+    .citychoose{ /*詳細版鄉鎮溫溼度選擇器*/
+        top:820px;
+        left:50px;
+    }
     .ranklist{
         font-size: 25px;
         width: 300px;
@@ -147,4 +175,8 @@
         height: 100%;
         opacity: 100%;
     }
+
+
+
+    
 }

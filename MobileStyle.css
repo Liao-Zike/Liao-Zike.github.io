@@ -153,7 +153,7 @@
 }
 /*RGB模式開關*/
 .crazybox{
-    margin-left: 20px;
+    /*margin-left: 20px;*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -637,6 +637,9 @@
 
 .TaiwanTemp{
     padding-left: 10px;
+    position: absolute;
+    left: -1000%;
+    opacity: 0%;
 }
 .Keelung{
     position: absolute;
@@ -864,7 +867,7 @@
 /*20220608*/
 .content2{
     position: relative;
-    height: 410vh;
+    height: 850px;
     background-color: rgb(238, 207, 121);
     overflow: hidden;
 }
@@ -893,26 +896,31 @@
     padding :0px;
     font-family: 'Courier New', Courier, monospace;
 }
+.citychoosetxt{
+    text-align: center;
+    font-size: 25px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #000;
+}
 /*20220609*/
 .citychoose{
     position: absolute;
-    top:820px;
-    left:50px;
+    top:50px;
+    left:2%;
 }
 .send{
     position: absolute;
-    top:25px;
-    left:-10px;
+    top:55px;
     border-radius: 10px;
-    width:400px;
-    background-color: rgb(0, 193, 252);
+    width:100%;
+    background-color: rgb(255, 255, 255);
     text-align: center;
     cursor: pointer;
     user-select: none;
 }
 .allctdiv{
     position: absolute;
-    top:80px;
+    top:120px;
     background-color: azure;
 }
 .allctdiv div{

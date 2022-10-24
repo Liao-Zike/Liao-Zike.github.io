@@ -977,7 +977,7 @@
     padding-top: 3px;
     padding-bottom: 3px;
     border-top: 4px solid;
-    font-size: 5px;
+    font-size: 6px;
 }
 .rank2{
     background-color: azure;
@@ -986,7 +986,7 @@
     padding-top: 3px;
     padding-bottom: 3px;
     border-top: 3px solid;
-    font-size: 5px;
+    font-size: 6px;
 }
 .rank3{
     background-color: azure;
@@ -996,7 +996,7 @@
     padding-bottom: 3px;
     border-top: 3px solid;
     border-bottom: 3px solid;
-    font-size: 5px;
+    font-size: 6px;
 }
 .cont3img img{
     margin: auto;

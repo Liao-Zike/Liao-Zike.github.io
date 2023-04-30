@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12" id="showdata">
+
+            </div>
+        </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+
+
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url: 'http://26.120.110.254:3000/get1',
+                dataType: 'json',
+                success: function(data) {
+                    showtoHTML="<table class='table table-bordered table-striped text-center '><tr class='bg-secondary text-light'> <th>時間</th> <th>水位感測器數值</th> <th>缺水狀態</th></tr>"
+                    for (i=0;i<data.length;++i){
+                        showtoHTML+="<tr>";
+                        showtoHTML=showtoHTML+"<td>"+data[i]['時間']+"</td>"
+                        showtoHTML=showtoHTML+"<td>"+data[i]['水位感測器']+"</td>"
+                        if(data[i]['是否缺水']==1) showtoHTML=showtoHTML+"<td class='text-danger'>"+"缺水"+"</td>"
+                        else showtoHTML=showtoHTML+"<td class='text-success'>"+"不缺水"+"</td>"
+                        showtoHTML+="</tr>";
+                    }
+                    showtoHTML=showtoHTML+"</table>"
+                    $('#showdata').html(showtoHTML);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>總水庫查詢表</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        #show_waterdata iframe{
+            background-color: rgb(242, 238, 232);
+        }
+        #show_waterdata{
+            background-color: rgb(242, 238, 232);
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6" id="choose_waterdata">
+                <div class="container">
+                    <div class="row" >
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="card">
+                                <img src="media/水庫A.jpg" class="card-img-top" alt="水庫A照片" width="100%" height="200px">
+                                <div class="card-body">
+                                    <h5 class="card-title">水庫A</h5>
+                                    <p class="card-text">位於地方</p>
+                                    <button type="button" class="btn btn-dark" id="waterbaseA">查看</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6  col-lg-4">
+                            <div class="card">
+                                <img src="media/水庫B.jpg" class="card-img-top" alt="水庫B照片" width="100%" height="200px">
+                                <div class="card-body">
+                                    <h5 class="card-title">水庫B</h5>
+                                    <p class="card-text">位於地方</p>
+                                    <button type="button" class="btn btn-dark" id="waterbaseB">查看</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-6" id="show_waterdata" style="height: 100vh;">
+            
+            </div>
+                
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('#waterbaseA').click(function(){
+                $('#show_waterdata').html('<iframe src="web1.html" title="Waterdata" width="100%" height="100%$"></iframe>')
+            })
+            $('#waterbaseB').click(function(){
+                $('#show_waterdata').html('<iframe src="web2.html" title="Waterdata" width="100%" height="100%$"></iframe>')
+            })
+        })
+    </script>
+
+</body>
+</html>
